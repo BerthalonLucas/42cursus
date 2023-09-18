@@ -3,52 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:55:11 by lberthal          #+#    #+#             */
-/*   Updated: 2023/09/08 14:30:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:19:28 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_posneg(*str)
-{
-	int mnbr;
-	int i;
-
-	i = 0;
-	mnbr = 0;
-	while (str[i])
-	{
-		if (str[i] == '-')
-			mnbr++;
-		else
-			i++;
-	}
-	mnbr = mnbr % 2;
-	if (mbr >= 1)
-		return (0);
-	else
-		return (1);
-}
-
-int ft_atoi(char *str)
+int     ft_atoi(const char *str)
 {
 	int i;
-	int signe;
+	int a;
 	int entier;
 
-
 	i = 0;
-	signe = 1;
-
-	while (str[i] == ' ' || (str][i] >= 9 && str[i] <= 13))
+	a = 1;
+	entier = 0;
+	if (!(str[i]))
+		return (0);
+	while (( str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	while (str[i] >= '0' && <= '9')
+	while (str[i] == '-' || str[i] == '+')
 	{
-		entier = entier * 10 + src[i] - '0';
+		if (str[i] == '-')
+			a = a * -1;
 		i++;
 	}
-	if (ft_posneg(str) == 0)
-		
-
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		entier = entier * 10 + str[i] - '0';
+		i++;
+	}
+	entier = entier * a;
+	return (entier);
 }
+/*
+int main(void)
+{
+	const char str[] = "  		 +-+-++-47859zx47   ";
+
+	printf("%d\n", ft_atoi(str));
+}*/
