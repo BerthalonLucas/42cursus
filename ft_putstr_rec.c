@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 00:21:38 by anonymous         #+#    #+#             */
-/*   Updated: 2023/09/18 17:02:25 by anonymous        ###   ########.fr       */
+/*   Created: 2023/09/18 21:57:43 by anonymous         #+#    #+#             */
+/*   Updated: 2023/09/18 22:01:40 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_fibonacci(int index)
+#include <unistd.h>
+void ft_putstr_rec(char *str)
 {
-	int	i;
-
-	if (index < 0)
-		return (-1);
-	if (index == 0)
-		return (0);
-	if (index == 1)
-		return (1);
-	i = ft_fibonacci(index - 1) + ft_fibonacci(index - 2);
-	return (i);
+	if (str[0] == '\0')
+		write (1, "\n", 1);
+	else
+	{
+		write (1, &str[0], 1);
+		ft_putstr_rec(&str[1]);
+	}
 }
-/*
-#include <stdio.h>
+
 int main(void)
 {
-	int index;
+	char str[] = "c'est une dinguerie";
 
-	index = 20;
-	printf("%d\n", ft_fibonacci(index));
-}*/
+	ft_putstr_rec(str);
+}

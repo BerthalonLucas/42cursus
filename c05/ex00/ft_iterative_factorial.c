@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:59:56 by anonymous         #+#    #+#             */
-/*   Updated: 2023/09/18 15:19:11 by anonymous        ###   ########.fr       */
+/*   Updated: 2023/09/18 17:03:18 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 int	ft_iterative_factorial(int nb)

@@ -16,15 +16,15 @@ int ft_strcmp(char *s1, char *s2)
 	}
 		return (s1[i] - s2[i]);
 }
-/*
+
 int main(void)
 {
-	char	s1[] = "yyyyyhy";
-	char	s2[] = "yyyyyy";
+	char	s1[] = "a";
+	char	s2[] = "b";
 	int result;
 
 	result = strcmp(s1, s2);
 	printf("%d\n", ft_strcmp(s1, s2));
 	printf("%d\n", result);
 }
-*/
+

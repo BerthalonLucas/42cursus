@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 00:21:38 by anonymous         #+#    #+#             */
-/*   Updated: 2023/09/18 17:02:25 by anonymous        ###   ########.fr       */
+/*   Created: 2023/09/18 20:19:33 by anonymous         #+#    #+#             */
+/*   Updated: 2023/09/18 20:43:54 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_fibonacci(int index)
+#include <unistd.h>
+int main(int ac, char **av)
 {
-	int	i;
+	int i;
 
-	if (index < 0)
-		return (-1);
-	if (index == 0)
+	ac = ac - 1;
+	if (ac > 4)
 		return (0);
-	if (index == 1)
-		return (1);
-	i = ft_fibonacci(index - 1) + ft_fibonacci(index - 2);
-	return (i);
+	while (ac > 0)
+	{
+		i = 0;
+		while (av[ac][i])
+		{
+			write (1, &av[ac][i], 1);
+			i++;
+		}
+		ac--;
+		write (1, "\n", 1);
+	}
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	int index;
-
-	index = 20;
-	printf("%d\n", ft_fibonacci(index));
-}*/
