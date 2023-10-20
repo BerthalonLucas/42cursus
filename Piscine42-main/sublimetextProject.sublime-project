@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+		{
+			"path": "\\\\wsl.localhost\\Ubuntu\\42-EXAM\\42-EXAM\\rendu",
+		},
+		{
+			"path": "\\\\wsl.localhost\\Ubuntu\\42-EXAM\\42-EXAM\\subjects",
+		},
+		{
+			"path": "\\\\wsl.localhost\\Ubuntu\\42-EXAM\\42-EXAM\\success\\ft_atoi"
+		},
+	],
+}
