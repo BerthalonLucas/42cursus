@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 23:22:15 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/19 18:44:47 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:14:48 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		r++;
 	}
 	dest[i] = '\0';
-	return (ft_strlen(src) + (r - 1));
+	return (ft_strlen(src) + i);
 }
 
 int main(void)
@@ -56,10 +56,10 @@ int main(void)
 	char dest1[] = "123456789";
 	const char src1[] = "abcde";
 	
-	printf("%ld\n", strlcat(dest1, src1, 12));
+	printf("%ld\n", strlcat(dest1, src1, 13));
 	printf("%s\n", dest1);
 	printf("%s\n", src1);
-	printf("%ld\n", ft_strlcat(dest, src, 12));
+	printf("%ld\n", ft_strlcat(dest, src, 13));
 	printf("%s\n", dest);
 	printf("%s\n", src);
 }
