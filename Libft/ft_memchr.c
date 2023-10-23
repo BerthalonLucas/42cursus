@@ -26,10 +26,3 @@ void *ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
-// int main(void)
-// {
-
-// 	printf("%s\n", (char*)ft_memchr("test juste pour voir", 'j', 11));
-// 	printf("%s\n", (char*)memchr("test juste pour voir", 'j', 11));
-// }

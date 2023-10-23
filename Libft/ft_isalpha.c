@@ -18,9 +18,3 @@ int	ft_isalpha(int c)
 		return (1024);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	printf("%d\n", ft_isalpha(72));
-// 	printf("%d\n", isalpha(102));
-// }

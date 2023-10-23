@@ -21,24 +21,11 @@ char *ft_strdup(const char *s)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (s[i] && i < ft_strlen(s))
 	{
 		str[i] = s[i];
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
-
-// int main(void)
-// {
-// 	char *str = "";
-// 	char *str1 = "";
-// 	char *rep = ft_strdup(str);
-// 	char *rep1 = strdup(str1);
-	
-// 	printf("%s\n", ft_strdup(rep));
-// 	printf("%s\n", strdup(rep1));
-// 	free(rep);
-// 	free(rep1);
-// 	return (0);
-// }

@@ -21,8 +21,3 @@ int	ft_toupper(int c)
 	}
 	return (c);
 }
-
-// int main(void)
-// {
-// 	printf("%d\n", ft_toupper(104));
-// }

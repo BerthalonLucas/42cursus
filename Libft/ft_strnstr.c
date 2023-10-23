@@ -51,22 +51,3 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// int	main(void)
-// {
-// 	// test of the original function
-// 	// printf("%s\n", strnstr("test dans le tester", "", 6));
-// 	char *result = strnstr("12345678", "123", 2);
-// 	if (result == NULL)
-// 		printf("c'est bien NULL\n");
-// 	else
-// 		printf("%s\n", result);
-
-// 	// test of my function
-// 	// printf("%s\n", ft_strnstr("test dans le tester", "", 6));
-// 	char *result1 = ft_strnstr("12345678", "123", 2);
-// 	if (result1 == NULL)
-// 		printf("c'est bien NULL\n");
-// 	else
-// 		printf("%s\n", result1);
-// }

@@ -26,11 +26,3 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
-// int main(void)
-// {
-// 	unsigned char str[] = "je m'en fou de ta life";
-// 	unsigned char str2[] = "je m'en fou de ta life";
-// 	printf("%s\n", str);
-// 	printf("after ft_memeset : %s\n", (char*)ft_memset(str, 120, 9));
-// 	printf("after memset : %s\n", (char*)memset(str2, 120, 5));
-// }

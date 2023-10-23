@@ -16,13 +16,3 @@ void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }
-
-// int main(void)
-// {
-// 	unsigned char str[] = "coucou les petits loups";
-	
-
-// 	printf("%s\n", str);
-// 	ft_bzero(str, 15);
-// 	printf("%s\n", str);
-// }

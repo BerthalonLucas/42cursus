@@ -35,11 +35,3 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
-/*
-int	main(void)
-{
-	char str[] = "   \t\n\v\r\f-1234567890";
-	printf("%d\n", ft_atoi(str));
-	printf("%d\n", atoi(str));
-	return 0;
-}*/

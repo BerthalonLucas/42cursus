@@ -21,12 +21,3 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 		ft_memcpy(dest, src, n);
 	return (dest);
 }
-
-// int main(void)
-// {
-// 	unsigned char dest[] = "hello world";
-// 	unsigned char dest1[] = "hello world";
-
-// 	printf("%s\n", (unsigned char*)ft_memmove(dest + 6, dest, 5));
-// 	printf("%s\n", (unsigned char*)memmove(dest1 + 6, dest1, 5));
-// }

@@ -27,9 +27,3 @@ char *ft_strrchr(const char *s, int c)
 		return ((char*)s + i);
 	return (NULL);
 }
-
-// int	main(void)
-// {
-// 	printf("%s\n", ft_strrchr("teste", 'e'));
-// 	printf("%s\n", strrchr("teste", 'e'));
-// } 

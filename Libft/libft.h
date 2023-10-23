@@ -12,13 +12,7 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <ctype.h>
-# include <bsd/string.h> 
-//besoin de compiler avec le flag -lbsd ex : gcc file.c -lbsd <-- a droite
+# include <stddef.h>
 
 int	ft_isdigit(int c);
 int	ft_isalpha(int c);

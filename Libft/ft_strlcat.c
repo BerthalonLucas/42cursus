@@ -52,18 +52,3 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		return (dest_len + src_len);
 	return (ft_strlen(dest));
 }
-
-// int main(void)
-// {
-// 	char dest[] = "1234";
-// 	const char *src = "123456789";
-// 	char dest1[] = "1234";
-// 	const char *src1 = "123456789";
-	
-// 	printf("%ld\n", strlcat(dest1, src1, 12));
-// 	printf("%s\n", dest1);
-// 	printf("%s\n", src1);
-// 	printf("%ld\n", ft_strlcat(dest, src, 12));
-// 	printf("%s\n", dest);
-// 	printf("%s\n", src);
-// }

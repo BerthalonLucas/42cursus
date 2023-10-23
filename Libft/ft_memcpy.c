@@ -24,14 +24,3 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
-// int main(void)
-// {
-// 	unsigned char dest[] = "hello world";
-// 	unsigned char dest1[] = "hello world";
-// 	const unsigned char src[] = "tests";
-// 	const unsigned char src1[] = "tests";
-
-// 	printf("%s\n", (unsigned char*)ft_memcpy(dest, src, 5));
-// 	printf("%s\n", (unsigned char*)memcpy(dest1, src1, 5));
-// }

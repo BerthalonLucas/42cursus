@@ -28,13 +28,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[i] = '\0';
 	return (ft_strlen(src));
 }
-
-// int main(void)
-// {
-// 	char str[] = "petit test pour voir";
-// 	const char str1[] = "autre se";
-
-// 	printf("%lu\n", ft_strlcpy(str, str1, 4));
-// 	printf("%lu\n", strlcpy(str, str1, 4));
-	
-// }
