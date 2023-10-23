@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:08:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/23 22:06:28 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:13:18 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-har *ft_strnstr(const char *big, const char *little, size_t len)
+char *ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	u;
