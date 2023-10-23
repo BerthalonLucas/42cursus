@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 21:24:58 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/18 22:10:08 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:36:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-int main(void)
-{
-	unsigned char dest[] = "hello world";
-	unsigned char dest1[] = "hello world";
+// int main(void)
+// {
+// 	unsigned char dest[] = "hello world";
+// 	unsigned char dest1[] = "hello world";
 
-	printf("%s\n", (unsigned char*)ft_memmove(dest + 6, dest, 5));
-	printf("%s\n", (unsigned char*)memmove(dest1 + 6, dest1, 5));
-}
+// 	printf("%s\n", (unsigned char*)ft_memmove(dest + 6, dest, 5));
+// 	printf("%s\n", (unsigned char*)memmove(dest1 + 6, dest1, 5));
+// }

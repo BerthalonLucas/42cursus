@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:59:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/20 17:57:03 by lberthal         ###   ########.fr       */
+/*   Created: 2023/10/20 02:21:57 by lberthal          #+#    #+#             */
+/*   Updated: 2023/10/22 23:31:40 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+int	ft_isdigit(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (((const unsigned char*)s)[i] == (unsigned char)c)
-			return ((unsigned char*)s + i);
-		else
-			i++;
-	}
-	return (NULL);
+	if (c >= '0' && c <= '9')
+		return (2048);
+	return (0);
 }
 
-// int main(void)
+// int	main(void)
 // {
-
-// 	printf("%s\n", (char*)ft_memchr("test juste pour voir", 'j', 11));
-// 	printf("%s\n", (char*)memchr("test juste pour voir", 'j', 11));
+// 	printf("%d\n", ft_isdigit(57));
+// 	printf("%d\n", isdigit(57));
 // }

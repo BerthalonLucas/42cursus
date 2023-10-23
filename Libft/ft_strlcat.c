@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 23:22:15 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/19 19:14:48 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/23 01:22:25 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t i;
 	size_t r;
 	size_t src_len;
+	size_t	dest_len;
 
 	i = 0;
 	r = 0;
 	src_len = ft_strlen(src);
+	dest_len = ft_strlen(dest);
 	while (dest[i])
 		i++;
 	if (i >= size)
@@ -46,20 +48,22 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		r++;
 	}
 	dest[i] = '\0';
-	return (ft_strlen(src) + i);
+	if (size <= (src_len + ft_strlen(dest)))
+		return (dest_len + src_len);
+	return (ft_strlen(dest));
 }
 
-int main(void)
-{
-	char dest[] = "123456789";
-	const char src[] = "abcde";
-	char dest1[] = "123456789";
-	const char src1[] = "abcde";
+// int main(void)
+// {
+// 	char dest[] = "1234";
+// 	const char *src = "123456789";
+// 	char dest1[] = "1234";
+// 	const char *src1 = "123456789";
 	
-	printf("%ld\n", strlcat(dest1, src1, 13));
-	printf("%s\n", dest1);
-	printf("%s\n", src1);
-	printf("%ld\n", ft_strlcat(dest, src, 13));
-	printf("%s\n", dest);
-	printf("%s\n", src);
-}
+// 	printf("%ld\n", strlcat(dest1, src1, 12));
+// 	printf("%s\n", dest1);
+// 	printf("%s\n", src1);
+// 	printf("%ld\n", ft_strlcat(dest, src, 12));
+// 	printf("%s\n", dest);
+// 	printf("%s\n", src);
+// }

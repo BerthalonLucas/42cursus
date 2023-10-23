@@ -1,39 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:28:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/20 16:58:30 by lberthal         ###   ########.fr       */
+/*   Created: 2023/10/22 19:05:28 by lberthal          #+#    #+#             */
+/*   Updated: 2023/10/22 23:31:27 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+char *ft_strdup(const char *s)
 {
+	char	*str;
 	size_t	i;
 
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (s1[i] && s2[i] && i <= n)
+	while (s[i])
 	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return ((int)s1[i] - (int)s2[i]);
+		str[i] = s[i];
+		i++;
 	}
-	return (0);
+	return (str);
 }
 
 // int main(void)
 // {
-// 	const char s1[] = "je ne sais pas quoi ecrire";
-// 	const char s2[] = "je ne sais pas quoi 1crire";
-// 	const char s3[] = "je ne sais pas quoi ecrire";
-// 	const char s4[] = "je ne sais pas quoi 1crire";
+// 	char *str = "";
+// 	char *str1 = "";
+// 	char *rep = ft_strdup(str);
+// 	char *rep1 = strdup(str1);
 	
-// 	printf("%d\n", ft_strncmp(s1, s2, 12));
-// 	printf("%d\n", strncmp(s3, s4, 12));
+// 	printf("%s\n", ft_strdup(rep));
+// 	printf("%s\n", strdup(rep1));
+// 	free(rep);
+// 	free(rep1);
+// 	return (0);
 // }

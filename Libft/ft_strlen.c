@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 22:03:10 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/18 20:32:00 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:36:21 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 
 // int main(void)
 // {
-// 	char str[] = "Hello World!";
+// 	char str[] = "tester";
 // 	printf("%ld\n", ft_strlen(str));
 // 	printf("%ld\n", strlen(str));
 // 	return (0);

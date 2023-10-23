@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:59:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/20 17:57:03 by lberthal         ###   ########.fr       */
+/*   Created: 2023/10/20 02:14:05 by lberthal          #+#    #+#             */
+/*   Updated: 2023/10/20 02:26:50 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+int	ft_isalpha(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (((const unsigned char*)s)[i] == (unsigned char)c)
-			return ((unsigned char*)s + i);
-		else
-			i++;
-	}
-	return (NULL);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1024);
+	return (0);
 }
 
-// int main(void)
+// int	main(void)
 // {
-
-// 	printf("%s\n", (char*)ft_memchr("test juste pour voir", 'j', 11));
-// 	printf("%s\n", (char*)memchr("test juste pour voir", 'j', 11));
+// 	printf("%d\n", ft_isalpha(72));
+// 	printf("%d\n", isalpha(102));
 // }

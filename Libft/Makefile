@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/10/20 02:10:34 by lberthal         ###   ########.fr        #
+#    Updated: 2023/10/22 23:50:34 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,18 @@ SRC 		= ft_isalpha.c			\
 OBJS 		= $(SRC:.c=.o) 
 
 all 	: $(NAME)
+			@$(RM) $(OBJS)
 			@echo "=========================================="
 			@echo "[          NORMINETTES ERRORS            ]"
 			@echo "=========================================="
-			@norminette $(SRC)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) 
+			@echo "Compilation OK"
 			@$(AR) $(NAME) $(OBJS)
 			@echo "archive OK"
+
+%.o 	: %.c
+			@$(CC) -c -o $@ $^ $(CFLAGS)
 
 clean 	:
 			@$(RM) $(OBJS)
@@ -57,5 +61,3 @@ fclean 	: clean
 			@echo "fclean OK"
 
 re 		: fclean all
-
-

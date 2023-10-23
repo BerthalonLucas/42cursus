@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:59:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/20 17:57:03 by lberthal         ###   ########.fr       */
+/*   Created: 2023/10/20 21:21:09 by lberthal          #+#    #+#             */
+/*   Updated: 2023/10/22 19:04:50 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+void *ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
+	void *ptr;
 
-	i = 0;
-	while (i < n)
-	{
-		if (((const unsigned char*)s)[i] == (unsigned char)c)
-			return ((unsigned char*)s + i);
-		else
-			i++;
-	}
-	return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, (nmemb * size));
+	return (ptr);
 }
 
 // int main(void)
 // {
-
-// 	printf("%s\n", (char*)ft_memchr("test juste pour voir", 'j', 11));
-// 	printf("%s\n", (char*)memchr("test juste pour voir", 'j', 11));
+// 	char *str;
+// 	char *str1;
+	
+// 	str1 = calloc(10, sizeof(char));
+// 	str = ft_calloc(10, sizeof(char));
+// 	printf("%s\n", str);
+// 	printf("%s\n", str1);
+// 	free(str);
+// 	free(str1);
+// 	return (0);
 // }
