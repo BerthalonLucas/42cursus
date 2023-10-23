@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:08:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/23 19:39:58 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:06:28 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char *ft_strnstr(const char *big, const char *little, size_t len)
+har *ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	u;
@@ -37,7 +37,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	str = (char*)big;
 	while (big[i] && i < len)
 	{
-		while (little[u] == big[i] && little[u] != '\0')
+		while (little[u] == big[i] && little[u] != '\0' && i < len)
 		{
 			u++;
 			i++;
@@ -56,13 +56,17 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 // {
 // 	// test of the original function
 // 	// printf("%s\n", strnstr("test dans le tester", "", 6));
-// 	char *result = strnstr("", "", 0);
+// 	char *result = strnstr("12345678", "123", 2);
 // 	if (result == NULL)
 // 		printf("c'est bien NULL\n");
+// 	else
+// 		printf("%s\n", result);
 
 // 	// test of my function
 // 	// printf("%s\n", ft_strnstr("test dans le tester", "", 6));
-// 	char *result1 = ft_strnstr("", "", 0);
+// 	char *result1 = ft_strnstr("12345678", "123", 2);
 // 	if (result1 == NULL)
 // 		printf("c'est bien NULL\n");
+// 	else
+// 		printf("%s\n", result1);
 // }

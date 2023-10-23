@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:03:48 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/19 18:25:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:06:59 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_toupper(int c)
 {
-	if (c <= 'z' || c >= 'a')
+	if (c <= 'z' && c >= 'a')
 	{
 		c = c - 32;
 		return (c);
 	}
-	return (0);
+	return (c);
 }
 
 // int main(void)

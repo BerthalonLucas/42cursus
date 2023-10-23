@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:19:07 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/19 18:36:14 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:06:50 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_tolower(int c)
 		c = c + 32;
 		return (c);
 	}
-	return (0);
+	return (c);
 }
 
 // int main(void)
