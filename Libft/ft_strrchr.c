@@ -14,11 +14,9 @@
 
 char *ft_strrchr(const char *s, int c)
 {
-	int i;
+		int i;
 	
-	i = ft_strlen(s) - 1;
-	if (*s == '\0')
-		return ((char*)s + ft_strlen(s));
+	i = ft_strlen(s);
 	while (i >= 0)
 	{
 		if (s[i] == (char)c)
@@ -34,4 +32,4 @@ char *ft_strrchr(const char *s, int c)
 // {
 // 	printf("%s\n", ft_strrchr("teste", 'e'));
 // 	printf("%s\n", strrchr("teste", 'e'));
-// }
+// } 

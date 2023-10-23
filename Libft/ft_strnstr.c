@@ -30,8 +30,10 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	
 	i = 0;
 	u = 0;
-	if (!little)
+	if (!little || (!big && !little))  
 		return ((char*)big);
+	if (!big)
+		return (NULL);
 	str = (char*)big;
 	while (big[i] && i < len)
 	{
@@ -49,21 +51,20 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	if (i < len)
 		return (str);
-	else
-		return (NULL);
 	return (NULL);
 }
 
-// int	main(void)
-// {
-// 	// char *ptr = "test dans le tester";
-// 	// char *little = "da";
-// 	// char *result = strnstr("test dans le tester", "das", 6);
-// 	// if (result == NULL)
-// 	// 	printf("c'est bien NULL\n");
-// 	printf("%s\n", strnstr("test dans le tester", "", 6));
-// 	printf("%s\n", ft_strnstr("test dans le tester", "", 6));
-// 	// char *result1 = ft_strnstr("test dans le tester", "", 6);
-// 	// if (result1 == NULL)
-// 	// 	printf("c'est bien NULL\n");
-// }
+int	main(void)
+{
+	// test of the original function
+	// printf("%s\n", strnstr("test dans le tester", "", 6));
+	char *result = strnstr("", "", 0);
+	if (result == NULL)
+		printf("c'est bien NULL\n");
+
+	// test of my function
+	// printf("%s\n", ft_strnstr("test dans le tester", "", 6));
+	char *result1 = ft_strnstr("", "", 0);
+	if (result1 == NULL)
+		printf("c'est bien NULL\n");
+}
