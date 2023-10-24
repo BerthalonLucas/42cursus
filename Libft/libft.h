@@ -13,6 +13,12 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
+# include <bsd/string.h>
+# include <stddef.h>
 
 int	ft_isdigit(int c);
 int	ft_isalpha(int c);
@@ -35,6 +41,8 @@ char *ft_strdup(const char *s);
 char *ft_strnstr(const char *big, const char *little, size_t len);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
 int ft_memcmp(const void *s1, const void *s2, size_t n);
+int ft_tolower(int c);
+void *ft_memchr(const void *s, int c, size_t n);
 
 
 

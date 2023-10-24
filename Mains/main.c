@@ -197,9 +197,8 @@ int main(void)
     // ----------------------------------------------
     // testes for ft_strnstr
     //----------------------------------------------
-// 	// test of the original function
-// 	// printf("%s\n", strnstr("test dans le tester", "", 6));
-// 	char *result = strnstr("12345678", "123", 2);
+// // printf("%s\n", strnstr("test dans le tester", "", 6));
+// 	char *result = strnstr("aaabcabcd", "abcd", 9);
 // 	if (result == NULL)
 // 		printf("c'est bien NULL\n");
 // 	else
@@ -207,7 +206,7 @@ int main(void)
 
 // 	// test of my function
 // 	// printf("%s\n", ft_strnstr("test dans le tester", "", 6));
-// 	char *result1 = ft_strnstr("12345678", "123", 2);
+// 	char *result1 = ft_strnstr("aaabcabcd", "abcd", 9);
 // 	if (result1 == NULL)
 // 		printf("c'est bien NULL\n");
 // 	else
@@ -230,13 +229,13 @@ int main(void)
     // ----------------------------------------------
     // testes for ft_toupper
     //----------------------------------------------
-	int i = 0;
-	while (i < 128)
-	{
-		if (ft_toupper(i) != toupper(i))
-			printf("%d\n", i);
-		i++;
-	}
+	// int i = 0;
+	// while (i < 128)
+	// {
+	// 	if (ft_toupper(i) != toupper(i))
+	// 		printf("%d\n", i);
+	// 	i++;
+	// }
     // ----------------------------------------------
     // testes for ft_substr
     //----------------------------------------------
