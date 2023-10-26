@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/10/26 14:26:03 by lberthal         ###   ########.fr        #
+#    Updated: 2023/10/26 19:28:13 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SRC 		= ft_isalpha.c			\
 			  ft_calloc.c			\
 			  ft_strdup.c			\
 			  ft_substr.c			\
+			  ft_strjoin.c			\
+			  ft_strtrim.c			\
 	  
 OBJS 		= $(SRC:.c=.o) 
 

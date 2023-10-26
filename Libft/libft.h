@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:24:24 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/26 14:30:38 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/27 00:20:54 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_tolower(int c);
 void	*ft_memchr(const void *s, int c, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char *ft_strjoin(char const *s1, char const *s2);
+char *ft_strtrim(char const *s1, char const *set);
+
+
 
 
 #endif // LIBFT_H

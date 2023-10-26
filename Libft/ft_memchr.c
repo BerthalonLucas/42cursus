@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:59:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/20 17:57:03 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:41:16 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	{
 		if (((const unsigned char*)s)[i] == (unsigned char)c)
 			return ((unsigned char*)s + i);
-		else
-			i++;
+		i++;
 	}
 	return (NULL);
 }
