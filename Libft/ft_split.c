@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 01:24:42 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/30 03:07:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/31 00:24:49 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,38 @@
 
 static int  ft_count(char const *s, char c);
 
-static void ft_free(char **tab)
+static void ft_free(char **tab, int c_numb)
 {
-	
+	while (c_numb > 0)
+	{
+		free(tab[c_numb]);
+		printf("free de tab[%d]\n", c_numb);
+		c_numb--;
+	}
+	free(tab);
 }
 
-static char	**ft_alloc(char const *s, char c, int y, int z)
+static char	**ft_alloc(char const *s, char c,char **tab, int z)
 {
-	char **tab;
+	int y;
 	int	i;
 	int	c_numb;
 
 	i = 0;
+	y = -1;
 	c_numb = ft_count(s, c);
-	tab = (char **)malloc(sizeof(char *) * (c_numb + 1));
-	if (!tab)
-		return(NULL);
+	while (*s == c)
+		s++;
 	while (++y, c_numb > 0)
 	{
-		if (s[y] == c || s[y] == '\0')
+		if (s[z + y] == c || s[z + y] == '\0')
 		{
 			tab[i] = ft_substr(s, z, y);
 			if (!tab[i])
-				return (NULL);
+				return (ft_free(tab, c_numb), NULL);
 			c_numb--;
-			while (s[y] == c)
-				y++;
+			while (s[z + y] == c)
+				++y;
 			i++;
 			z += y;
 			y = 0;
@@ -55,14 +61,19 @@ static int  ft_count(char const *s, char c)
 
 	i = 0;
 	limiter = 1;
-	if (!s)
-		return (-1);
-	while (s[i])
+	if (!ft_strchr(s, c))
+		return (0);
+	while (s[i] == c)
+		i++;
+ 	while (s[i])
 	{
 		if (s[i] == c)
 		{
 			while (s[i] == c)
 				i++;
+			if (s[i] == '\0')
+				return (limiter);
+			if (s[i])
 			limiter++;
 		}
 		i++;
@@ -72,24 +83,45 @@ static int  ft_count(char const *s, char c)
 
 char **ft_split(char const *s, char c)
 {
-	int	y;
 	int	z;
+	char **tab;
 	
-	y = - 1;
 	z = 0;
-	return (ft_alloc(s, c, y, z));
+	if (!s)
+		return (NULL);
+	if (s[0] == '\0')
+		return (NULL);
+	tab = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	if (!tab)
+		return(NULL);
+	if (ft_strchr(s, c))
+	{
+		tab[0] == ft_strdup(s);
+		return (ft_alloc(s, c, tab, z));
+	}
+	if (ft_alloc(s, c, tab, z) == NULL)
+		return (NULL);
+	return (ft_alloc(s, c, tab, z));
 }
 
 int main(void)
 {
 	int i = 0;
-	char *str = "hello world";
+	// char *str = "    lyigk iugvuvhj";
+	char *str = "123456789";
+	// char *str = "545  516     651   ";
+	// char *str = "123  1234   12345  123456";
 	char c = ' ';
 	
-	while (i < 3)
+	while (i < 10)
 	{
+		if (ft_split(str, c) == NULL)
+			return (printf("fonction NULL for STR"));
 		if (ft_split(str, c)[i] == NULL)
-			printf("String, NULL\n");
+		{
+			printf("String, NULL for STR\n");
+			return (0);
+		}
 		else
 			printf("%s\n", ft_split(str, c)[i]);
 		i++;
