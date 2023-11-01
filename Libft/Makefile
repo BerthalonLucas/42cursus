@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/11/01 02:06:02 by lberthal         ###   ########.fr        #
+#    Updated: 2023/11/01 15:58:28 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,9 @@ SRC 		= ft_isalpha.c			\
 			  ft_itoa.c				\
 			  ft_split.c			\
 			  ft_strmapi.c			\
+			  ft_striteri.c			\
+			  ft_putchar_fd.c		\
+			  ft_putendl_fd.c		\
 	  
 OBJS 		= $(SRC:.c=.o) 
 
