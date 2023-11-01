@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 01:24:42 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/31 00:24:49 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/10/31 23:55:29 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ static int  ft_count(char const *s, char c)
 	i = 0;
 	limiter = 1;
 	if (!ft_strchr(s, c))
-		return (0);
+		return (1);
 	while (s[i] == c)
 		i++;
+	if (i == ft_strlen(s))
+		return (0);
  	while (s[i])
 	{
 		if (s[i] == c)
@@ -87,43 +89,47 @@ char **ft_split(char const *s, char c)
 	char **tab;
 	
 	z = 0;
+	tab = NULL;
 	if (!s)
-		return (NULL);
+		return (tab);
 	if (s[0] == '\0')
-		return (NULL);
+	{
+		tab = (char **)malloc(sizeof(char *) * 1);
+		tab[0] = NULL;
+		return (tab);
+	}
 	tab = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
 	if (!tab)
 		return(NULL);
-	if (ft_strchr(s, c))
+	if (!ft_strchr(s, c))
 	{
-		tab[0] == ft_strdup(s);
-		return (ft_alloc(s, c, tab, z));
+		tab[0] = ft_strdup(s);
+		tab[1] = NULL;
+		return (tab);
 	}
-	if (ft_alloc(s, c, tab, z) == NULL)
-		return (NULL);
 	return (ft_alloc(s, c, tab, z));
 }
 
-int main(void)
-{
-	int i = 0;
-	// char *str = "    lyigk iugvuvhj";
-	char *str = "123456789";
-	// char *str = "545  516     651   ";
-	// char *str = "123  1234   12345  123456";
-	char c = ' ';
+// int main(void)
+// {
+// 	// int i = 0;
+// 	// char *str = "    lyigk iugvuvhj";
+// 	// char *str = "123456789";
+// 	// char *str = "545  516     651   ";
+// 	// char *str = "123  1234   12345  123456";
+// 	char c = ' ';
 	
-	while (i < 10)
-	{
-		if (ft_split(str, c) == NULL)
-			return (printf("fonction NULL for STR"));
-		if (ft_split(str, c)[i] == NULL)
-		{
-			printf("String, NULL for STR\n");
-			return (0);
-		}
-		else
-			printf("%s\n", ft_split(str, c)[i]);
-		i++;
-	}
-}
+// 	while (i < 10)
+// 	{
+// 		if (ft_split(str, c) == NULL)
+// 			return (printf("fonction NULL for STR"));
+// 		if (ft_split(str, c)[i] == NULL)
+// 		{
+// 			printf("String, NULL for STR\n");
+// 			return (0);
+// 		}
+// 		else
+// 			printf("%s\n", ft_split(str, c)[i]);
+// 		i++;
+// 	}
+// }
