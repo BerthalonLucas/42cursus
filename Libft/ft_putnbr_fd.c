@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:00:37 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/01 16:53:25 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:08:55 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void ft_putnbr_fd(int n, int fd)
 	}
 }
 
-int main(void)
-{
-	ft_putnbr_fd(14, 1);
-}
+// int main(void)
+// {
+// 	ft_putnbr_fd(14, 1);
+// }

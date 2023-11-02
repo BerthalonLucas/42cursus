@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 01:24:42 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/31 23:55:29 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:07:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int  ft_count(char const *s, char c)
 		return (1);
 	while (s[i] == c)
 		i++;
-	if (i == ft_strlen(s))
+	if (i == (int)ft_strlen(s))
 		return (0);
  	while (s[i])
 	{

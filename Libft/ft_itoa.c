@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 20:00:28 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/28 01:05:30 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:33:58 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int ft_count(int n)
 	i = 0;
 	if (n < 0)
 		n *= -1;
+	if (n == 0)
+		return (1);
 	while (n)
 	{
 		n /= 10;
@@ -40,10 +42,10 @@ char *ft_itoa(int n)
 		neg = 1;
 	if (n < 0)
 		n *= -1;
-	str = malloc(sizeof(char *) * (ft_count(n) + neg) + 1);
+	i = ft_count(n) + neg;
+	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
-	i = ft_count(n) + neg;
 	str[i] = '\0';
 	while (i)
 	{
@@ -56,14 +58,14 @@ char *ft_itoa(int n)
 	return (str);
 }
 
-int main(void)
-{	
-	printf("%s\n", ft_itoa(-1));
-	printf("%s\n", ft_itoa(123456789));
-	printf("%s\n", ft_itoa(-123456789));
-	printf("%s\n", ft_itoa(0));
-	printf("%s\n", ft_itoa(1));
-	printf("%s\n", ft_itoa(2147483647));
-	printf("%s\n", ft_itoa(-2147483648));
-	return (0);
-}
+// int main(void)
+// {	
+// 	printf("%s\n", ft_itoa(-1));
+// 	printf("%s\n", ft_itoa(123456789));
+// 	printf("%s\n", ft_itoa(-123456789));
+// 	printf("%s\n", ft_itoa(0));
+// 	printf("%s\n", ft_itoa(1));
+// 	printf("%s\n", ft_itoa(2147483647));
+// 	printf("%s\n", ft_itoa(-2147483648));
+// 	return (0);
+// }

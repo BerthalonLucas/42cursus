@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/11/01 15:58:28 by lberthal         ###   ########.fr        #
+#    Updated: 2023/11/02 18:35:49 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,29 +44,27 @@ SRC 		= ft_isalpha.c			\
 			  ft_striteri.c			\
 			  ft_putchar_fd.c		\
 			  ft_putendl_fd.c		\
+			  ft_putnbr_fd.c		\
+			  ft_putstr_fd.c		\
 	  
 OBJS 		= $(SRC:.c=.o) 
 
 all 	: $(NAME)
-			@$(RM) $(OBJS)
-			@echo "=========================================="
-			@echo "[          NORMINETTES ERRORS            ]"
-			@echo "=========================================="
 
 $(NAME) : $(OBJS) 
-			@echo "Compilation OK"
 			@$(AR) $(NAME) $(OBJS)
-			@echo "archive OK"
 
 %.o 	: %.c
-			@$(CC) -c -o $@ $^ $(CFLAGS)
+			@$(CC) $(CFLAGS) -c $< -o $@  
 
 clean 	:
 			@$(RM) $(OBJS)
-			@echo "clean OK"
 
 fclean 	: clean
 			@$(RM) $(NAME)
-			@echo "fclean OK"
 
-re 		: fclean all
+re 		: fclean all $(NAME)
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
