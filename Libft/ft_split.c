@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 01:24:42 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/02 18:07:51 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:51:53 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@ static int  ft_count(char const *s, char c);
 
 static void ft_free(char **tab, int c_numb)
 {
-	while (c_numb > 0)
-	{
+	while (--c_numb >= 0)
 		free(tab[c_numb]);
-		printf("free de tab[%d]\n", c_numb);
-		c_numb--;
-	}
 	free(tab);
 }
 
@@ -42,7 +38,7 @@ static char	**ft_alloc(char const *s, char c,char **tab, int z)
 		{
 			tab[i] = ft_substr(s, z, y);
 			if (!tab[i])
-				return (ft_free(tab, c_numb), NULL);
+				return (ft_free(tab, i), NULL);
 			c_numb--;
 			while (s[z + y] == c)
 				++y;
@@ -75,7 +71,6 @@ static int  ft_count(char const *s, char c)
 				i++;
 			if (s[i] == '\0')
 				return (limiter);
-			if (s[i])
 			limiter++;
 		}
 		i++;
@@ -104,6 +99,8 @@ char **ft_split(char const *s, char c)
 	if (!ft_strchr(s, c))
 	{
 		tab[0] = ft_strdup(s);
+		if (!tab[0])
+			return (NULL);
 		tab[1] = NULL;
 		return (tab);
 	}
@@ -112,24 +109,27 @@ char **ft_split(char const *s, char c)
 
 // int main(void)
 // {
-// 	// int i = 0;
+// 	int i = 0;
 // 	// char *str = "    lyigk iugvuvhj";
 // 	// char *str = "123456789";
 // 	// char *str = "545  516     651   ";
-// 	// char *str = "123  1234   12345  123456";
-// 	char c = ' ';
-	
-// 	while (i < 10)
+// 	char *str = "xxxxxxxxhello!";
+// 	char c = 'x';
+// 	char **tab;
+
+// 	tab = ft_split(str, c);
+// 	while (tab[i] != NULL)
 // 	{
-// 		if (ft_split(str, c) == NULL)
+// 		if (tab == NULL)
 // 			return (printf("fonction NULL for STR"));
-// 		if (ft_split(str, c)[i] == NULL)
+// 		if (tab[i] == NULL)
 // 		{
 // 			printf("String, NULL for STR\n");
 // 			return (0);
 // 		}
 // 		else
-// 			printf("%s\n", ft_split(str, c)[i]);
+// 			printf("%s\n", tab[i]);
 // 		i++;
 // 	}
+// 	ft_free(tab, i);
 // }
