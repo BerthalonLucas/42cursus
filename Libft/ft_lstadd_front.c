@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:18:57 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/07 16:12:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/09 01:00:00 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 void ft_lstadd_front(t_list **lst, t_list *new)
 {
+	if (!lst)
+		return;
 	 new->next = *lst;
+	 *lst = new;
 }
 
 // int main(void)

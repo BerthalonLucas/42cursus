@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 17:09:54 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/07 17:38:06 by lberthal         ###   ########.fr       */
+/*   Created: 2023/11/08 23:03:16 by lberthal          #+#    #+#             */
+/*   Updated: 2023/11/08 23:57:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_del(void *s)
 {
-	t_list	*temp;
-	
-	temp = lst[0];
-	while (temp->next)
-	{
-		temp = temp->next;
-	}
-	temp->next = new;
+	t_list *t;
+
+	t = (t_list *)s;
+	free(t->content);
+	free(t);
 }
+
+void ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	if (!lst || !del)
+		return;
+	del(lst);
+	if (lst->next == NULL)
+		free(lst);
+	else
+	{
+		lst->next = lst->next->next;
+		free(lst);
+	}	
+}
+
 int main(void)
 {
-	t_list **list;
+	t_list *list;
 	t_list	*str1;
 	t_list	*str2;
 	t_list	*str3;
@@ -47,12 +58,12 @@ int main(void)
 	str3 = malloc(sizeof(t_list));
 	if (!str3)
 		return (0);
-	list[0]->next = str1;
+	list->next = str1;
 	str1->next = str2;
 	str2->next = str3;
 	str3->next = NULL;
 	printf("%d\n", ft_lstsize(list));
-	ft_lstadd_back(list, new);
+	ft_lstadd_back(&list, new);
 	printf("%d\n", ft_lstsize(list));
 	free(list);
 	free(str1);

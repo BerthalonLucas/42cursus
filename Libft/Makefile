@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/11/02 18:35:49 by lberthal         ###   ########.fr        #
+#    Updated: 2023/11/09 00:10:14 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,16 @@ SRC 		= ft_isalpha.c			\
 			  ft_putendl_fd.c		\
 			  ft_putnbr_fd.c		\
 			  ft_putstr_fd.c		\
-	  
+
+SRCBONUS 	= ft_lstnew.c			\
+			  ft_lstadd_front.c		\
+			  ft_lstsize.c			\
+			  ft_lstlast.c			\
+			  ft_lstadd_back.c		\
+			  ft_lstdelone.c		\
+
+OBJSBONUS 	= $(SRCBONUS:.c=.o)
+
 OBJS 		= $(SRC:.c=.o) 
 
 all 	: $(NAME)
@@ -64,6 +73,9 @@ fclean 	: clean
 			@$(RM) $(NAME)
 
 re 		: fclean all $(NAME)
+
+bonus : $(OBJSBONUS)
+		@$(AR) $(NAME) $(OBJSBONUS)
 
 so:
 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
