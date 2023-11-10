@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:13:33 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/09 01:09:18 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:44:36 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int ft_lstsize(t_list *lst)
 	int i;
 	
 	if (!lst)
-		return;
+		return (0);
 	i = 1;
 	while (lst->next != NULL)
 	{

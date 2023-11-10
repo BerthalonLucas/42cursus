@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:58:43 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/09 20:49:52 by lberthal         ###   ########.fr       */
+/*   Created: 2023/11/09 22:13:52 by lberthal          #+#    #+#             */
+/*   Updated: 2023/11/09 22:49:02 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstlast(t_list *lst)
+void ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (!lst)
-		return(NULL);
-	while (lst->next)
+	t_list *temp;
+	t_list *next;
+	
+	if (!lst || !del)
+		return;
+	temp = *lst;
+	while (temp)
 	{
-		lst = lst->next;
+		next = temp->next;
+		del(temp->content);
+		free(temp);
+		temp = next;
 	}
-	return (lst);
+	*lst = NULL;
 }
 
 // int main(void)
@@ -29,7 +36,7 @@ t_list *ft_lstlast(t_list *lst)
 // 	t_list	*str1;
 // 	t_list	*str2;
 // 	t_list	*str3;
-	
+
 // 	list = malloc(sizeof(t_list));
 // 	if (!list)
 // 		return (0);
@@ -46,10 +53,14 @@ t_list *ft_lstlast(t_list *lst)
 // 	str1->next = str2;
 // 	str2->next = str3;
 // 	str3->next = NULL;
-// 	printf("%p\n", str3);
-// 	printf("%p\n", ft_lstlast(list));
-// 	free(list);
-// 	free(str1);
-// 	free(str2);
-// 	free(str3);
+// 	ft_lstclear(&list, &ft_del);
+// 	if (!list)
+// 		printf("Maillon bien supprimé");
+// 	else if (list == NULL)
+// 		printf("list bien mise a NULL");
+// 	// free(list);
+// 	// free(str1);
+// 	// free(str2);
+// 	// free(str3);
+// 	return (0);
 // }

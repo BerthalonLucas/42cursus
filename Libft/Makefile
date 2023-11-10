@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/11/09 00:10:14 by lberthal         ###   ########.fr        #
+#    Updated: 2023/11/10 01:00:36 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,9 @@ SRCBONUS 	= ft_lstnew.c			\
 			  ft_lstlast.c			\
 			  ft_lstadd_back.c		\
 			  ft_lstdelone.c		\
+			  ft_lstclear.c			\
+			  ft_lstiter.c			\
+			  ft_lstmap.c 			\
 
 OBJSBONUS 	= $(SRCBONUS:.c=.o)
 

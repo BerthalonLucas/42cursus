@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:58:43 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/09 20:49:52 by lberthal         ###   ########.fr       */
+/*   Created: 2023/11/09 22:49:57 by lberthal          #+#    #+#             */
+/*   Updated: 2023/11/10 00:22:58 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstlast(t_list *lst)
+// void delete(void *s)
+// {
+// 	free(s);
+// }
+
+// void ft_plus(void *t)
+// {
+// 	char *temp = (char *)t;
+// 	*temp = *temp + 1;
+// }
+
+void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst)
-		return(NULL);
-	while (lst->next)
+	if (!lst || !f)
+		return;
+	while (lst)
 	{
+		f(lst->content);
 		lst = lst->next;
 	}
-	return (lst);
 }
 
 // int main(void)
@@ -42,14 +53,22 @@ t_list *ft_lstlast(t_list *lst)
 // 	str3 = malloc(sizeof(t_list));
 // 	if (!str3)
 // 		return (0);
+// 	list->content = strdup("a");
+// 	str1->content = strdup("b");
+// 	str2->content = strdup("c");
+// 	str3->content = strdup("d");
 // 	list->next = str1;
 // 	str1->next = str2;
 // 	str2->next = str3;
 // 	str3->next = NULL;
-// 	printf("%p\n", str3);
-// 	printf("%p\n", ft_lstlast(list));
-// 	free(list);
-// 	free(str1);
-// 	free(str2);
-// 	free(str3);
+// 	printf("%s\n", (char *)list->content);
+// 	printf("%s\n", (char *)str1->content);
+// 	printf("%s\n", (char *)str2->content);
+// 	printf("%s\n", (char *)str3->content);
+// 	ft_lstiter(list, &ft_plus);
+// 	printf("%s\n", (char *)list->content);
+// 	printf("%s\n", (char *)str1->content);
+// 	printf("%s\n", (char *)str2->content);
+// 	printf("%s\n", (char *)str3->content);
+// 	ft_lstclear(&list, &delete);
 // }
