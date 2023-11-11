@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 20:26:55 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/11 10:48:28 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/11 12:51:33 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int main(void)
 	// ----------------------------------------------
 	// testes for ft_bzero
 	//----------------------------------------------
-// 	char str[] = "petit test pour voir";
-// 	char str1[] = "petit test pour voir";
-// 	ft_bzero(str, 4);
-// 	bzero(str1, 4);
-// 	printf("%s\n", str);
-// 	printf("%s\n", str1);
+	char str[] = "petit test pour voir";
+	char str1[] = "petit test pour voir";
+	
+	ft_bzero(str, 4);
+	bzero(str1, 4);
+	printf("%s\n", str);
+	printf("%s\n", str1);
+	return (0);
 	// ----------------------------------------------
 	// testes for ft_calloc
 	//----------------------------------------------

@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2023/11/11 14:15:47 by lberthal         ###   ########.fr        #
+#    Updated: 2023/11/10 01:00:36 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ $(NAME) : $(OBJS)
 			@$(CC) $(CFLAGS) -c $< -o $@  
 
 clean 	:
-			@$(RM) $(OBJS) $(OBJSBONUS)
+			@$(RM) $(OBJS)
 
 fclean 	: clean
 			@$(RM) $(NAME)
