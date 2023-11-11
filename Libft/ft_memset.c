@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:27:02 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/22 23:59:58 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:06:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		((unsigned char*)s)[i] = c;
+		((unsigned char *)s)[i] = c;
 		i++;
 	}
 	return (s);

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 20:26:55 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/02 19:08:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:48:28 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,5 +337,275 @@ int main(void)
 	//----------------------------------------------
 	// 	ft_putstr_fd("test", 1);
 	// ----------------------------------------------
+	// testes for ft_lstnew
+	//----------------------------------------------
+	// 	int i;
+	// 	t_list *test;
 	
+	// 	i = 14;
+	// 	test = ft_lstnew(&i);
+	// 	printf("%d\n", *((int *)(test->content)));
+	// ----------------------------------------------
+	// testes for ft_lstadd_front
+	//----------------------------------------------
+	// 	t_list **lst;
+	// 	t_list *new;
+
+	// 	lst = malloc(sizeof(t_list));
+	// 	if (!lst)
+	// 		return (0);	
+	// 	new = malloc(sizeof(t_list));
+	// 	if (!new)
+	// 		return (0);
+	
+	// 	printf("%p\n", lst);
+	// 	ft_lstadd_front(lst, new);
+	// 	printf("%p\n", new);
+	// 	free(lst);
+	// 	free(new);
+	// ----------------------------------------------
+	// testes for ft_lstsize
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	printf("%d\n", ft_lstsize(list));
+	// 	free(list);
+	// 	free(str1);
+	// 	free(str2);
+	// 	free(str3);
+	// ----------------------------------------------
+	// testes for ft_lstlast
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	printf("%p\n", str3);
+	// 	printf("%p\n", ft_lstlast(list));
+	// 	free(list);
+	// 	free(str1);
+	// 	free(str2);
+	// 	free(str3);
+	// ----------------------------------------------
+	// testes for ft_lstadd_back
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	// 	t_list	*new;
+
+	// 	new = malloc(sizeof(t_list));
+	// 	if (!new)
+	// 		return (0);
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	printf("%d\n", ft_lstsize(list));
+	// 	ft_lstadd_back(&list, new);
+	// 	printf("%d\n", ft_lstsize(list));
+	// 	free(list);
+	// 	free(str1);
+	// 	free(str2);
+	// 	free(str3);
+	// 	free(new);
+	// ----------------------------------------------
+	// testes for ft_lstdelone
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	ft_lstdelone(list, &del);
+	// 	// printf("%d\n", ft_lstsize(list));
+	// 	ft_lstdelone(&list, &ft_del);
+	// 	if (!list)
+	// 		printf("Maillon bien supprimé");
+	// 	else
+	// 		printf("list toujours la bordel !");
+	// 	// printf("%d\n", ft_lstsize(list));
+	// 	free(list);
+	// 	free(str1);
+	// 	free(str2);
+	// 	free(str3);
+	// ----------------------------------------------
+	// testes for ft_lstclear
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	//  if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	ft_lstclear(&list, &ft_del);
+	// 	if (!list)
+	// 		printf("Maillon bien supprimé");
+	// 	else if (list == NULL)
+	// 		printf("list bien mise a NULL");
+	// 	// free(list);
+	// 	// free(str1);
+	// 	// free(str2);
+	// 	// free(str3);
+	// 	return (0);
+	// ----------------------------------------------
+	// testes for ft_lstiter
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	//  str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->content = strdup("a");
+	// 	str1->content = strdup("b");
+	// 	str2->content = strdup("c");
+	// 	str3->content = strdup("d");
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	printf("%s\n", (char *)list->content);
+	// 	printf("%s\n", (char *)str1->content);
+	// 	printf("%s\n", (char *)str2->content);
+	// 	printf("%s\n", (char *)str3->content);
+	// 	ft_lstiter(list, &ft_plus);
+	// 	printf("%s\n", (char *)list->content);
+	// 	printf("%s\n", (char *)str1->content);
+	// 	printf("%s\n", (char *)str2->content);
+	// 	printf("%s\n", (char *)str3->content);
+	// 	ft_lstclear(&list, &delete);
+	// ----------------------------------------------
+	// testes for ft_lstmap
+	//----------------------------------------------
+	// 	t_list *list;
+	// 	t_list	*str1;
+	// 	t_list	*str2;
+	// 	t_list	*str3;
+	
+	// 	list = malloc(sizeof(t_list));
+	// 	if (!list)
+	// 		return (0);
+	// 	str1 = malloc(sizeof(t_list));
+	// 	if (!str1)
+	// 		return (0);
+	// 	str2 = malloc(sizeof(t_list));
+	// 	if (!str2)
+	// 		return (0);
+	// 	str3 = malloc(sizeof(t_list));
+	// 	if (!str3)
+	// 		return (0);
+	// 	list->content = strdup("a");
+	// 	str1->content = strdup("b");
+	// 	str2->content = strdup("c");
+	// 	str3->content = strdup("d");
+	// 	list->next = str1;
+	// 	str1->next = str2;
+	// 	str2->next = str3;
+	// 	str3->next = NULL;
+	// 	printf("%s\n", (char *)list->content);
+	// 	printf("%s\n", (char *)str1->content);
+	// 	printf("%s\n", (char *)str2->content);
+	// 	printf("%s\n", (char *)str3->content);
+	// 	ft_lstiter(list, &ft_plus);
+	// 	printf("%s\n", (char *)list->content);
+	// 	printf("%s\n", (char *)str1->content);
+	// 	printf("%s\n", (char *)str2->content);
+	// 	printf("%s\n", (char *)str3->content);
+	// 	ft_lstclear(&list, &delete);
 }

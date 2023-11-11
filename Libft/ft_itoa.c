@@ -6,16 +6,16 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 20:00:28 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/02 18:33:58 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:27:00 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int ft_count(int n)
+static int	ft_count(int n)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (n < 0)
 		n *= -1;
@@ -29,11 +29,11 @@ static int ft_count(int n)
 	return (i);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *str;
-	int i;
-	int neg;
+	char	*str;
+	int		i;
+	int		neg;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
@@ -53,19 +53,7 @@ char *ft_itoa(int n)
 		str[i] = n % 10 + '0';
 		n /= 10;
 	}
-	if (neg  == 1 && i == 0)
+	if (neg == 1 && i == 0)
 		str[i] = '-';
 	return (str);
 }
-
-// int main(void)
-// {	
-// 	printf("%s\n", ft_itoa(-1));
-// 	printf("%s\n", ft_itoa(123456789));
-// 	printf("%s\n", ft_itoa(-123456789));
-// 	printf("%s\n", ft_itoa(0));
-// 	printf("%s\n", ft_itoa(1));
-// 	printf("%s\n", ft_itoa(2147483647));
-// 	printf("%s\n", ft_itoa(-2147483648));
-// 	return (0);
-// }
