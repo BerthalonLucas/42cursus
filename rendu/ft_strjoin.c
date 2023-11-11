@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 21:21:09 by lberthal          #+#    #+#             */
-/*   Updated: 2023/11/11 18:23:33 by lberthal         ###   ########.fr       */
+/*   Created: 2023/10/26 15:32:04 by lberthal          #+#    #+#             */
+/*   Updated: 2023/11/11 11:24:09 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void	*ptr;
+	int		lens;
+	char	*str;
 
-	if (nmemb > 2147483647 || size > 2147483647)
+	if (!s1 || !s2)
 		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
+	lens = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(sizeof(char) * lens);
+	if (!str)
 		return (NULL);
-	ft_bzero(ptr, (nmemb * size));
-	return (ptr);
+	ft_strlcpy(str, s1, lens);
+	ft_strlcat(str, s2, lens);
+	return (str);
 }
