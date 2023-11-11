@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 20:11:28 by lucas             #+#    #+#             */
-/*   Updated: 2023/11/11 11:26:00 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/11 12:02:03 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static	size_t	word_count(const char *str, char delimiter)
 	size_t		count;
 	const char	*ptr;
 
+	if (!str)
+		return (0);
 	count = 0;
 	ptr = str;
 	while (*ptr)
