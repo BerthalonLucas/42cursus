@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 02:21:57 by lberthal          #+#    #+#             */
-/*   Updated: 2023/10/22 23:31:40 by lberthal         ###   ########.fr       */
+/*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
+/*   Updated: 2023/11/20 14:34:30 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-int	ft_isdigit(int c)
+int main(void)
 {
-	if (c >= '0' && c <= '9')
-		return (2048);
+	int fd = open("to_read.txt", O_RDONLY);
+	char buf[100];
+	size_t count;
+
+	count = 19;
+	ssize_t test_read = read(fd, buf, count);
+	printf("%d\n", fd);
+	printf("%s\n", buf);
+	printf("%ld\n", test_read);
+	close(fd);
 	return (0);
 }
