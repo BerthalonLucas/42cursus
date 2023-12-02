@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:24:24 by lberthal          #+#    #+#             */
-/*   Updated: 2023/12/01 22:10:02 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/03 00:04:14 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int 	P_char(va_list args);
+int 	*P_string(va_list args);
+
+
 
 #endif // LIBFT_H
