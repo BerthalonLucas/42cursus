@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:13 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/03 00:08:40 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:49:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int *P_pointer(va_list args)
 {
 	void *p;
 	
-		
+	
 }
 // int P_decimale(long int i)
 // {
