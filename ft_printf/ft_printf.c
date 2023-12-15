@@ -6,50 +6,70 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/03 00:04:38 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:20:30 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int selection(const char *s, va_list args)
 {
 	if (*s == 'c')
-		P_char(args);
+		return (P_char(args));
 	if (*s == 's')
-		P_string(args);
-	
-
+		return (P_string(args));
+	if (*s == 'd')
+		return (P_decimale(args));
+	if (*s == 'i')
+		return (P_interger(args));
+	if (*s == 'u')
+		return (P_unsinged_decimale(args));
+	if (*s == 'p' || *s == 'x' || *s == 'X')
+		return (hexa_bases(args, s));
+	if (*s == '%')
+	{
+		write (1, "%",1);
+		return (1);
+	}
 	return (0);
 }
 
 int    ft_printf(const char *s, ...)
 {
 	va_list args;
+	int i;
 	
 	va_start (args, s);
-	while (*s != '\n')
+	while (*s != '\0')
 	{
 		if (*s == '%')
 		{
 			s++;
-			selection(s , args);
+			i = selection(s, args);
 			s++;
 		}
 		write(1, *&s, 1);
 		s++;
 	}
 	va_end(args);
-	return (0);
+	return (i);
 }
 
-int main(void)
-{
-	char c;
-	char *s;
+// int main(void)
+// {
+// 	// char c;
+// 	// char *s;
+// 	// long int i;
+// 	// int y;
+// 	// unsigned int z;
+// 	char *s;
 
-	c = 'v';
-	s = "des strings aussi";
-	ft_printf("test %s pour %c ta caisse\n", s, c);
-	return (0);
-}
+// 	// c = 'v';
+// 	// s = "des strings aussi";
+// 	// i = 4583820120;
+// 	// y = -5847569;
+// 	// z = 42;
+// 	s = NULL;
+// 	ft_printf("%p\n",s);
+// 	return (0);
+// }

@@ -1,29 +1,19 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
-
-int P_hexa_lower(unsigned long long i, char *base)
+int *P_pointer(unsigned long long i, char *base)
 {
-	int n;
-
-	n = 0;
-	if (i > 16)
-	{
-		P_hexa_lower(i / 16, base);
-		n = i % 16;
-		write(1, &*base + n, 1);
-	}
+	if (i >= 16)
+		P_pointer(i / 16, base);
+	write(1, &base[i % 16], 1);
 	return (0);
 }
 
 int main(void)
 {
-	char *base;
-	int i = 1;
+	// int i = 2;
+	void *s;
 
-	base = "0123456789abcdef";
-	printf("%p\n", &i);
-	P_hexa_lower(&i, base);
-	return (0);
+	s = NULL;
+	printf("%p\n", s);
 }
