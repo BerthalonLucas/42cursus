@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/10 20:20:30 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:07:47 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int selection(const char *s, va_list args)
+int selection(const char *s, char c, va_list args)
 {
-	if (*s == 'c')
+	if (c == 'c')
 		return (P_char(args));
-	if (*s == 's')
+	if (c == 's')
 		return (P_string(args));
-	if (*s == 'd')
+	if (c == 'd')
 		return (P_decimale(args));
-	if (*s == 'i')
+	if (c == 'i')
 		return (P_interger(args));
-	if (*s == 'u')
+	if (c == 'u')
 		return (P_unsinged_decimale(args));
-	if (*s == 'p' || *s == 'x' || *s == 'X')
+	if (c == 'p' || c == 'x' || c == 'X')
 		return (hexa_bases(args, s));
-	if (*s == '%')
+	if (c == '%')
 	{
 		write (1, "%",1);
 		return (1);
@@ -44,9 +44,10 @@ int    ft_printf(const char *s, ...)
 	{
 		if (*s == '%')
 		{
-			s++;
-			i = selection(s, args);
-			s++;
+			s += 2;
+			i = selection(s, *(s - 1), args);
+			if (*s == '\0')
+				break;
 		}
 		write(1, *&s, 1);
 		s++;
@@ -55,21 +56,21 @@ int    ft_printf(const char *s, ...)
 	return (i);
 }
 
-// int main(void)
-// {
-// 	// char c;
-// 	// char *s;
-// 	// long int i;
-// 	// int y;
-// 	// unsigned int z;
-// 	char *s;
+int main(void)
+{
+	// char c;
+	// char *s;
+	// long int i;
+	// int y;
+	// unsigned int z;
+	// char *s;
 
-// 	// c = 'v';
-// 	// s = "des strings aussi";
-// 	// i = 4583820120;
-// 	// y = -5847569;
-// 	// z = 42;
-// 	s = NULL;
-// 	ft_printf("%p\n",s);
-// 	return (0);
-// }
+	// c = 'v';
+	// s = "des strings aussi";
+	// i = 4583820120;
+	// y = -5847569;
+	// z = 42;
+	// s = NULL;
+	ft_printf("%s", "salut");
+	return (0);
+}

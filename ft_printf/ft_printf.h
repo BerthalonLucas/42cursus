@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:24:24 by lberthal          #+#    #+#             */
-/*   Updated: 2023/12/10 20:11:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:03:28 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-int selection(const char *s, va_list args);
+int selection(const char *s,char c, va_list args);
 int    ft_printf(const char *s, ...);
 int P_string(va_list args);
 int P_decimale(va_list args);
