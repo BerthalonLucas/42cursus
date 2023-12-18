@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:47:06 by lberthal          #+#    #+#             */
-/*   Updated: 2023/12/10 20:08:49 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:15:24 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int count(long int i)
 	return (y);
 }
 
-int count_hex(long int i)
+int count_hex(unsigned long long int i)
 {
 	int y;
 	y = 0;

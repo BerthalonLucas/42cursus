@@ -6,11 +6,13 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 11:48:25 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:13:34 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
+
 
 int selection(char c, va_list args)
 {
@@ -25,7 +27,7 @@ int selection(char c, va_list args)
 	if (c == 'u')
 		return (P_unsinged_decimale(args));
 	if (c == 'p' || c == 'x' || c == 'X')
-		return (hexa_bases(args, &c));
+		return (hexa_bases(args, c));
 	if (c == '%')
 	{
 		write (1, "%",1);
@@ -60,19 +62,13 @@ int    ft_printf(const char *s, ...)
 
 int main(void)
 {
-	// char c;
-	// char *s;
-	// long int i;
-	// int y;
-	// unsigned int z;
-	// char *s;
-
-	// c = 'v';
-	// s = "des strings aussi";
-	// i = 4583820120;
-	// y = -5847569;
-	// z = 42;
-	// s = NULL;
-	ft_printf("%p", 12);
+	// ft_printf("myp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	// printf("pfp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	// ft_printf("myp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
+	// printf("pfp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
+	printf("%d\n", ft_printf("myp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX));
+	printf("%d\n", printf("pfp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX));
+	printf("%d\n", ft_printf("myp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX));
+	printf("%d\n", printf("pfp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX));
 	return (0);
 }

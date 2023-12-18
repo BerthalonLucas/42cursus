@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mainTester.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:36:16 by daribeir          #+#    #+#             */
-/*   Updated: 2023/12/18 11:35:07 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:05:26 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(void)
 	len1 = ft_printf("myp7: %p %p \n", INT_MIN, INT_MAX);
 	len2 = printf("pfp7: %p %p \n", INT_MIN, INT_MAX);
 	printf("test p7 : %d -> %d\n", len1, len2);
-	len1 = ft_printf("myp8: %p %p ", ULONG_MAX, -ULONG_MAX);
+	len1 = ft_printf("myp8: %p %p \n", ULONG_MAX, -ULONG_MAX);
 	len2 = printf("pfp8: %p %p \n", ULONG_MAX, -ULONG_MAX);
 	printf("test p8 : %d -> %d\n", len1, len2);
 	len1 = ft_printf("myp9: %p %p \n", 0, 0);
