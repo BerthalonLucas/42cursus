@@ -6,15 +6,13 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 19:46:59 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:53:52 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
 
-
-int selection(char c, va_list args)
+int	selection(char c, va_list args)
 {
 	if (c == 'c')
 		return (P_char(args));
@@ -30,17 +28,17 @@ int selection(char c, va_list args)
 		return (hexa_bases(args, c));
 	if (c == '%')
 	{
-		write (1, "%",1);
+		write (1, "%", 1);
 		return (1);
 	}
 	return (0);
 }
 
-int    ft_printf(const char *s, ...)
+int	ft_printf(const char *s, ...)
 {
-	va_list args;
-	int i;
-	
+	va_list	args;
+	int		i;
+
 	va_start (args, s);
 	i = 0;
 	while (*s != '\0')
@@ -50,7 +48,7 @@ int    ft_printf(const char *s, ...)
 			s += 2;
 			i += selection(*(s - 1), args);
 			if (*s == '\0')
-				break;
+				break ;
 		}
 		if (*s != '%')
 		{

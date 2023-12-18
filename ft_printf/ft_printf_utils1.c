@@ -6,17 +6,17 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:13 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 15:45:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:57:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int P_string(va_list args)
+int	string(va_list args)
 {
-	char *s;
-	int i;
-	
+	char	*s;
+	int		i;
+
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
@@ -33,33 +33,34 @@ int P_string(va_list args)
 	return (i);
 }
 
-int P_decimale(va_list args)
+int	decimale(va_list args)
 {
-	int i;
-
-	i = va_arg(args, int);
-	putnbr((long int)i);
-	return (count((long int)i));
-}
-int P_interger(va_list args)
-{
-	int i;
+	int	i;
 
 	i = va_arg(args, int);
 	putnbr((long int)i);
 	return (count((long int)i));
 }
 
-int P_unsinged_decimale(va_list args)
+int	integer(va_list args)
 {
-	unsigned int i;
+	int	i;
+
+	i = va_arg(args, int);
+	putnbr((long int)i);
+	return (count((long int)i));
+}
+
+int	unsinged_decimale(va_list args)
+{
+	unsigned int	i;
 
 	i = va_arg(args, unsigned int);
 	putnbr((long int)i);
 	return (count((long int)i));
 }
 
-int putnbr(long int i)
+int	putnbr(long int i)
 {
 	if (i == -2147483648)
 	{

@@ -6,15 +6,16 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:47:06 by lberthal          #+#    #+#             */
-/*   Updated: 2023/12/18 15:47:04 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:56:05 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int count(long int i)
+int	count(long int i)
 {
-	int y;
+	int	y;
+
 	y = 0;
 	if (i == 0)
 		return (1);
@@ -31,9 +32,10 @@ int count(long int i)
 	return (y);
 }
 
-int count_hex(unsigned long long int i)
+int	count_hex(unsigned long long int i)
 {
-	int y;
+	int	y;
+
 	y = 0;
 	if (i == 0)
 		return (1);
