@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:13 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 11:41:59 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:45:35 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int P_string(va_list args)
 
 int P_decimale(va_list args)
 {
-	long int i;
+	int i;
 
-	i = va_arg(args, long int);
+	i = va_arg(args, int);
 	putnbr((long int)i);
 	return (count((long int)i));
 }

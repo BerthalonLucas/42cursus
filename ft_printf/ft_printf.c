@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 12:13:34 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:03:47 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ int    ft_printf(const char *s, ...)
 			if (*s == '\0')
 				break;
 		}
-		write(1, *&s, 1);
-		i++;
-		s++;
+		if (*s != '%')
+		{
+			write(1, *&s, 1);
+			i++;
+			s++;
+		}
 	}
 	va_end(args);
 	return (i);
@@ -62,13 +65,7 @@ int    ft_printf(const char *s, ...)
 
 int main(void)
 {
-	// ft_printf("myp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
-	// printf("pfp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
-	// ft_printf("myp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
-	// printf("pfp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
-	printf("%d\n", ft_printf("myp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX));
-	printf("%d\n", printf("pfp6: %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX));
-	printf("%d\n", ft_printf("myp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX));
-	printf("%d\n", printf("pfp8: %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX));
+	printf("\n%d\n", ft_printf("%p", (void *)0));
+	printf("\n%d\n", printf("%p", (void *)0));
 	return (0);
 }

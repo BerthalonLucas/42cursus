@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:10 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 12:02:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:53:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,22 @@ int P_pointer(unsigned long long i, char *base)
 
 int hexa_bases(va_list args, char c)
 {
-	char *base;
 	unsigned long long n;
-	n = va_arg(args, unsigned long long);
 	if (c == 'x')
 	{
-		base = "0123456789abcdef";
-		return (P_hexa_lower(n ,base));
+		n = va_arg(args, unsigned int);
+			return (P_hexa_lower(n , "0123456789abcdef"));
 	}
 	if (c == 'X')
 	{
-		base = "0123456789ABCDEF";
-		return (P_hexa_upper(n, base));
+		n = va_arg(args, unsigned int);
+		return (P_hexa_upper(n, "0123456789ABCDEF"));
 	}
 	if (c == 'p')
 	{
+		n = va_arg(args, unsigned long long);
 		write(1, "0x", 2);
-		base = "0123456789abcdef";
-		return (2 + P_pointer(n ,base));
+		return (2 + P_pointer(n ,"0123456789abcdef"));
 	}
 	return (0);
 }
