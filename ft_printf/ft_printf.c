@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/16 21:07:47 by lucas            ###   ########.fr       */
+/*   Updated: 2023/12/18 11:48:25 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int selection(const char *s, char c, va_list args)
+int selection(char c, va_list args)
 {
 	if (c == 'c')
 		return (P_char(args));
@@ -25,7 +25,7 @@ int selection(const char *s, char c, va_list args)
 	if (c == 'u')
 		return (P_unsinged_decimale(args));
 	if (c == 'p' || c == 'x' || c == 'X')
-		return (hexa_bases(args, s));
+		return (hexa_bases(args, &c));
 	if (c == '%')
 	{
 		write (1, "%",1);
@@ -40,16 +40,18 @@ int    ft_printf(const char *s, ...)
 	int i;
 	
 	va_start (args, s);
+	i = 0;
 	while (*s != '\0')
 	{
 		if (*s == '%')
 		{
 			s += 2;
-			i = selection(s, *(s - 1), args);
+			i += selection(*(s - 1), args);
 			if (*s == '\0')
 				break;
 		}
 		write(1, *&s, 1);
+		i++;
 		s++;
 	}
 	va_end(args);
@@ -71,6 +73,6 @@ int main(void)
 	// y = -5847569;
 	// z = 42;
 	// s = NULL;
-	ft_printf("%s", "salut");
+	ft_printf("%p", 12);
 	return (0);
 }

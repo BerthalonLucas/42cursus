@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:13 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/10 19:00:32 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:41:59 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int P_string(va_list args)
 	int i;
 	
 	s = va_arg(args, char *);
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (*s)
 	{
