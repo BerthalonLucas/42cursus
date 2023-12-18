@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 17:03:47 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:46:59 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int    ft_printf(const char *s, ...)
 	return (i);
 }
 
-int main(void)
-{
-	printf("\n%d\n", ft_printf("%p", (void *)0));
-	printf("\n%d\n", printf("%p", (void *)0));
-	return (0);
-}
+// int main(void)
+// {
+// 	printf("\n%d\n", ft_printf("%p", (void *)0));
+// 	printf("\n%d\n", printf("%p", (void *)0));
+// 	return (0);
+// }

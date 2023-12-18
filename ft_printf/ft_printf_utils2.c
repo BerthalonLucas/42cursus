@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:10 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 16:53:08 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:48:46 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int hexa_bases(va_list args, char c)
 	if (c == 'p')
 	{
 		n = va_arg(args, unsigned long long);
+		if ((void *)n == NULL)
+		{
+			write(1, "(nil)", 5);
+			return (5);
+		}
 		write(1, "0x", 2);
 		return (2 + P_pointer(n ,"0123456789abcdef"));
 	}
