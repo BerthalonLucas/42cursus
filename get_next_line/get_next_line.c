@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
-/*   Updated: 2023/11/23 14:34:52 by lucas            ###   ########.fr       */
+/*   Updated: 2024/01/19 17:49:27 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define BUFFER_SIZE 2
 
 size_t	ft_strlen(const char *str)
 {
@@ -21,40 +22,38 @@ size_t	ft_strlen(const char *str)
 		i++ ;
 	return (i);
 }
-char	*ft_strchr(const char *s, int c)
+
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (NULL);
-}
-
-
-char	*ft_strdup(const char *s)
-{
-	char	*str;
 	size_t	i;
+	size_t	r;
+	size_t	src_len;
+	size_t	dest_len;
 
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (s[i] && i < ft_strlen(s))
-	{
-		str[i] = s[i];
+	r = 0;
+	src_len = ft_strlen(src);
+	dest_len = ft_strlen(dest);
+	while (dest[i])
 		i++;
+	if (i >= size)
+		return (src_len + size);
+	while (src[r])
+	{
+		if (i == size - 1)
+			break ;
+		dest[i] = src[r];
+		i++;
+		r++;
 	}
-	str[i] = '\0';
-	return (str);
+	dest[i] = '\0';
+	if (size <= (src_len + ft_strlen(dest)))
+		return (dest_len + src_len);
+	return (ft_strlen(dest));
 }
+
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
@@ -70,66 +69,70 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-char *ft_first_line(char *buff, char *stock)
+
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *line;
-	size_t	len;
-	
-	if (!buff)
+	int		lens;
+	char	*str;
+
+	if (!s1 || !s2)
 		return (NULL);
-	line = buff;
-	len = ft_strlen(line);
-	while (*line != '\n')
-		line++;
-	line++;
-	stock = ft_strdup(line);
-	len = ft_strlen(buff) - ft_strlen(line);
-	line = malloc(sizeof(char) * len + 1);
-	if (!line)
+	lens = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(sizeof(char) * lens);
+	if (!str)
 		return (NULL);
-	ft_strlcpy(line, buff, len);
-	printf("%s\n", stock);
-	return (line);
+	ft_strlcpy(str, s1, lens);
+	ft_strlcat(str, s2, lens);
+	free(s2);
+	return (str);
 }
-char *ft_next_line(char *buff,char *stock)
+
+ft_first_line(char *buffer, char *str_stock, int fd)
 {
-	
+	// bouleen avec un strchr
+	while ()
+	str_stock = ft_strjoin(str_stock, buffer);
+	read(fd, buffer, BUFFER_SIZE);
+
 }
 
 char *get_next_line(int fd)
 {
-	static char *str_stock;
-	char buffer[60];
+	char *str_stock;
+	static char buffer[BUFFER_SIZE];
 
-	str_stock = "\0";
-	read(fd, buffer, 60);
-	return (ft_first_line(buffer, str_stock));
+	str_stock = malloc(sizeof (char) * BUFFER_SIZE + 1);
+	if (!str_stock)
+		return (NULL);
+	str_stock[BUFFER_SIZE] = '\0';
+	read(fd, buffer, BUFFER_SIZE);
+	return (ft_first_line(buffer, str_stock, fd));
 }
 
-int main(void)
-{
-	int fd = open("to_read.txt", O_RDONLY);
-	//char *buffer = "ta mere en slip\nelle fait des galipettes";
+// int main(void)
+// {
+// 	int fd = open("to_read.txt", O_RDONLY);
+// 	//char *buffer = "ta mere en slip\nelle fait des galipettes";
 	
-	printf("%s\n", get_next_line(fd));
-	close(fd);
-}
+// 	printf("%s\n", get_next_line(fd));
+// 	close(fd);
+// }
 
 
 
 
 // main test fonction read
-// int main(void)
-// {
-// 	int fd = open("to_read.txt", O_RDONLY);
-// 	char buf[20];
-// 	size_t count;
+int main(void)
+{
+	int fd = open("to_read.txt", O_RDONLY);
+	char buf[2];
+	size_t count;
 
-// 	count = 19;
-// 	ssize_t test_read = read(fd, buf, count);
-// 	printf("%d\n", fd);
-// 	printf("%s\n", buf);
-// 	printf("%ld\n", test_read);
-// 	close(fd);
-// 	return (0);
-// }
+	count = 1;
+	ssize_t test_read = read(fd, buf, count);
+	printf("%d\n", fd);
+	printf("%s\n", buf);
+	printf("%ld\n", test_read);
+	close(fd);
+	return (0);
+}
