@@ -13,6 +13,23 @@
 #include "get_next_line.h"
 #define BUFFER_SIZE 2
 
+int	ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (1);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return (1);
+	return (0);
+}
+
+
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -83,17 +100,26 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(str, s1, lens);
 	ft_strlcat(str, s2, lens);
-	free(s2);
+	free(s1);
 	return (str);
 }
 
-ft_first_line(char *buffer, char *str_stock, int fd)
+char *ft_first_line(char *buffer, char *str_stock, int fd)
 {
-	// bouleen avec un strchr
-	while ()
-	str_stock = ft_strjoin(str_stock, buffer);
-	read(fd, buffer, BUFFER_SIZE);
+	int i;
 
+	i = 0;
+	while (!ft_strchr(buffer, '\n'))
+	{
+		str_stock = ft_strjoin(str_stock, buffer);
+		read(fd, buffer, BUFFER_SIZE);
+	}
+	str_stock = ft_strjoin(str_stock, buffer);
+	while (buffer[i] != '\n')
+	{
+
+	}
+	return (str_stock);
 }
 
 char *get_next_line(int fd)
@@ -109,30 +135,30 @@ char *get_next_line(int fd)
 	return (ft_first_line(buffer, str_stock, fd));
 }
 
-// int main(void)
-// {
-// 	int fd = open("to_read.txt", O_RDONLY);
-// 	//char *buffer = "ta mere en slip\nelle fait des galipettes";
-	
-// 	printf("%s\n", get_next_line(fd));
-// 	close(fd);
-// }
-
-
-
-
-// main test fonction read
 int main(void)
 {
 	int fd = open("to_read.txt", O_RDONLY);
-	char buf[2];
-	size_t count;
-
-	count = 1;
-	ssize_t test_read = read(fd, buf, count);
-	printf("%d\n", fd);
-	printf("%s\n", buf);
-	printf("%ld\n", test_read);
+	//char *buffer = "ta mere en slip\nelle fait des galipettes";
+	
+	printf("%s\n", get_next_line(fd));
 	close(fd);
-	return (0);
 }
+
+
+
+
+// // main test fonction read
+// int main(void)
+// {
+// 	int fd = open("to_read.txt", O_RDONLY);
+// 	char buf[2];
+// 	size_t count;
+
+// 	count = 1;
+// 	ssize_t test_read = read(fd, buf, count);
+// 	printf("%d\n", fd);
+// 	printf("%s\n", buf);
+// 	printf("%ld\n", test_read);
+// 	close(fd);
+// 	return (0);
+// }
