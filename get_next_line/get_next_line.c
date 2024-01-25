@@ -6,14 +6,14 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/19 17:49:27 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/25 06:52:26 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #define BUFFER_SIZE 2
 
-int	ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
@@ -21,12 +21,12 @@ int	ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return (1);
+			return ((char *)s + i);
 		i++;
 	}
 	if (s[i] == (char)c)
-		return (1);
-	return (0);
+		return ((char *)s + i);
+	return (NULL);
 }
 
 
@@ -86,7 +86,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-
+// modif 
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		lens;
@@ -107,25 +107,37 @@ char	*ft_strjoin(char *s1, char *s2)
 char *ft_first_line(char *buffer, char *str_stock, int fd)
 {
 	int i;
+	char *line;
 
+	line = malloc(sizeof(char) * 1);
+	if (!line)
+		return (NULL);
+	*line = '\0';
 	i = 0;
-	while (!ft_strchr(buffer, '\n'))
+	if (*str_stock == '\0')
+	{
+		while (!ft_strchr(buffer, '\n'))
+		{
+			line = ft_strjoin(line, buffer);
+			read(fd, buffer, BUFFER_SIZE);
+		}
+	}
+	str_stock = ft_strjoin(str_stock, buffer)
+	else if (ft_strchr(str_stock, '\n'))
 	{
 		str_stock = ft_strjoin(str_stock, buffer);
-		read(fd, buffer, BUFFER_SIZE);
-	}
-	str_stock = ft_strjoin(str_stock, buffer);
-	while (buffer[i] != '\n')
-	{
-
+		while (buffer[i] != '\n')
+		{
+		
+		}
 	}
 	return (str_stock);
 }
 
 char *get_next_line(int fd)
 {
-	char *str_stock;
-	static char buffer[BUFFER_SIZE];
+	static char *str_stock;
+	char buffer[BUFFER_SIZE];
 
 	str_stock = malloc(sizeof (char) * BUFFER_SIZE + 1);
 	if (!str_stock)
