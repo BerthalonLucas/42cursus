@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/25 06:52:26 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:59:11 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char *ft_first_line(char *buffer, char *str_stock, int fd)
 	line = malloc(sizeof(char) * 1);
 	if (!line)
 		return (NULL);
-	*line = '\0';
+	*line = '\0'; 
 	i = 0;
 	if (*str_stock == '\0')
 	{
