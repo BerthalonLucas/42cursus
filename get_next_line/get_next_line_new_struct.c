@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/28 09:44:21 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 16:19:30 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,30 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int    ft_find_slash(t_gnl *g)
+int    ft_find_slash(t_gnl *g, char *buffer)
 {
 	int	i;
 
 	i = 0;
-	while (*(g->buffer_ptr) && *(g->buffer_ptr)[i])
+	while (*buffer && buffer[i])
 	{
-		if (*(g->buffer_ptr)[i] == '\n')
-			return (g->n_ptr = *(g->buffer_ptr) + i, 1);
+		if (buffer[i] == '\n')
+			return (g->n_ptr = buffer + i, 1);
 		i++;
 	}
-	if (*(g->buffer_ptr) && *(g->buffer_ptr)[i] == '\n')
-		return (g->n_ptr = *(g->buffer_ptr) + i, 1);
-	return (g->n_ptr = *(g->buffer_ptr) + i, 0);
+	if (buffer[i] == '\n')
+		return (g->n_ptr = buffer + i, 1);
+	return (g->n_ptr = buffer + i, 0);
 }
 
-int	ft_stockstr(t_gnl *g)
+int	ft_stockstr(t_gnl *g, char *buffer)
 {
 	char *str;
 	int len;
 	int i;
 
 	i = 0;
-	len = ft_strlen(*(g->buffer_ptr)) + ft_strlen(g->str_stock) + 1;
+	len = ft_strlen(buffer) + ft_strlen(g->str_stock) + 1;
 	str = malloc(sizeof(char) * len);
 	if (!str)
 		return (-1);
@@ -84,53 +84,52 @@ int	ft_stockstr(t_gnl *g)
 			i++;
 		}
 	}
-	ft_find_slash(g);
-	while (*(g->buffer_ptr) != (g->n_ptr))
+	ft_find_slash(g, buffer);
+	while (*buffer != *(g->n_ptr))
 	{
-		str[i] = *(*g->buffer_ptr);
+		str[i] = *buffer;
 		i++;
-		(*g->buffer_ptr)++;
+		buffer++;
 	}
 	g->str_stock = str;
 	return (0);
 }
 
-int	reader(t_gnl *g)
+int	reader(t_gnl *g, char *buffer)
 {
 	int rid;
 
 	// printf("%d\n", g->fd);
 	g->str_stock = "\0";
-	read(g->fd, (*g->buffer_ptr), BUFFER_SIZE);
-	ft_stockstr(g);
-	while (ft_find_slash(g))
+	read(g->fd, buffer, BUFFER_SIZE);
+	ft_stockstr(g, buffer);
+	while (ft_find_slash(g, buffer))
 	{
-		rid = read(g->fd, *(g->buffer_ptr), BUFFER_SIZE);
-		ft_stockstr(g);
+		rid = read(g->fd, buffer, BUFFER_SIZE);
+		ft_stockstr(g, buffer);
 	}
 	// g->n_ptr = ft_find_slash(g);
-	ft_memmove(*(g->buffer_ptr), g->n_ptr + 1, ft_strlen(*(g->buffer_ptr)) - (g->n_ptr - *(g->buffer_ptr)));
+	ft_memmove(buffer, g->n_ptr + 1, ft_strlen(buffer) - (g->n_ptr - buffer));
 	return (rid);
 }
 
-static void init_struct(t_gnl *g, int fd, char **buffer)
+static void init_struct(t_gnl *g, int fd)
 {
 	g->fd = fd;
 	g->end = BUFFER_SIZE;
 	g->str_stock = NULL;
-	g->buffer_ptr = buffer;
 	g->n_ptr = NULL;
 }
 char *get_next_line(int fd)
 {
-	static char buffer[BUFFER_SIZE + 1];
+	static char buffer[BUFFER_SIZE];
 	t_gnl g;
 	
 	// printf("%d\n", fd);
-	init_struct(&g, fd, (char **) &buffer);
+	init_struct(&g, fd);
 	if (buffer[0] == '\0')
 	{
-		if (reader(&g) < 0)
+		if (reader(&g, buffer) < 0)
 			return (NULL);
 		else
 			return (g.str_stock);

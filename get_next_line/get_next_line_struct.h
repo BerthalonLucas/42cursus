@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_struct.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:19 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/28 09:30:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 14:25:24 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 typedef struct s_gnl
 {
 	int			fd;
-	int         end;
-	char        **buffer_ptr;
+	int			end;
 	char        *str_stock;
 	char 		*n_ptr;
 }	t_gnl;
