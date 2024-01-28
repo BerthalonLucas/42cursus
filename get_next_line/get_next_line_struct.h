@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:19 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/28 14:25:24 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:10:10 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+# define BUFFER_SIZE 7
 #endif
 typedef struct s_gnl
 {

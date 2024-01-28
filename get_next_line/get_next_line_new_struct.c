@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/28 16:19:30 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:10:33 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_stockstr(t_gnl *g, char *buffer)
 	str = malloc(sizeof(char) * len);
 	if (!str)
 		return (-1);
-	if (g->str_stock[i] != '\0')
+	if (g->str_stock && g->str_stock[i] != '\0')
 	{
 		while (g->str_stock[i] != '\0')
 		{
@@ -91,6 +91,8 @@ int	ft_stockstr(t_gnl *g, char *buffer)
 		i++;
 		buffer++;
 	}
+	if (*(g->n_ptr) == '\n')
+		str[i] = '\n';
 	g->str_stock = str;
 	return (0);
 }
@@ -101,11 +103,14 @@ int	reader(t_gnl *g, char *buffer)
 
 	// printf("%d\n", g->fd);
 	g->str_stock = "\0";
-	read(g->fd, buffer, BUFFER_SIZE);
+	if (buffer[0] == '\0')
+		read(g->fd, buffer, BUFFER_SIZE);
 	ft_stockstr(g, buffer);
-	while (ft_find_slash(g, buffer))
+	while (!ft_find_slash(g, buffer))
 	{
 		rid = read(g->fd, buffer, BUFFER_SIZE);
+		if (rid == 0)
+			return (-1);
 		ft_stockstr(g, buffer);
 	}
 	// g->n_ptr = ft_find_slash(g);
@@ -134,6 +139,10 @@ char *get_next_line(int fd)
 		else
 			return (g.str_stock);
 	}
+	if (reader(&g, buffer) < 0)
+			return (NULL);
+		else
+			return (g.str_stock);
 	return (g.str_stock);
 }
 int main(void)
@@ -143,7 +152,7 @@ int main(void)
 	char *line;
 
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		line = get_next_line(fd);
 		printf("%s", line);
