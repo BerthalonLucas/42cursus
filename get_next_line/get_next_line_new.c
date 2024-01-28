@@ -6,12 +6,12 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/27 07:08:50 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 07:48:47 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 1
 
 size_t	ft_strlen(const char *str)
 {
@@ -58,7 +58,7 @@ char	*ft_stockstr(char *start, int end, char *str_stock)
 					i++;
 				}
 		}
-	while (*start != start[end])
+	while (*start != ft_strchr)
 	{
 		str[i] = *start;
 		i++;
