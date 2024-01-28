@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_new.c                                :+:      :+:    :+:   */
+/*   get_next_line_new_struct.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/28 09:28:28 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/28 09:44:21 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_struct.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -60,7 +60,7 @@ int    ft_find_slash(t_gnl *g)
 			return (g->n_ptr = *(g->buffer_ptr) + i, 1);
 		i++;
 	}
-	if (**(g->buffer_ptr) && *(g->buffer_ptr)[i] == '\n')
+	if (*(g->buffer_ptr) && *(g->buffer_ptr)[i] == '\n')
 		return (g->n_ptr = *(g->buffer_ptr) + i, 1);
 	return (g->n_ptr = *(g->buffer_ptr) + i, 0);
 }
@@ -99,9 +99,9 @@ int	reader(t_gnl *g)
 {
 	int rid;
 
-	printf("%d\n", g->fd);
+	// printf("%d\n", g->fd);
 	g->str_stock = "\0";
-	read(g->fd, *(g->buffer_ptr), BUFFER_SIZE);
+	read(g->fd, (*g->buffer_ptr), BUFFER_SIZE);
 	ft_stockstr(g);
 	while (ft_find_slash(g))
 	{
@@ -113,12 +113,12 @@ int	reader(t_gnl *g)
 	return (rid);
 }
 
-static void init_struct(t_gnl *g, int fd, char buffer[BUFFER_SIZE])
+static void init_struct(t_gnl *g, int fd, char **buffer)
 {
 	g->fd = fd;
 	g->end = BUFFER_SIZE;
 	g->str_stock = NULL;
-	g->buffer_ptr = &buffer;
+	g->buffer_ptr = buffer;
 	g->n_ptr = NULL;
 }
 char *get_next_line(int fd)
@@ -126,8 +126,8 @@ char *get_next_line(int fd)
 	static char buffer[BUFFER_SIZE + 1];
 	t_gnl g;
 	
-	printf("%d\n", fd);
-	init_struct(&g, fd, buffer);
+	// printf("%d\n", fd);
+	init_struct(&g, fd, (char **) &buffer);
 	if (buffer[0] == '\0')
 	{
 		if (reader(&g) < 0)
