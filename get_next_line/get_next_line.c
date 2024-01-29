@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/29 18:25:10 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/29 20:26:27 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int    ft_find_slash(t_gnl *g, char *buffer)
 	}
 	if (buffer[i] == '\n')
 		return (g->n_ptr = buffer + i, 1);
-	return (g->n_ptr = buffer + i, 0);
+	return (0);
 }
 // void	clear(char *str)
 // {
@@ -167,10 +167,11 @@ int	ft_strjoin(t_gnl *g,char *buffer)
 	str = malloc(sizeof(char) * lens);
 	if (!str)
 		return (-1);
+	printf("%s\n", "MALLOC");
 	ft_strlcpy(str, g->str_stock, lens);
+	free(g->str_stock);
 	ft_find_slash(g, buffer);
 	ft_strlcat(str, buffer, lens, g);
-	free(g->str_stock);
 	g->str_stock = str;
 	return (0);
 }
@@ -191,6 +192,7 @@ int	reader(t_gnl *g, char *buffer)
 	while (!ft_find_slash(g, buffer))
 	{
 		rid = read(g->fd, buffer, BUFFER_SIZE);
+		buffer[BUFFER_SIZE] = '\0';
 		if (rid == 0)
 			return (-1);
 		ft_strjoin(g, buffer);
