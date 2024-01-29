@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_struct.h                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:19 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/28 17:10:10 by lberthal         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:06:37 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 7
-#endif
-typedef struct s_gnl
-{
-	int			fd;
-	int			end;
-	char        *str_stock;
-	char 		*n_ptr;
-}	t_gnl;
 
 # include <stdlib.h>
 # include <unistd.h>

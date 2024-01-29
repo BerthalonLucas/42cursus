@@ -5,43 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/26 23:59:11 by lberthal         ###   ########.fr       */
+/*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
+/*   Updated: 2024/01/29 18:25:10 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 2
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (NULL);
-}
-
-
-size_t	ft_strlen(const char *str)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
 	i = 0;
+	if ((!dest && !src) || !n)
+		return (dest);
+	while (i < n)
+	{
+		((unsigned char *)dest)[i] = ((const unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	if ((!dest && !src) || !n)
+		return (dest);
+	if (dest > src)
+		while (n--)
+			((unsigned char *)dest)[n] = ((unsigned char *)src)[n];
+	else
+		ft_memcpy(dest, src, n);
+	return (dest);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str || str[i] == '\0')
+		return (0);
 	while (str[i])
 		i++ ;
 	return (i);
 }
+size_t	ft_strlcpy(char *dst, char *src, size_t size)
+{
+	size_t	i;
 
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+	i = 0;
+	while (src[i] && i < size - 1 && size != 0 && src[i] != '\n')
+	{
+		dst[i] = src[i];
+		++i;
+	}
+	if (size)
+		dst[i] = '\0';
+	return (ft_strlen(src));
+}
+size_t	ft_strlcat(char *dest, char *src, size_t size, t_gnl *g)
 {
 	size_t	i;
 	size_t	r;
@@ -56,7 +79,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		i++;
 	if (i >= size)
 		return (src_len + size);
-	while (src[r])
+	while (src[r] && (&src[r - 1] != g->n_ptr))
 	{
 		if (i == size - 1)
 			break ;
@@ -70,89 +93,157 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	return (ft_strlen(dest));
 }
 
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int    ft_find_slash(t_gnl *g, char *buffer)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (src[i] && i < size - 1 && size != 0)
+	while (*buffer && buffer[i])
 	{
-		dst[i] = src[i];
-		++i;
+		if (buffer[i] == '\n')
+			return (g->n_ptr = buffer + i, 1);
+		i++;
 	}
-	if (size)
-		dst[i] = '\0';
-	return (ft_strlen(src));
+	if (buffer[i] == '\n')
+		return (g->n_ptr = buffer + i, 1);
+	return (g->n_ptr = buffer + i, 0);
 }
+// void	clear(char *str)
+// {
+// 	free(str);
+// 	while (*str != '\0')
+// 	{
+// 		*str = '\0';
+// 		str++;
+// 	}
+// }
 
-// modif 
-char	*ft_strjoin(char *s1, char *s2)
+// int	ft_stockstr(t_gnl *g, char *buffer)
+// {
+// 	char *str;
+// 	int len;
+// 	int i;
+
+// 	i = 0;
+// 	len = BUFFER_SIZE + ft_strlen(g->str_stock) + 1;
+// 	str = malloc(sizeof(char) * len);
+// 	if (!str)
+// 		return (-1);
+// 	if (g->str_stock && g->str_stock[i] != '\0')
+// 	{
+// 		while (g->str_stock[i] != '\0')
+// 		{
+// 			str[i] = g->str_stock[i];
+// 			i++;
+// 		}
+// 	}
+// 	if (!g->str_stock)
+// 	{
+		
+// 		if (*g->str_stock != '\0')
+// 			clear(g->str_stock);
+// 	}
+// 	ft_find_slash(g, buffer);
+// 	while (*buffer != *(g->n_ptr))
+// 	{
+// 		str[i] = *buffer;
+// 		i++;
+// 		buffer++;
+// 	}
+// 	if (*(g->n_ptr) == '\n')
+// 		str[i] = '\n';
+// 	g->str_stock = str;
+// 	return (0);
+// }
+
+int	ft_strjoin(t_gnl *g,char *buffer)
 {
 	int		lens;
 	char	*str;
 
-	if (!s1 || !s2)
-		return (NULL);
-	lens = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!g->str_stock || !buffer)
+		return (-1);
+	lens = ft_strlen(g->str_stock) + BUFFER_SIZE + 1;
 	str = malloc(sizeof(char) * lens);
 	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1, lens);
-	ft_strlcat(str, s2, lens);
-	free(s1);
-	return (str);
+		return (-1);
+	ft_strlcpy(str, g->str_stock, lens);
+	ft_find_slash(g, buffer);
+	ft_strlcat(str, buffer, lens, g);
+	free(g->str_stock);
+	g->str_stock = str;
+	return (0);
 }
-
-char *ft_first_line(char *buffer, char *str_stock, int fd)
+int	reader(t_gnl *g, char *buffer)
 {
-	int i;
-	char *line;
-
-	line = malloc(sizeof(char) * 1);
-	if (!line)
-		return (NULL);
-	*line = '\0'; 
-	i = 0;
-	if (*str_stock == '\0')
+	int rid;
+	if (!g->str_stock)
 	{
-		while (!ft_strchr(buffer, '\n'))
-		{
-			line = ft_strjoin(line, buffer);
-			read(fd, buffer, BUFFER_SIZE);
-		}
+		g->str_stock = malloc(sizeof(char) * 1);
+		g->str_stock[0] = '\0';
 	}
-	str_stock = ft_strjoin(str_stock, buffer)
-	else if (ft_strchr(str_stock, '\n'))
+	if (!g->str_stock)
+		return(-1);
+	
+	if (buffer[0] == '\0')
+		read(g->fd, buffer, BUFFER_SIZE);
+	ft_strjoin(g, buffer);
+	while (!ft_find_slash(g, buffer))
 	{
-		str_stock = ft_strjoin(str_stock, buffer);
-		while (buffer[i] != '\n')
-		{
-		
-		}
+		rid = read(g->fd, buffer, BUFFER_SIZE);
+		if (rid == 0)
+			return (-1);
+		ft_strjoin(g, buffer);
 	}
-	return (str_stock);
+	// g->n_ptr = ft_find_slash(g);
+	ft_memmove(buffer, g->n_ptr + 1, BUFFER_SIZE - (g->n_ptr - buffer));
+	return (rid);
 }
 
+static void init_struct(t_gnl *g, int fd)
+{
+	g->fd = fd;
+	g->end = BUFFER_SIZE;
+	g->str_stock = NULL;
+	g->n_ptr = NULL;
+}
 char *get_next_line(int fd)
 {
-	static char *str_stock;
-	char buffer[BUFFER_SIZE];
-
-	str_stock = malloc(sizeof (char) * BUFFER_SIZE + 1);
-	if (!str_stock)
+	static char buffer[BUFFER_SIZE];
+	t_gnl g;
+	
+	// printf("%d\n", fd);
+	if (!fd)
 		return (NULL);
-	str_stock[BUFFER_SIZE] = '\0';
-	read(fd, buffer, BUFFER_SIZE);
-	return (ft_first_line(buffer, str_stock, fd));
+	init_struct(&g, fd);
+	if (buffer[0] == '\0')
+	{
+		if (reader(&g, buffer) < 0)
+			return (NULL);
+		else
+			return (g.str_stock);
+	}
+	if (reader(&g, buffer) < 0)
+			return (NULL);
+		else
+			return (g.str_stock);
+	return (g.str_stock);
 }
-
 int main(void)
 {
 	int fd = open("to_read.txt", O_RDONLY);
-	//char *buffer = "ta mere en slip\nelle fait des galipettes";
-	
-	printf("%s\n", get_next_line(fd));
+	int i;
+	char *line;
+
+	i = 0;
+	while (i < 8)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		// free(line);
+		i++;
+	}
+	// printf("%s\n", get_next_line(fd));
 	close(fd);
 }
 
