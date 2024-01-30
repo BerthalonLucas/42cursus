@@ -1,7 +1,7 @@
-bleu
+bleue
 rouge
-vert
+verte
 jaune
-violet
+viole
 
 

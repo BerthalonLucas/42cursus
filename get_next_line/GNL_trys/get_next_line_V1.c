@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_V1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:15 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/26 23:59:11 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:51:31 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,55 @@ char *get_next_line(int fd)
 	read(fd, buffer, BUFFER_SIZE);
 	return (ft_first_line(buffer, str_stock, fd));
 }
+
+// void	clear(char *str)
+// {
+// 	free(str);
+// 	while (*str != '\0')
+// 	{
+// 		*str = '\0';
+// 		str++;
+// 	}
+// }
+
+// int	ft_stockstr(t_gnl *g, char *buffer)
+// {
+// 	char *str;
+// 	int len;
+// 	int i;
+
+// 	i = 0;
+// 	len = BUFFER_SIZE + ft_strlen(g->str_stock) + 1;
+// 	str = malloc(sizeof(char) * len);
+// 	if (!str)
+// 		return (-1);
+// 	if (g->str_stock && g->str_stock[i] != '\0')
+// 	{
+// 		while (g->str_stock[i] != '\0')
+// 		{
+// 			str[i] = g->str_stock[i];
+// 			i++;
+// 		}
+// 	}
+// 	if (!g->str_stock)
+// 	{
+		
+// 		if (*g->str_stock != '\0')
+// 			clear(g->str_stock);
+// 	}
+// 	ft_find_slash(g, buffer);
+// 	while (*buffer != *(g->n_ptr))
+// 	{
+// 		str[i] = *buffer;
+// 		i++;
+// 		buffer++;
+// 	}
+// 	if (*(g->n_ptr) == '\n')
+// 		str[i] = '\n';
+// 	g->str_stock = str;
+// 	return (0);
+// }
+
 
 int main(void)
 {
