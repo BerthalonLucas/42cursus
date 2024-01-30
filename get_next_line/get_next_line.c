@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/30 03:47:34 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:18:26 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ int	reader(t_gnl *g, char *buffer)
 	}
 	if (!g->str_stock)
 		return(-1);
-	
 	if (buffer[0] == '\0')
 	{
 		g->rid = read(g->fd, buffer, BUFFER_SIZE);
@@ -150,11 +149,12 @@ int	reader(t_gnl *g, char *buffer)
 	{
 		g->rid = read(g->fd, buffer, BUFFER_SIZE);
 		buffer[BUFFER_SIZE] = '\0';
-		if (g->rid == 0)
+		if (g->rid == 0 && *g->str_stock == '\0')
 			return (-1);
+		else if (g->rid == 0)
+			return (0);
 		ft_strjoin(g, buffer);
 	}
-	// printf("plop\n");
 	ft_memmove(buffer, g->n_ptr + 1, BUFFER_SIZE - (g->n_ptr - buffer));
 	return (g->rid);
 }
@@ -189,25 +189,25 @@ char *get_next_line(int fd)
 		return (g.str_stock);
 	return (g.str_stock);
 }
-// int main(void)
-// {
-// 	int fd = open("to_read.txt", O_RDONLY);
-// 	int i;
-// 	char *line;
+int main(void)
+{
+	int fd = open("to_read.txt", O_RDONLY);
+	int i;
+	char *line;
 
-// 	i = 0;
-// 	while (i < 4)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-// 		// printf("free : %p\n", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	// free(line);
-// 	// printf("%s\n", get_next_line(fd));
-// 	close(fd);
-// }
+	i = 0;
+	while (i < 2)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		// printf("free : %p\n", line);
+		free(line);
+		i++;
+	}
+	// free(line);
+	// printf("%s\n", get_next_line(fd));
+	close(fd);
+}
 
 
 
