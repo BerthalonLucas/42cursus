@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:19 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/31 06:43:48 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/31 06:43:44 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 0
 #endif
 typedef struct s_gnl
 {

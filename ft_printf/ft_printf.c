@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2023/12/18 19:53:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/01/31 09:32:30 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	selection(char c, va_list args)
 {
 	if (c == 'c')
-		return (P_char(args));
+		return (character(args));
 	if (c == 's')
-		return (P_string(args));
+		return (string(args));
 	if (c == 'd')
-		return (P_decimale(args));
+		return (decimale(args));
 	if (c == 'i')
-		return (P_interger(args));
+		return (integer(args));
 	if (c == 'u')
-		return (P_unsinged_decimale(args));
+		return (unsinged_decimale(args));
 	if (c == 'p' || c == 'x' || c == 'X')
 		return (hexa_bases(args, c));
 	if (c == '%')
