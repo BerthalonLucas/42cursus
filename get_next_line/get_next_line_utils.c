@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:11 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/31 04:56:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/01 05:47:48 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,12 @@ char	*ft_memmove(char *dest, char *src, size_t n)
 {
 	size_t	i;
 	
-	if ((!dest && !src) || !n)
-		return (dest);
 	if (dest > src)
 		while (n--)
 			dest[n] = src[n];
 	else
 	{
 		i = 0;
-		if ((!dest && !src) || !n)
-			return (dest);
 		while (i < n)
 		{
 			dest[i] = src[i];

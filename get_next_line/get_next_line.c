@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/01/31 08:30:29 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/01 05:53:00 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	ft_strjoin(t_gnl *g,char *buffer)
 
 	if (!g->str_stock || !buffer)
 		return (-1);
-	lens = ft_strlen(g->str_stock) + BUFFER_SIZE + 1;
+	if (g->rid <= ft_strlen(buffer))
+		lens = ft_strlen(g->str_stock) + ft_strlen(buffer) + 1;
+	else
+		lens = ft_strlen(g->str_stock) + g->rid + 1;
 	str = malloc(sizeof(char) * lens);
 	if (!str)
 	{
@@ -68,15 +71,16 @@ int	reader(t_gnl *g, char *buffer)
 	while (!ft_find_slash(g, buffer))
 	{
 		g->rid = read(g->fd, buffer, BUFFER_SIZE);
-		if (g->rid >= 0)
-			buffer[g->rid] = '\0';
+		if (g->rid < 0)
+			return(buffer[0] = '\0', -1);
 		if (g->rid <= 0 && *g->str_stock == '\0')
 			return (ft_bzero(buffer), buffer = NULL, -1);
 		else if (g->rid == 0)
 			return (ft_bzero(buffer), 0);
+		if (ft_find_slash(g, buffer))
 		ft_strjoin(g, buffer);
 	}
-	ft_memmove(buffer, g->n_ptr + 1, BUFFER_SIZE - (g->n_ptr - buffer));
+	ft_memmove(buffer, g->n_ptr + 1, ft_strlen(buffer) - (g->n_ptr - buffer));
 	return (g->rid);
 }
 
@@ -103,40 +107,37 @@ char *get_next_line(int fd)
 		return (free(g.str_stock), NULL);
 	return (g.str_stock);
 }
-int main(void)
-{
-	int fd = open("to_read.txt", O_RDONLY);
-	int i;
-	char *line;
-
-	i = 0;
-	while (i < 1)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-		free(line);
-		i++;
-	}
-	// free(line);
-	// printf("%s\n", get_next_line(fd));
-	// close(fd);
-	// fd = open("error", O_RDONLY);
-	// line = get_next_line(fd);
-	// printf("%s", line);
-	// printf("\n");
-	// free(line);
-	// close(fd);
-	// fd = open("to_read.txt", O_RDONLY);
-	// i = 0;
-	// while (i < 4)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("%s", line);
-	// 	free(line);
-	// 	i++;
-	// }
-	// close(fd);
-}
+// int main(void)
+// {
+// 	int fd = open("to_read.txt", O_RDONLY);
+// 	char *line;
+// 	line = (void *) -1;
+// 	while (line)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	// free(line);
+// 	// printf("%s\n", get_next_line(fd));
+// 	// close(fd);
+// 	// fd = open("error", O_RDONLY);
+// 	// line = get_next_line(fd);
+// 	// printf("%s", line);
+// 	// printf("\n");
+// 	// free(line);
+// 	// close(fd);
+// 	// fd = open("to_read.txt", O_RDONLY);
+// 	// i = 0;
+// 	// while (i < 4)
+// 	// {
+// 	// 	line = get_next_line(fd);
+// 	// 	printf("%s", line);
+// 	// 	free(line);
+// 	// 	i++;
+// 	// }
+// 	// close(fd);
+// }
 
 
 // // main test fonction read
