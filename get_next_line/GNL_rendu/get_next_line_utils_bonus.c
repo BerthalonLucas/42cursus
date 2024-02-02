@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:11 by lucas             #+#    #+#             */
-/*   Updated: 2024/02/02 01:19:32 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:22:12 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
@@ -40,12 +40,16 @@ char	*ft_memmove(char *dest, char *src, size_t n)
 {
 	size_t	i;
 
+	if ((!dest && !src) || !n)
+		return (dest);
 	if (dest > src)
 		while (n--)
 			dest[n] = src[n];
 	else
 	{
 		i = 0;
+		if ((!dest && !src) || !n)
+			return (dest);
 		while (i < n)
 		{
 			dest[i] = src[i];

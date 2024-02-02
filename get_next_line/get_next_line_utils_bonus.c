@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:11 by lucas             #+#    #+#             */
-/*   Updated: 2024/01/31 02:34:24 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:21:36 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
@@ -23,6 +23,7 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+
 void	ft_bzero(char *buffer)
 {
 	int	i;
@@ -38,7 +39,7 @@ void	ft_bzero(char *buffer)
 char	*ft_memmove(char *dest, char *src, size_t n)
 {
 	size_t	i;
-	
+
 	if ((!dest && !src) || !n)
 		return (dest);
 	if (dest > src)
@@ -58,7 +59,6 @@ char	*ft_memmove(char *dest, char *src, size_t n)
 	return (dest);
 }
 
-
 size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
 	size_t	i;
@@ -73,6 +73,7 @@ size_t	ft_strlcpy(char *dst, char *src, size_t size)
 		dst[i] = '\0';
 	return (ft_strlen(src));
 }
+
 size_t	ft_strlcat(char *dest, char *src, size_t size, t_gnl *g)
 {
 	size_t	i;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/02/02 00:59:04 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:22:54 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_find_slash(t_gnl *g, char *buffer)
 {
@@ -87,24 +87,24 @@ int	reader(t_gnl *g, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[1024][BUFFER_SIZE + 1];
 	t_gnl		g;
 
 	if (fd < 0)
 		return (NULL);
-	buffer[BUFFER_SIZE] = '\0';
+	buffer[fd][BUFFER_SIZE] = '\0';
 	g.fd = fd;
 	g.str_stock = NULL;
 	g.rid = read(g.fd, g.str_stock, 0);
 	g.n_ptr = NULL;
 	if (g.rid < 0)
-		return (ft_bzero(buffer), NULL);
-	if (buffer[0] == '\0')
+		return (ft_bzero(buffer[fd]), NULL);
+	if (buffer[fd][0] == '\0')
 	{
-		if (reader(&g, buffer) < 0)
+		if (reader(&g, buffer[fd]) < 0)
 			return (free(g.str_stock), NULL);
 	}
-	else if (reader(&g, buffer) < 0)
+	else if (reader(&g, buffer[fd]) < 0)
 		return (free(g.str_stock), NULL);
 	return (g.str_stock);
 }

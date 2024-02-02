@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/02/02 00:59:04 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/01 04:31:10 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	ft_strjoin(t_gnl *g, char *buffer)
 	int		lens;
 	char	*str;
 
-	if (!g->str_stock || !buffer)
+	if (!g->str_stock || !buffer || g->rid == -1)
 		return (-1);
-	if (g->rid < ft_strlen(buffer))
+	if (g->rid <= ft_strlen(buffer))
 		lens = ft_strlen(g->str_stock) + ft_strlen(buffer) + 1;
 	else
 		lens = ft_strlen(g->str_stock) + g->rid + 1;
@@ -65,14 +65,15 @@ int	reader(t_gnl *g, char *buffer)
 	if (buffer[0] == '\0')
 	{
 		g->rid = read(g->fd, buffer, BUFFER_SIZE);
-		buffer[g->rid] = '\0';
+		buffer[BUFFER_SIZE] = '\0';
+		if (ft_strjoin(g, buffer) < 0)
+			return (-1);
 	}
-	if (ft_strjoin(g, buffer) < 0)
-		return (-1);
+	// else
+	// 	g->rid = read(g->fd, buffer, BUFFER_SIZE);
 	while (!ft_find_slash(g, buffer))
 	{
 		g->rid = read(g->fd, buffer, BUFFER_SIZE);
-		buffer[g->rid] = '\0';
 		if (g->rid < 0)
 			return (buffer[0] = '\0', -1);
 		if (g->rid <= 0 && *g->str_stock == '\0')
@@ -107,4 +108,38 @@ char	*get_next_line(int fd)
 	else if (reader(&g, buffer) < 0)
 		return (free(g.str_stock), NULL);
 	return (g.str_stock);
+}
+
+int main(void)
+{
+	int fd = open("1char.txt", O_RDONLY);
+	char *test;
+	test = (void *) -1;
+	while(test)
+	{
+		test = get_next_line(fd);
+        printf("%s", test);
+        free(test);
+	}
+	close(fd);
+	return (0);
+	// free(line);
+	// printf("%s\n", get_next_line(fd));
+	// close(fd);
+	// fd = open("error", O_RDONLY);
+	// line = get_next_line(fd);
+	// printf("%s", line);
+	// printf("\n");
+	// free(line);
+	// close(fd);
+	// fd = open("to_read.txt", O_RDONLY);
+	// i = 0;
+	// while (i < 4)
+	// {
+	// 	line = get_next_line(fd);
+	// 	printf("%s", line);
+	// 	free(line);
+	// 	i++;
+	// }
+	// close(fd);
 }

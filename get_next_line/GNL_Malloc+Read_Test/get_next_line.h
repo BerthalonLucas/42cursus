@@ -6,18 +6,39 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:19 by lucas             #+#    #+#             */
-/*   Updated: 2024/02/02 01:13:28 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/01 04:02:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
+# include <fcntl.h> // Pour open
+# include <stdio.h> // Pour printf
+
+
+
+
+
+
+
+
+
+
+
+// # define malloc(x) ox_m(x)
+// # define read(a, b, c) ox_r(a, b, c)
+// void *ox_m(size_t x);
+// ssize_t ox_r(int fdp, void *b, int len);
+
+
+
 
 typedef struct s_gnl
 {
