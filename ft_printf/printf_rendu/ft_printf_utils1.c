@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:13 by lucas             #+#    #+#             */
-/*   Updated: 2024/02/04 20:36:27 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:53:47 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	string(va_list args, t_pf *pf)
 	{
 		pf->neg = write(1, *&s, 1);
 		if (pf->neg == -1)
-		    return (-1);
+			return (-1);
 		s++;
 		i++;
 	}
@@ -67,7 +67,7 @@ int	putnbr(long int i, t_pf *pf)
 	{
 		pf->neg = write(1, "-", 1);
 		if (pf->neg == -1)
-		    return (-1);
+			return (-1);
 		i *= -1;
 	}
 	if (i >= 10)

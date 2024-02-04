@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2024/02/04 21:38:12 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:52:41 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,35 @@ int	selection(char c, va_list args, t_pf *pf)
 		return (write(1, "%", 1));
 	return (0);
 }
-int pourcentage(t_pf *pf, va_list args)
+
+int	pourcentage(t_pf *pf, va_list args)
 {
 	while (*pf->s != '%' && *pf->s != '\0')
 	{
 		pf->neg = write(1, *&pf->s, 1);
 		if (pf->neg == -1)
-		    return (-1);
+			return (-1);
 		pf->cp++;
 		pf->s++;
 	}
 	if (*pf->s == '%')
 	{
-	    pf->cp += selection(*(pf->s + 1), args, pf);
+		pf->cp += selection(*(pf->s + 1), args, pf);
 		return (pf->cp);
 	}
 	else
-	    return (pf->cp);
+		return (pf->cp);
 	return (0);
 }
+
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
-	t_pf 	pf;
+	t_pf	pf;
 
 	va_start (args, s);
 	if (!s)
-	    return (0);
+		return (0);
 	pf.s = (char *)s;
 	pf.neg = 0;
 	pf.cp = 0;
@@ -64,7 +66,7 @@ int	ft_printf(const char *s, ...)
 	{
 		pourcentage(&pf, args);
 		if (pf.neg == -1)
-	    	return (-1);
+			return (-1);
 		else if (*pf.s)
 			pf.s += 2;
 	}

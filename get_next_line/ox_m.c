@@ -6,8 +6,12 @@ void *ox_m(size_t xxx)
     static int i = 0;
 
     if (i == 9)
+    {
+        printf("[%d]attention... 🔨 ", i);
         return (NULL);
+    }
     i++;
+    printf("\t💢💣💥 !");
     return (malloc(xxx));
 }
 

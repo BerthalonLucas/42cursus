@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:24:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/02/04 21:45:20 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:50:52 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define FT_PRINTF_H
 # include <unistd.h>
 # include <stdarg.h>
+
 typedef struct s_pf
 {
-	int cp;
-	int neg;
-	char *s;
-	
+	int		cp;
+	int		neg;
+	char	*s;
+
 }	t_pf;
 
 int	selection(char c, va_list args, t_pf *pf);
