@@ -75,5 +75,11 @@ CHOSE SUR LESQUELLES JE DOIT FAIRE DES RECHERCHES
 			#Sudo : 42 cmd
 		}
 	}
-
 }
+update du 23/02/24
+nouveau groups fait
+regles ssh fait
+script lancer au demmarage fait
+script ok usr/local/bin
+reste a faire les regles de mdp
+reste a voir

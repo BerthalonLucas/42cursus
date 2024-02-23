@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:53:10 by lucas             #+#    #+#             */
-/*   Updated: 2024/02/04 21:53:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:07:56 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	pointer(unsigned long long i, char *base, t_pf *pf)
 	pf->neg = write(1, &base[i % 16], 1);
 	if (pf->neg == -1)
 		return (-1);
-	return (count_hex(i));
+	return (2 + count_hex(i));
 }
 
 int	hexa_bases(va_list args, char c, t_pf *pf)
@@ -72,7 +72,7 @@ int	hexa_bases(va_list args, char c, t_pf *pf)
 		pf->neg = write(1, "0x", 2);
 		if (pf->neg == -1)
 			return (-1);
-		return (2 + pointer(n, "0123456789abcdef", pf));
+		return (pointer(n, "0123456789abcdef", pf));
 	}
 	return (0);
 }
