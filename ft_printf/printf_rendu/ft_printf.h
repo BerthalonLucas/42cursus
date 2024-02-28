@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:24:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/02/04 21:50:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:46:17 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_pf
 	int		cp;
 	int		neg;
 	char	*s;
-
 }	t_pf;
 
 int	selection(char c, va_list args, t_pf *pf);
