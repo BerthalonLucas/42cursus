@@ -1,2 +1,7 @@
-signature disque virtuelle : 713524fa003615ce52724602281955a25680f2c0
-UUID disque virtuelle ; 953076c7-c7d4-40eb-ab46-985d20c066aa
+X.org (serveur X, affichage)
+Rocky = Red Hat Enterprise Linux (RHEL)
+KDump = save crash
+usermod -a -G GROUP USER
+sudo vi /etc/pam.d/common-password
+list users etc/passwd
+lsblk commade check partitions
