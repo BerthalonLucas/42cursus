@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ../libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,10 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
+
+//-------------------------------------LIBFT_H-------------------------------//
 typedef struct s_list
 {
 	void			*content;
@@ -64,5 +67,65 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+
+//--------------------------------------------------------------------------//
+
+//---------------------------------PRINTF---------------------------------//
+typedef struct s_pf
+{
+	int cp;
+	int neg;
+	char *s;
+	
+}	t_pf;
+
+int	selection(char c, va_list args, t_pf *pf);
+int	ft_printf(const char *s, ...);
+int	string(va_list args, t_pf *pf);
+int	decimale(va_list args, t_pf *pf);
+int	integer(va_list args, t_pf *pf);
+int	unsinged_decimale(va_list args, t_pf *pf);
+int	putnbr(long int i, t_pf *pf);
+int	character(va_list args, t_pf *pf);
+int	hexa_lower(unsigned long long i, char *base, t_pf *pf);
+int	hexa_upper(unsigned long long i, char *base, t_pf *pf);
+int	pointer(unsigned long long i, char *base, t_pf *pf);
+int	hexa_bases(va_list args, char c, t_pf *pf);
+int	count(long int i);
+int	count_hex(unsigned long long int i);
+
+//---------------------------------------------------------------------------//
+
+//---------------------------------GET_NEXT_LINE---------------------------------//
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+typedef struct s_gnl
+{
+	int			fd;
+	int			rid;
+	char		*str_stock;
+	char		*n_ptr;
+}	t_gnl;
+
+char	*get_next_line(int fd);
+void	ft_bzero_gnl(char *buffer);
+int		ft_strlen_gnl(char *str);
+char	*mm_gnl(char *dest, char *src, size_t n); // memory management (memmove)
+size_t	ft_strlcpy_gnl(char *dst, char *src, size_t size);
+size_t	ft_strlcat_gnl(char *dest, char *src, size_t size, t_gnl *g);
+int		ft_find_slash(t_gnl *g, char *buffer);
+int		ft_strjoin_gnl(t_gnl *g, char *buffer);
+int		reader(t_gnl *g, char *buffer);
+
+
+//---------------------------------------------------------------------------//
+
+//---------------------------------TEST_MALLOC_READ---------------------------------//
+
+void	*ox_m(size_t xxx);
+size_t	ox_r(int fdp, void *b, int len);
 
 #endif // LIBFT_H

@@ -6,11 +6,11 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:44:11 by lucas             #+#    #+#             */
-/*   Updated: 2024/03/14 00:01:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:25:58 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../../libft.h"
 
 int	ft_strlen_gnl(char *str)
 {
@@ -36,7 +36,7 @@ void	ft_bzero_gnl(char *buffer)
 	}
 }
 
-char	*ft_memmove_gnl(char *dest, char *src, size_t n)
+char	*mm_gnl(char *dest, char *src, size_t n)
 {
 	size_t	i;
 

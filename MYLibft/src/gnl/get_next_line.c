@@ -6,11 +6,11 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/14 00:01:19 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:25:58 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "..libft.h"
+#include "../../libft.h"
 
 int	ft_find_slash(t_gnl *g, char *buffer)
 {
@@ -45,7 +45,7 @@ int	ft_strjoin_gnl(t_gnl *g, char *buffer)
 		free(str);
 		return (-1);
 	}
-	ft_strcpy_gnl(str, g->str_stock, lens);
+	ft_strlcpy_gnl(str, g->str_stock, lens);
 	if (g->str_stock)
 		free(g->str_stock);
 	ft_find_slash(g, buffer);
@@ -81,7 +81,7 @@ int	reader(t_gnl *g, char *buffer)
 			return (ft_bzero_gnl(buffer), 0);
 		ft_strjoin_gnl(g, buffer);
 	}
-	ft_memmove_gnl(buffer, g->n_ptr + 1, ft_strlen_gnl(buffer) - (g->n_ptr - buffer));
+	mm_gnl(buffer, g->n_ptr + 1, ft_strlen_gnl(buffer) - (g->n_ptr - buffer));
 	return (g->rid);
 }
 
