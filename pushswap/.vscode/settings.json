@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/lberthal/Desktop/copycursus42/pushswap",
+            "binaryPath": "/home/lberthal/Desktop/copycursus42/pushswap/push_swap",
+            "binaryArgs": []
+        }
+    ]
+}
