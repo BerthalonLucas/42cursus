@@ -16,8 +16,6 @@ SRC 		=	main.c
 				
 CC 		= gcc
 
-
-
 LIBFT	= ./libft/libft.a
 
 CFLAGS 	= -Wall -Wextra -Werror -g3
@@ -27,17 +25,19 @@ OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 
 NORMINETTE = 	$(shell norminette $(SRC) | grep -c "Error")
 
-COLOUR_RED		=\033[0;31m
-COLOUR_GREEN	=\033[0;32m
-COLOUR_YELLOW	=\033[0;33m
-COLOUR_BLUE		=\033[0;34m
-COLOUR_END		=\033[0m
+RED		=\033[0;31m
+GREEN	=\033[0;32m
+YELLOW	=\033[0;33m
+BLUE	=\033[0;34m
+VC		=\033[0;35m
+CYAN	=\033[0;36m
+END		=\033[0m
 
 all		:	$(NAME)
 
 $(NAME)	:	$(LIBFT) $(OBJS)
-			$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
-
+			@$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
+			@echo "$(BLUE)Compilation$(END) $(VC)PUSH_SWAP$(END) $(GREEN)OK$(END)"
 $(LIBFT) : 
 			@make -s -C ./libft
 
@@ -45,28 +45,27 @@ $(LIBFT) :
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
 			@$(CC) -o $@ -c $^ $(CFLAGS)
-			@echo "converting $< to $@ $(COLOUR_GREEN)OK$(COLOUR_END)"
+			echo "converting $< to $@ $(GREEN)OK$(END)"
 			
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
-				echo "$(COLOUR_BLUE)=========================================="; \
-				echo "[          $(COLOUR_GREEN)   NORMINETTES OK$(COLOUR_BLUE)             ]"; \
-				echo "$(COLOUR_BLUE)==========================================$(COLOUR_END)"; \
+				echo "$(BLUE)=========================================="; \
+				echo "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
+				echo "$(BLUE)==========================================$(END)"; \
 			else \
-				echo "$(COLOUR_BLUE)=========================================="; \
-				echo "[          $(COLOUR_RED)NORMINETTES ERRORS$(COLOUR_BLUE)          ]"; \
-				echo "$(COLOUR_BLUE)==========================================$(COLOUR_END)"; \
+				echo "$(BLUE)=========================================="; \
+				echo "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
+				echo "$(BLUE)==========================================$(END)"; \
 				norminette $(SRC) | grep "Error"; \
 			fi
 			
 clean 	:
 			@rm -rf ./*.o
-			@make -s -C ./libft clean
-			@echo "clean $(COLOUR_GREEN)OK$(COLOUR_END)"
+			@echo "$(YELLOW)clean$(END) $(VC)PUSH_SWAP$(END) $(GREEN)OK$(END)"
 
 fclean 	: clean
 			@$(RM) $(NAME)
 			@make -s -C ./libft fclean
-			@echo "fclean $(COLOUR_GREEN)OK$(COLOUR_END)"
+			@echo "$(YELLOW)fclean$(END) $(VC)PUSH_SWAP$(END) $(GREEN)OK$(END)"
 
 re 		: fclean all

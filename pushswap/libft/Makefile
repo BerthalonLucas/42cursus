@@ -71,39 +71,46 @@ ARC 	= lib.a
 
 CC 		= gcc
 
+TOTAL 	= $(words $(SRC))
+
+COUNT 	= 0
+
 OBJS_DIR 	= .objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 CFLAGS 	= -Wall -Wextra -Werror -g3
 
 NORMINETTE = 	$(shell norminette $(SRC) | grep -c "Error")
 
-COLOUR_RED		=\033[0;31m
-COLOUR_GREEN	=\033[0;32m
-COLOUR_YELLOW	=\033[0;33m
-COLOUR_BLUE		=\033[0;34m
-COLOUR_END		=\033[0m
+RED		=\033[0;31m
+GREEN	=\033[0;32m
+YELLOW	=\033[0;33m
+BLUE	=\033[0;34m
+VC		=\033[0;35m
+CYAN	=\033[0;36m
+END		=\033[0m
 
-all		: $(NAME) clean
+all		: $(NAME)
 
 $(NAME) : $(OBJS) 
 			@$(AR) $(NAME) $(OBJS)
+			@bash -c 'for i in {1..$(TOTAL)}; do echo -ne "\r$(BLUE)Compiling$(END) $(VC)LIBFT$(END) ($(GREEN)$$i$(END)/$(TOTAL))"; sleep 0.03; done; echo'
+			@echo "$(BLUE)Compilation$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
 			@$(CC) -o $@ -c $^ $(CFLAGS)
-			@@echo "converting $< to $@ $(COLOUR_GREEN)OK$(COLOUR_END)"
 
 $(ARC)	: $(OBJS)
 
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
-				echo "$(COLOUR_BLUE)=========================================="; \
-				echo "[          $(COLOUR_GREEN)   NORMINETTES OK$(COLOUR_BLUE)             ]"; \
-				echo "$(COLOUR_BLUE)==========================================$(COLOUR_END)"; \
+				echo "$(BLUE)=========================================="; \
+				echo "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
+				echo "$(BLUE)==========================================$(END)"; \
 			else \
-				echo "$(COLOUR_BLUE)=========================================="; \
-				echo "[          $(COLOUR_RED)NORMINETTES ERRORS$(COLOUR_BLUE)          ]"; \
-				echo "$(COLOUR_BLUE)==========================================$(COLOUR_END)"; \
+				echo "$(BLUE)=========================================="; \
+				echo "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
+				echo "$(BLUE)==========================================$(END)"; \
 				norminette $(SRC) | grep "Error"; \
 			fi
 
@@ -118,13 +125,13 @@ archive	: $(ARC)
 
 clean 	:
 			@rm -rf $(OBJS)
-			@echo "clean $(COLOUR_GREEN)OK$(COLOUR_END)"
+			@echo "$(YELLOW)clean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 fclean 	: clean
 			@$(RM) $(NAME)
 			@$(RM) $(ARC)
 			@rm -rf $(OBJS_DIR)
-			@echo "fclean $(COLOUR_GREEN)OK$(COLOUR_END)"
+			@echo "$(YELLOW)fclean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 re 		: fclean all
 
