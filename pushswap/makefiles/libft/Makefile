@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2024/03/19 16:50:44 by lberthal         ###   ########.fr        #
+#    Updated: 2024/03/19 18:16:42 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,20 +108,6 @@ define progress_bar
 @printf "$(CYAN)] ($(COMPILED)/$(TOTAL))$(END)\r"
 endef
 
-# define text_scroll
-# @MSG="Progression :  "; \
-# LEN=$${#MSG}; \
-# IDX=$$(($(COMPILED) % LEN)); \
-# printf "\r"; \
-# for i in $$(seq 0 $$((LEN - 1))); do \
-#   if [ $$i -eq $$IDX ]; then \
-#     printf "$(CYAN)$${MSG:$$i:1}$(END)"; \
-#   else \
-#     printf "$${MSG:$$i:1}"; \
-#   fi; \
-# done
-# endef
-
 define moon_phase_animation
 @PHASES=("🌑 " "🌒 " "🌓 " "🌔 " "🌕 " "🌖 " "🌗 " "🌘 "); \
 IDX=$$(($(COMPILED) % 8)); \
@@ -137,15 +123,15 @@ define project_name
 @echo "|     |  |  |  |  |  |     | __  |   __|_   _|";
 @echo "| | | |_   _|  |  |__|-   -| __ -|   __| | |  ";
 @echo "|_|_|_| |_|    |_____|_____|_____|__|    |_|  ";
-@echo "                                              ";
 endef
 
 PROJECT_NAME : 
 			$(call project_name)
 
+
 all		: PROJECT_NAME $(NAME)
 
-$(NAME) : $(OBJS) 
+$(NAME) : norm $(OBJS) 
 			@$(AR) $(NAME) $(OBJS)
 			@printf "\n"
 			@echo -e "$(BLUE)Compilation$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
@@ -162,14 +148,15 @@ $(ARC)	: $(OBJS)
 
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
-				echo "$(BLUE)=========================================="; \
-				echo "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
-				echo "$(BLUE)==========================================$(END)"; \
+				echo -e "\n\n$(BLUE)=========================================="; \
+				echo -e "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
+				echo -e "$(BLUE)==========================================$(END)\n\n"; \
 			else \
-				echo "$(BLUE)=========================================="; \
-				echo "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
-				echo "$(BLUE)==========================================$(END)"; \
+				echo -e "\n$(BLUE)=========================================="; \
+				echo -e "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
+				echo -e "$(BLUE)==========================================$(END)\n"; \
 				norminette $(SRC) | grep "Error"; \
+				printf "\n"; \
 			fi
 
 
@@ -192,28 +179,3 @@ fclean 	: clean
 			@echo -e "$(YELLOW)fclean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 re 		: fclean all
-
-# OBJSBONUS 	= $(SRCBONUS:.c=.o)
-
-# all 	: $(NAME)
-
-# $(NAME) : $(OBJS) 
-# 			@$(AR) $(NAME) $(OBJS)
-
-# %.o 	: %.c
-# 			@$(CC) $(CFLAGS) -c $< -o $@  
-
-# clean 	:
-# 			@$(RM) $(OBJS)
-
-# fclean 	: clean
-# 			@$(RM) $(NAME)
-
-# re 		: fclean all $(NAME)
-
-# bonus : $(OBJSBONUS)
-# 		@$(AR) $(NAME) $(OBJSBONUS)
-
-# so:
-# 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-# 	gcc -nostartfiles -shared -o libft.so $(OBJ)

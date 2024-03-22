@@ -6,13 +6,26 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 02:59:42 by lberthal          #+#    #+#              #
-#    Updated: 2024/03/19 15:51:39 by lberthal         ###   ########.fr        #
+#    Updated: 2024/03/22 14:33:31 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	push_swap
 
-SRC 		=	main.c
+SRC 		=	main.c		\
+				errors.c 	\
+				init.c		\
+				list_utils.c\
+				parsing.c	\
+				parsing_utils.c\
+				sort.c		\
+				sort_utils.c\
+				push.c 		\
+				rotate.c	\
+				reverse_rotate.c\
+				swap.c		\
+				
+				
 				
 CC 		= gcc
 
@@ -44,20 +57,47 @@ define progress_bar
 @printf "$(CYAN)] ($(COMPILED)/$(TOTAL))$(END)\r"
 endef
 
+define time_based_progress_bar
+@echo "Démarrage de la compilation de $(VC)PUSH_SWAP$(END) ...\n"
+@for i in `seq 1 30`; do \
+    PERCENTAGE=$$((i * 100 / 30)); \
+    FILLED=$$((i * 40 / 30)); \
+    EMPTY=$$((40 - FILLED)); \
+    printf "\r$(CYAN)Progression: [$(GREEN)"; \
+    printf "%0.s▓" `seq 1 $$FILLED`; \
+    printf "$(DARK_GRAY)"; \
+    printf "%0.s░" `seq 1 $$EMPTY`; \
+    printf "$(RESET)$(CYAN)] $$PERCENTAGE%%"; \
+    sleep 0.1; \
+done; \
+echo ""; \
+echo "Compilation terminée."
+endef
+
+
+
 all		:	$(NAME)
 
 $(NAME)	:	$(LIBFT) $(OBJS)
+			@$(if $(shell [ $(TOTAL) -lt 30 ] && echo true),\
+				$(call time_based_progress_bar),\
+				$(call progress_bar))
 			@$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
 			@echo "$(BLUE)Compilation$(END) $(VC)PUSH_SWAP$(END) $(GREEN)OK$(END)"
 $(LIBFT) : 
-			@make -s -C ./libft
+			@make re -s -C ./libft
 
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
 			@$(CC) -o $@ -c $^ $(CFLAGS)
+
+progress_bar_logic:
 			$(call progress_bar)
-			
+
+time_based_progress_bar_logic:
+			$(call time_based_progress_bar)
+
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
 				echo "$(BLUE)=========================================="; \
@@ -71,7 +111,7 @@ norm	:
 			fi
 			
 clean 	:
-			@rm -rf ./*.o
+			@rm -rf .objs
 			@echo "$(YELLOW)clean$(END) $(VC)PUSH_SWAP$(END) $(GREEN)OK$(END)"
 
 fclean 	: clean

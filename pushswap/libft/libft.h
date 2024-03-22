@@ -92,6 +92,7 @@ int	hexa_lower(unsigned long long i, char *base, t_pf *pf);
 int	hexa_upper(unsigned long long i, char *base, t_pf *pf);
 int	pointer(unsigned long long i, char *base, t_pf *pf);
 int	hexa_bases(va_list args, char c, t_pf *pf);
+int	write_char_tab(va_list args, t_pf *pf);
 int	count(long int i);
 int	count_hex(unsigned long long int i);
 

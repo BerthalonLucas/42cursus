@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:48:29 by lucas             #+#    #+#             */
-/*   Updated: 2024/03/14 00:25:59 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/03/22 08:50:45 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	selection(char c, va_list args, t_pf *pf)
 		return (unsinged_decimale(args, pf));
 	if (c == 'p' || c == 'x' || c == 'X')
 		return (hexa_bases(args, c, pf));
+	if (c == 't')
+		return (write_char_tab(args, pf));
 	if (c == '%')
 		return (write(1, "%", 1));
 	return (0);

@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2024/03/15 03:48:13 by lberthal         ###   ########.fr        #
+#    Updated: 2024/03/22 10:07:30 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC 		=	src/verif/ft_isalpha.c			\
 				src/gnl/get_next_line_utils.c	\
 				
 
+SHELL = /bin/bash
 
 
 ARC 	= lib.a
@@ -74,6 +75,8 @@ CC 		= gcc
 TOTAL 	= $(words $(SRC))
 
 COUNT 	= 0
+COMPILED = 0
+
 
 OBJS_DIR 	= .objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
@@ -81,37 +84,79 @@ CFLAGS 	= -Wall -Wextra -Werror -g3
 
 NORMINETTE = 	$(shell norminette $(SRC) | grep -c "Error")
 
-RED		=\033[0;31m
-GREEN	=\033[0;32m
-YELLOW	=\033[0;33m
-BLUE	=\033[0;34m
-VC		=\033[0;35m
-CYAN	=\033[0;36m
-END		=\033[0m
+RED			=\033[0;31m
+GREEN		=\033[0;32m
+YELLOW		=\033[0;33m
+BLUE		=\033[0;34m
+VC			=\033[0;35m
+CYAN		=\033[0;96m
+DARK_GRAY	=\033[0;90m
+END			=\033[0m
 
-all		: $(NAME)
 
-$(NAME) : $(OBJS) 
+
+define color_progress
+$(if $(shell test $(1) -gt 66 && echo true),$(GREEN),$(if $(shell test $(1) -gt 33 && echo true),$(YELLOW),$(RED)))
+endef
+
+define progress_bar
+@$(eval COMPILED=$(shell echo $$(($(COMPILED)+1))))
+@$(eval PROGRESS_PERCENT=$(shell echo $$((($(COMPILED) * 100) / $(TOTAL)))))
+@printf "$(CYAN)["
+@for number in `seq 1 $(COMPILED)`; do printf "$(call color_progress,$(PROGRESS_PERCENT))▓"; done
+@for number in `seq 1 $$(($(TOTAL) - $(COMPILED)))`; do printf "$(GRAY)░"; done
+@printf "$(CYAN)] ($(COMPILED)/$(TOTAL))$(END)\r"
+endef
+
+define moon_phase_animation
+@PHASES=("🌑 " "🌒 " "🌓 " "🌔 " "🌕 " "🌖 " "🌗 " "🌘 "); \
+IDX=$$(($(COMPILED) % 8)); \
+printf "\r$${PHASES[$$IDX]}"
+endef
+
+
+
+
+define project_name
+@echo "                                              ";
+@echo " _____ __ __    __    _____ _____ _____ _____ ";
+@echo "|     |  |  |  |  |  |     | __  |   __|_   _|";
+@echo "| | | |_   _|  |  |__|-   -| __ -|   __| | |  ";
+@echo "|_|_|_| |_|    |_____|_____|_____|__|    |_|  ";
+endef
+
+PROJECT_NAME : 
+			$(call project_name)
+
+
+all		: PROJECT_NAME $(NAME)
+
+$(NAME) : norm $(OBJS) 
 			@$(AR) $(NAME) $(OBJS)
-			@bash -c 'for i in {1..$(TOTAL)}; do echo -ne "\r$(BLUE)Compiling$(END) $(VC)LIBFT$(END) ($(GREEN)$$i$(END)/$(TOTAL))"; sleep 0.03; done; echo'
-			@echo "$(BLUE)Compilation$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
+			@printf "\n"
+			@echo -e "$(BLUE)Compilation$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)\n"
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
 			@$(CC) -o $@ -c $^ $(CFLAGS)
+			$(call progress_bar)
+			$(call moon_phase_animation)
 
 $(ARC)	: $(OBJS)
 
+
+
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
-				echo "$(BLUE)=========================================="; \
-				echo "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
-				echo "$(BLUE)==========================================$(END)"; \
+				echo -e "\n\n$(BLUE)=========================================="; \
+				echo -e "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
+				echo -e "$(BLUE)==========================================$(END)\n\n"; \
 			else \
-				echo "$(BLUE)=========================================="; \
-				echo "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
-				echo "$(BLUE)==========================================$(END)"; \
+				echo -e "\n$(BLUE)=========================================="; \
+				echo -e "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
+				echo -e "$(BLUE)==========================================$(END)\n"; \
 				norminette $(SRC) | grep "Error"; \
+				printf "\n"; \
 			fi
 
 
@@ -125,37 +170,12 @@ archive	: $(ARC)
 
 clean 	:
 			@rm -rf $(OBJS)
-			@echo "$(YELLOW)clean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
+			@echo -e "$(YELLOW)clean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 fclean 	: clean
 			@$(RM) $(NAME)
 			@$(RM) $(ARC)
 			@rm -rf $(OBJS_DIR)
-			@echo "$(YELLOW)fclean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
+			@echo -e "$(YELLOW)fclean$(END) $(VC)LIBFT$(END) $(GREEN)OK$(END)"
 
 re 		: fclean all
-
-# OBJSBONUS 	= $(SRCBONUS:.c=.o)
-
-# all 	: $(NAME)
-
-# $(NAME) : $(OBJS) 
-# 			@$(AR) $(NAME) $(OBJS)
-
-# %.o 	: %.c
-# 			@$(CC) $(CFLAGS) -c $< -o $@  
-
-# clean 	:
-# 			@$(RM) $(OBJS)
-
-# fclean 	: clean
-# 			@$(RM) $(NAME)
-
-# re 		: fclean all $(NAME)
-
-# bonus : $(OBJSBONUS)
-# 		@$(AR) $(NAME) $(OBJSBONUS)
-
-# so:
-# 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-# 	gcc -nostartfiles -shared -o libft.so $(OBJ)
