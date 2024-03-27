@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/22 14:48:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/03/27 03:53:15 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ typedef struct s_stack
 {
 	int				nbr;
     int				index;
-	int				size;
+	int				pos;
 	int				push_cost;
-	bool			above_mediane;
-	bool			cheapest;
-	struct s_stack	*target;
+	void			*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stk;
@@ -43,7 +41,8 @@ typedef struct	s_args
 t_stk	*ft_lst_new(t_args *args, int nbr);
 t_stk 	*find_last(t_stk *lst);
 void 	ft_list_add_back(t_args *args, t_stk *new, char pile);
-void	ft_lstclear_pil(t_stk *lst);
+void	ft_list_add_front(t_args *args, t_stk *new, char pile);
+void	ft_lstclear_pil(t_stk **lst);
 int		ft_lst_size(t_stk *lst);
 
 //================================PARSING================================//
@@ -66,31 +65,32 @@ void	init_chain(t_stk *pile, int nbr);
 void	swap_a(t_args *args);
 void	swap_b(t_args *args);
 void	ss(t_args *args);
-void	swap(t_stk *stack);
+void	swap(t_stk **stack);
 
 void	push_a(t_args *args);
 void	push_b(t_args *args);
-void	push(t_args *args, t_stk *from, t_stk *to);
+void	push(t_stk **from, t_stk **to);
 
 void	rotate_a(t_args *args);
 void	rotate_b(t_args *args);
 void    rr(t_args *args);
-void	rotate(t_stk *stack);
+void	rotate(t_stk **stack);
 
 void	reverse_rotate_a(t_args *args);
 void	reverse_rotate_b(t_args *args);
 void    rrr(t_args *args);
-void	reverse_rotate(t_stk *stack);
+void	reverse_rotate(t_stk **stack);
 
 //================================ALGO================================//
 
 void	sort(t_args *args);
 bool 	sorted(t_args *args);
 void 	sort_three(t_args *args);
-void 	sort_four(t_args *args);
-void 	sort_five(t_args *args);
-void 	sort_big(t_args *args);
-void	sort_tab(int *tab, int size);
+void	sort_four(t_args *args);
+void	sort_five(t_args *args);
+int		find_smallest(t_args *args);
+
+
 
 
 

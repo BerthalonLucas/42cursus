@@ -6,32 +6,20 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 02:59:42 by lberthal          #+#    #+#              #
-#    Updated: 2024/03/22 14:33:31 by lberthal         ###   ########.fr        #
+#    Updated: 2024/03/27 01:40:29 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	push_swap
 
-SRC 		=	main.c		\
-				errors.c 	\
-				init.c		\
-				list_utils.c\
-				parsing.c	\
-				parsing_utils.c\
-				sort.c		\
-				sort_utils.c\
-				push.c 		\
-				rotate.c	\
-				reverse_rotate.c\
-				swap.c		\
-				
-				
+SRC_DIR 	=	./srcs
+SRC 		=	$(wildcard $(SRC_DIR)/*.c)
 				
 CC 		= gcc
 
 LIBFT	= ./libft/libft.a
 
-CFLAGS 	= -Wall -Wextra -Werror -g3
+CFLAGS 	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 OBJS_DIR 	= .objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
