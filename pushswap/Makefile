@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 02:59:42 by lberthal          #+#    #+#              #
-#    Updated: 2024/03/27 01:40:29 by lberthal         ###   ########.fr        #
+#    Updated: 2024/04/01 20:58:47 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ $(LIBFT) :
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
-			@$(CC) -o $@ -c $^ $(CFLAGS)
+			@$(CC) $(CFLAGS) -o $@ -c $^ 
 
 progress_bar_logic:
 			$(call progress_bar)

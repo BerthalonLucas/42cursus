@@ -3,7 +3,15 @@
         {
             "cwd": "/home/lberthal/Desktop/copycursus42/pushswap",
             "binaryPath": "/home/lberthal/Desktop/copycursus42/pushswap/push_swap",
-            "binaryArgs": []
+            "binaryArgs": [
+                "4125",
+                "415",
+                "254",
+                "2",
+                "857",
+                "214"
+            ]
         }
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }

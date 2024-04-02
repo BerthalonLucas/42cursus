@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 03:51:01 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/02 01:11:07 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void sort(t_args *args)
 	int	size;
 
 	size = ft_lst_size(args->pila);
+	pos(args);
 	if (size == 2)
 	{
 		if (args->pila->nbr > args->pila->next->nbr)
@@ -79,4 +80,17 @@ void	sort_five(t_args *args)
 	push_b(args);
 	sort_four(args);
 	push_a(args);
+}
+
+void	sort_big(t_args *args)
+{
+    // Étape 1: Analyse de la pile A (à implémenter)
+    
+    // Étape 2: Déterminer des segments ou plages (à implémenter)
+    
+    // Étape 3: Bouger des segments de A vers B (à implémenter)
+    
+    // Étape 4: Trier chaque segment dans B (à implémenter)
+    
+    // Étape 5: Réintégrer les segments de B dans A, triés (à implémenter)
 }

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:11:17 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 04:01:41 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:01:11 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,11 @@ void 	push_cost(t_args *args)
 	t_stk *tmp;
 	int i;
 
-	i = 0;
 	if (args->pila)
 	{
 		tmp = args->pila;
-		while (tmp)
-		{
-			tmp->push_cost = i;
-			i++;
-			tmp = tmp->next;
-		}	
-	}
-	if (args->pilb)
-	{
-		tmp = args->pilb;
-		i = 0;
-		while (tmp)
-		{
-			tmp->push_cost = i;
-			i++;
-			tmp = tmp->next;
-		}
+		if (tmp->pos < (ft_lst_size(args->pila) / 2))
+			tmp->mediane = true;
+		
 	}
 }

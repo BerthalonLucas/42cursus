@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:20:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 02:00:28 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:04:10 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ void push_a(t_args *args)
 {
     ft_printf("pa\n");
     push(&args->pilb, &args->pila);
+	pos(args);
 }
 
 void push_b(t_args *args)
 {
     ft_printf("pb\n");
     push(&args->pila, &args->pilb);
+	pos(args);
 }

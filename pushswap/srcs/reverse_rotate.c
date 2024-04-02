@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:20:46 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/26 23:44:18 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:04:29 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ void reverse_rotate_a(t_args *args)
 {
     ft_printf("rra\n");
     reverse_rotate(&args->pila);
+	pos(args);
 }
 void reverse_rotate_b(t_args *args)
 {
     ft_printf("rrb\n");
     reverse_rotate(&args->pilb);
+	pos(args);
 }
 void rrr(t_args *args)
 {
     ft_printf("rrr\n");
     reverse_rotate(&args->pila);
     reverse_rotate(&args->pilb);
+	pos(args);
 }

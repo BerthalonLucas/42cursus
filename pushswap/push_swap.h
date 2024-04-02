@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 03:53:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:26:33 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_stack
     int				index;
 	int				pos;
 	int				push_cost;
-	void			*target;
+	bool			above_mediane;
+	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stk;
@@ -41,7 +42,6 @@ typedef struct	s_args
 t_stk	*ft_lst_new(t_args *args, int nbr);
 t_stk 	*find_last(t_stk *lst);
 void 	ft_list_add_back(t_args *args, t_stk *new, char pile);
-void	ft_list_add_front(t_args *args, t_stk *new, char pile);
 void	ft_lstclear_pil(t_stk **lst);
 int		ft_lst_size(t_stk *lst);
 
@@ -84,14 +84,16 @@ void	reverse_rotate(t_stk **stack);
 //================================ALGO================================//
 
 void	sort(t_args *args);
-bool 	sorted(t_args *args);
 void 	sort_three(t_args *args);
 void	sort_four(t_args *args);
 void	sort_five(t_args *args);
+void	sort_big(t_args *args);
+
+//=============================AGLO_UTILS============================//
+
+void	pos(t_args *args);
+// void 	push_cost(t_args *args);
 int		find_smallest(t_args *args);
-
-
-
-
+bool 	sorted(t_args *args);
 
 #endif

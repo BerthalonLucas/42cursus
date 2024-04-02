@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:30:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 02:29:46 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:38:56 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ int main(int ac, char **av)
 	}
 	else
 		ft_printf("sorted\n");
-	ft_printf("test 1\n");
 	t_stk *tmp = args.pila;
 	while (tmp)
 	{
 		ft_printf("sorted numbers : [%d] Indexs [%d]\n", tmp->nbr, tmp->index);
 		tmp = tmp->next;
 	}
-	ft_printf("test 2\n");
 	return (free_struct(&args), 0);
 }
