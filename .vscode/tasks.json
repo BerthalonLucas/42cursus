@@ -13,10 +13,10 @@
                 "-Wall",
                 "-Wextra",
                 "-Werror",
-                "ft_strlen.c",
-                "ft_strlcpy.c",
-                "ft_substr.c",
-                "ft_strdup.c"
+                "ft_printf_utils1.c",
+                "ft_printf_utils2.c",
+                "ft_printf_utils3.c"
+
             ],
             "options": {
                 "cwd": "${fileDirname}"
