@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/02 01:11:07 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:47:35 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	sort_four(t_args *args)
 {
 	int smallest;
 
-	smallest = find_smallest(args);
+	smallest = find_smallest(args)->nbr;
 	while (args->pila->index != smallest)
 		rotate_a(args);
 	push_b(args);
@@ -74,23 +74,16 @@ void	sort_five(t_args *args)
 {
 	int smallest;
 
-	smallest = find_smallest(args);
+	smallest = find_smallest(args)->nbr;
 	while (args->pila->index != smallest)
 		rotate_a(args);
 	push_b(args);
+	find_target(args);
 	sort_four(args);
 	push_a(args);
 }
 
 void	sort_big(t_args *args)
 {
-    // Étape 1: Analyse de la pile A (à implémenter)
-    
-    // Étape 2: Déterminer des segments ou plages (à implémenter)
-    
-    // Étape 3: Bouger des segments de A vers B (à implémenter)
-    
-    // Étape 4: Trier chaque segment dans B (à implémenter)
-    
-    // Étape 5: Réintégrer les segments de B dans A, triés (à implémenter)
+	(void)args;
 }

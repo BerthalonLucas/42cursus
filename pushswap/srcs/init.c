@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:15:08 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/02 00:26:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 00:04:19 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	init_args(t_args *args)
 {
 	args->pila = NULL;
 	args->pilb = NULL;
+	args->lst_size_a = 0;
+	args->lst_size_b = 0;
 }
 void init_chain(t_stk *pile, int nbr)
 {

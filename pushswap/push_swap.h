@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/02 00:26:33 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 00:21:37 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_args
 {
 	t_stk		*pila;
 	t_stk		*pilb;
+	int			lst_size_a;
+	int			lst_size_b;
 }	t_args;
 
 //================================LIST================================//
@@ -43,7 +45,8 @@ t_stk	*ft_lst_new(t_args *args, int nbr);
 t_stk 	*find_last(t_stk *lst);
 void 	ft_list_add_back(t_args *args, t_stk *new, char pile);
 void	ft_lstclear_pil(t_stk **lst);
-int		ft_lst_size(t_stk *lst);
+void	ft_lst_size(t_args *args);
+void	ft_lst_size_b(t_args *args);
 
 //================================PARSING================================//
 
@@ -92,8 +95,13 @@ void	sort_big(t_args *args);
 //=============================AGLO_UTILS============================//
 
 void	pos(t_args *args);
+void pos_b(t_args *args);
 // void 	push_cost(t_args *args);
-int		find_smallest(t_args *args);
+t_stk	*find_smallest(t_args *args);
+t_stk	*find_biggest(t_args *args);
 bool 	sorted(t_args *args);
+t_stk	*find_neerest_bigger(t_args *args, int number);
+void	find_target(t_args *args);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:12:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/27 00:30:10 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 00:30:09 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_stk *find_last(t_stk *lst)
 		temp = temp->next;
 	return (temp);
 }
+
 void ft_list_add_back(t_args *args, t_stk *new, char pile)
 {
 	t_stk *last;
@@ -77,17 +78,44 @@ void	ft_lstclear_pil(t_stk **lst)
 	}
 	*lst = NULL;
 }
-int	ft_lst_size(t_stk *lst)
+void	ft_lst_size(t_args *args)
 {
+	t_stk	*tmpa;
 	int	i;
 
-	if (!lst)
-		return (0);
-	i = 1;
-	while (lst->next != NULL)
+	i = 0;
+	tmpa = args->pila;
+	if(tmpa)
 	{
-		lst = lst->next;
-		i++;
+		tmpa = args->pila;
+		while (tmpa)
+		{
+			i++;
+			tmpa = tmpa->next;
+		}
+		args->lst_size_a = i;
 	}
-	return (i);
+	else
+		args->lst_size_a = 0;
+	ft_lst_size_b(args);
+}
+void	ft_lst_size_b(t_args *args)
+{
+	t_stk	*tmpb;
+	int	i;
+
+	i = 0;
+	tmpb = args->pilb;
+	if(tmpb)
+	{
+		tmpb = args->pilb;
+		while (tmpb)
+		{
+			i++;
+			tmpb = tmpb->next;
+		}
+		args->lst_size_b = i;
+	}
+	else
+		args->lst_size_b = 0;
 }

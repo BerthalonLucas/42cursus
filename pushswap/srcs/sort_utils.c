@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:11:17 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/01 22:01:11 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 00:17:15 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,45 @@ bool sorted(t_args *args)
 	return (true);
 }
 
-int	find_smallest(t_args *args)
+t_stk	*find_smallest(t_args *args)
 {
 	t_stk *tmp;
+	t_stk *ret;
 	int smallest;
 
 	tmp = args->pila;
-	smallest = tmp->index;
+	smallest = INT_MAX;
+	ret = NULL;
 	while (tmp)
 	{
-		if (tmp->index < smallest)
-			smallest = tmp->index;
+		if (tmp->nbr < smallest)
+		{
+			smallest = tmp->nbr;
+			ret = tmp;
+		}
 		tmp = tmp->next;
 	}
-	return (smallest);
+	return (ret);
+}
+t_stk	*find_biggest(t_args *args)
+{
+	t_stk *tmp;
+	t_stk *ret;
+	int biggest;
+
+	tmp = args->pila;
+	biggest = INT_MIN;
+	ret = NULL;
+	while (tmp)
+	{
+		if (tmp->nbr > biggest)
+		{
+			biggest = tmp->nbr;
+			ret = tmp;
+		}
+		tmp = tmp->next;
+	}
+	return (ret);
 }
 void	pos(t_args *args)
 {
@@ -57,10 +82,18 @@ void	pos(t_args *args)
 			tmp = tmp->next;
 		}	
 	}
+	pos_b(args);
+	ft_lst_size(args);
+}
+void pos_b(t_args *args)
+{
+	t_stk *tmp;
+	int i;
+
+	i = 0;
 	if (args->pilb)
 	{
 		tmp = args->pilb;
-		i = 0;
 		while (tmp)
 		{
 			tmp->pos = i;
@@ -69,16 +102,46 @@ void	pos(t_args *args)
 		}
 	}
 }
-void 	push_cost(t_args *args)
+t_stk	*find_neerest_bigger(t_args *args, int number)
 {
-	t_stk *tmp;
-	int i;
+	t_stk	*tmpa;
+	t_stk	*neerest_bigger;
 
-	if (args->pila)
+	tmpa = args->pila;
+	neerest_bigger = NULL;
+	while (tmpa)
 	{
-		tmp = args->pila;
-		if (tmp->pos < (ft_lst_size(args->pila) / 2))
-			tmp->mediane = true;
-		
+		if (tmpa->nbr > number)
+		{
+			if (neerest_bigger && (tmpa->nbr < neerest_bigger->nbr))
+			{
+				neerest_bigger = tmpa;
+			}
+			else if (!neerest_bigger)
+				neerest_bigger = tmpa;	
+		}
+		tmpa = tmpa->next;
+	}
+	return (neerest_bigger);
+}
+void	find_target(t_args *args)
+{
+	t_stk	*tmpb;
+	
+	if (args->pilb)
+	{
+		tmpb = args->pilb;
+		while (tmpb)
+		{
+			tmpb->target = find_neerest_bigger(args, tmpb->nbr);
+			if (!tmpb->target)
+				tmpb->target = find_smallest(args);
+			tmpb = tmpb->next;
+		}
 	}
 }
+
+// void	push_cost(t_args *args)
+// {
+
+// }
