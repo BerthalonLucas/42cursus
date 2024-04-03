@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 00:21:37 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:52:14 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_lst_size_b(t_args *args);
 
 bool	ft_is_digit(const char *s);
 void	ft_parsing(int ac, char **av);
-void	set_index(t_stk *pila);
+void	set_index(t_args *args);
 bool 	ft_check_double(t_stk *pila);
 void	ft_insert(t_args *args, char **av, int ac);
 long	ft_atol(char *str);
@@ -96,6 +96,8 @@ void	sort_big(t_args *args);
 
 void	pos(t_args *args);
 void pos_b(t_args *args);
+void	above_mediane(t_args *args);
+void	above_mediane_b(t_args *args);
 // void 	push_cost(t_args *args);
 t_stk	*find_smallest(t_args *args);
 t_stk	*find_biggest(t_args *args);

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/02 22:47:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:18:59 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void sort(t_args *args)
 {
 	int	size;
 
-	size = ft_lst_size(args->pila);
-	pos(args);
+	size = args->lst_size_a;
 	if (size == 2)
 	{
 		if (args->pila->nbr > args->pila->next->nbr)
@@ -64,7 +63,7 @@ void	sort_four(t_args *args)
 	int smallest;
 
 	smallest = find_smallest(args)->nbr;
-	while (args->pila->index != smallest)
+	while (args->pila->nbr != smallest)
 		rotate_a(args);
 	push_b(args);
 	sort_three(args);
@@ -75,7 +74,7 @@ void	sort_five(t_args *args)
 	int smallest;
 
 	smallest = find_smallest(args)->nbr;
-	while (args->pila->index != smallest)
+	while (args->pila->nbr != smallest)
 		rotate_a(args);
 	push_b(args);
 	find_target(args);

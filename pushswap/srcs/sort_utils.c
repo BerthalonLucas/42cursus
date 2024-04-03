@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:11:17 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 00:17:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:53:12 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	pos(t_args *args)
 	}
 	pos_b(args);
 	ft_lst_size(args);
+	above_mediane(args);
 }
 void pos_b(t_args *args)
 {
@@ -140,8 +141,43 @@ void	find_target(t_args *args)
 		}
 	}
 }
+void	above_mediane(t_args *args)
+{
+	t_stk	*tmp;
+	
+	if (args->pila)
+	{
+		tmp = args->pila;
+		while (tmp)
+		{
+			if (tmp->pos <= (args->lst_size_a / 2))
+				tmp->above_mediane = true;
+			else
+				tmp->above_mediane = false;
+			tmp = tmp->next;
+		}
+	}
+	above_mediane_b(args);
+}
+void	above_mediane_b(t_args *args)
+{
+	t_stk *tmp;
+	
+	if (args->pilb)
+	{
+		tmp = args->pilb;
+		while (tmp)
+		{
+			if (tmp->pos <= (args->lst_size_b / 2))
+				tmp->above_mediane = true;
+			else
+				tmp->above_mediane = false;
+			tmp = tmp->next;
+		}
+	}
+}
 
 // void	push_cost(t_args *args)
 // {
-
+	
 // }

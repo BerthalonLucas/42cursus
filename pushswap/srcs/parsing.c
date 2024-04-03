@@ -6,23 +6,23 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:11:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/26 23:07:45 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:28:52 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	set_index(t_stk *pila)
+void	set_index(t_args *args)
 {
 	int size;
 	t_stk *lst;
 	t_stk *pmax;
 	int max;
 	
-	size = ft_lst_size(pila);
+	size = args->lst_size_a;
 	while (size--, size > 0)
 	{
-		lst = pila;
+		lst = args->pila;
 		max = INT_MIN;
 		pmax = NULL;
 		while (lst != NULL)
@@ -73,7 +73,8 @@ void	ft_insert(t_args *args, char **av, int ac)
 	}
 	if (ft_check_double(args->pila))
 		ft_error(args, "invalid input (insert)");
-	set_index(args->pila);
+	pos(args);
+	set_index(args);
 }
 bool	ft_is_digit(const char *s)
 {
