@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 22:18:59 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 07:37:57 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,76 @@ void	sort_five(t_args *args)
 
 void	sort_big(t_args *args)
 {
-	(void)args;
+	int i;
+
+	i = args->lst_size_a;
+	while (i > 3)
+	{
+		first_push_b(args);
+		i--;
+	}
+	sort_three(args);
+	find_target(args);
+	push_cost(args);
+	do_ops(args);
+}
+void	do_ops(t_args *args)
+{
+	// t_stk *tmpb;
+	t_stk *cheapest;
+
+	// tmpb = args->pilb;
+	// ft_printf("======================PILB avant====================\n");
+	// print_list(tmpb);
+	// ft_printf("======================PILB apres====================\n");
+	// print_list(tmpb);
+	while (args->lst_size_b > 0)
+	{
+		cheapest = find_cheapest(args->pilb);
+		do_rr_and_rrr(args, cheapest);
+		do_ra_and_rra(args, cheapest);
+		do_rb_and_rrb(args, cheapest);
+		push_a(args);
+		// tmpb = tmpb->next;
+	}
+}
+void do_ra_and_rra(t_args *args, t_stk *cheapest)
+{
+	while (cheapest->ra > 0)
+	{
+		rotate_a(args);
+		cheapest->ra--;
+	}
+	while (cheapest->rra > 0)
+	{
+		reverse_rotate_a(args);
+		cheapest->rra--;
+	}
+}
+void do_rb_and_rrb(t_args *args, t_stk *cheapest)
+{
+	while (cheapest->rb > 0)
+	{
+		rotate_b(args);
+		cheapest->rb--;
+	}
+	while (cheapest->rrb > 0)
+	{
+		reverse_rotate_b(args);
+		cheapest->rrb--;
+	}
+}
+
+void	do_rr_and_rrr(t_args *args, t_stk *cheapest)
+{
+	while (cheapest->rr > 0)
+	{
+		rr(args);
+		cheapest->rr--;
+	}
+	while (cheapest->rrr > 0)
+	{
+		rrr(args);
+		cheapest->rrr--;
+	}
 }

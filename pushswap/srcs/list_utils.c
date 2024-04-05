@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:12:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 22:24:37 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 00:14:04 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_lstclear_pil(t_stk **lst)
 	while (temp)
 	{
 		next = temp->next;
-		ft_printf("%p %p\n", temp, next);
+		// ft_printf("%p %p\n", temp, next);
 		free(temp);
 		temp = next;
 	}

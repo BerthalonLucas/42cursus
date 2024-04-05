@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 21:52:14 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 07:07:22 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ typedef struct s_stack
     int				index;
 	int				pos;
 	int				push_cost;
+	int				ra;
+	int				rb;
+	int				rr;
+	int				rra;
+	int				rrb;
+	int				rrr;
 	bool			above_mediane;
 	struct s_stack	*target;
 	struct s_stack	*prev;
@@ -72,6 +78,7 @@ void	swap(t_stk **stack);
 
 void	push_a(t_args *args);
 void	push_b(t_args *args);
+void	first_push_b(t_args *args);
 void	push(t_stk **from, t_stk **to);
 
 void	rotate_a(t_args *args);
@@ -91,19 +98,32 @@ void 	sort_three(t_args *args);
 void	sort_four(t_args *args);
 void	sort_five(t_args *args);
 void	sort_big(t_args *args);
+void	do_ops(t_args *args);
+void	do_rr_and_rrr(t_args *args, t_stk *cheapest);
+void 	do_ra_and_rra(t_args *args, t_stk *cheapest);
+void	do_rb_and_rrb(t_args *args, t_stk *cheapest);
+
+
 
 //=============================AGLO_UTILS============================//
 
+void 	push_cost(t_args *args);
+void	push_cost_above(t_stk *tmpb);
+void	push_cost_bellow(t_args *args, t_stk *tmpb);
+void	push_cost_else(t_args *args, t_stk *tmpb);
 void	pos(t_args *args);
-void pos_b(t_args *args);
+void	pos_b(t_args *args);
 void	above_mediane(t_args *args);
 void	above_mediane_b(t_args *args);
-// void 	push_cost(t_args *args);
+void	find_target(t_args *args);
 t_stk	*find_smallest(t_args *args);
 t_stk	*find_biggest(t_args *args);
-bool 	sorted(t_args *args);
+t_stk	*find_cheapest(t_stk *tmpb);
 t_stk	*find_neerest_bigger(t_args *args, int number);
-void	find_target(t_args *args);
+bool 	sorted(t_args *args);
+
+void print_list(t_stk *list);
+
 
 
 #endif
