@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 07:07:22 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:23:03 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,17 @@ void	pos(t_args *args);
 void	pos_b(t_args *args);
 void	above_mediane(t_args *args);
 void	above_mediane_b(t_args *args);
+void	reset_ops(t_args *args);
 void	find_target(t_args *args);
 t_stk	*find_smallest(t_args *args);
 t_stk	*find_biggest(t_args *args);
 t_stk	*find_cheapest(t_stk *tmpb);
+void	iter_index(t_args *args);
+void	final_sort(t_args *args, int pos, bool mediane);
 t_stk	*find_neerest_bigger(t_args *args, int number);
 bool 	sorted(t_args *args);
 
-void print_list(t_stk *list);
+// void print_list(t_stk *list);
 
 
 

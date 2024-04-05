@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:11:17 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 07:23:47 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:20:24 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,8 +285,57 @@ void	push_cost_else(t_args *args, t_stk *tmpb)
 		tmpb->rrb = args->lst_size_b - tmpb->pos;
 	}
 }
+void reset_ops(t_args *args)
+{
+	t_stk *tmpb;
 
+	tmpb = args->pilb;
+	while (tmpb)
+	{
+		tmpb->ra = 0;
+		tmpb->rb = 0;
+		tmpb->rr = 0;
+		tmpb->rra = 0;
+		tmpb->rrb = 0;
+		tmpb->rrr = 0;
+		tmpb = tmpb->next;
+	}
+}
+void	iter_index(t_args *args)
+{
+	t_stk	*tmpa;
+	int		pos;
+	bool	mediane;
 
+	tmpa = args->pila;
+	while (tmpa->index != 0)
+		tmpa = tmpa->next;
+	mediane = tmpa->above_mediane;
+	pos = tmpa->pos;
+	final_sort(args, pos, mediane);
+}
+void	final_sort(t_args *args, int pos, bool mediane)
+{
+	int	count_revers;
+
+	if (mediane)
+	{
+		while (pos > 0)
+		{
+			rotate_a(args);
+			pos--;
+		}
+	}
+	else
+	{
+		count_revers = args->lst_size_a - pos;
+		while (count_revers > 0)
+		{
+			reverse_rotate_a(args);
+			count_revers--;
+		}
+	}
+}
 // void	push_cost_bellow(t_args *args, t_stk *tmpb)
 // {
 // 	if ((args->lst_size_b - tmpb->pos) == (args->lst_size_a - tmpb->target->pos))

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:20:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 06:58:55 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:45:44 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void push_a(t_args *args)
     push(&args->pilb, &args->pila);
 	pos(args);
 	find_target(args);
+	reset_ops(args);
 	push_cost(args);
 }
 
@@ -53,6 +54,7 @@ void push_b(t_args *args)
     push(&args->pila, &args->pilb);
 	pos(args);
 	find_target(args);
+	reset_ops(args);
 	push_cost(args);
 }
 void first_push_b(t_args *args)

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 07:37:57 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:18:57 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ void	do_ops(t_args *args)
 		do_ra_and_rra(args, cheapest);
 		do_rb_and_rrb(args, cheapest);
 		push_a(args);
-		// tmpb = tmpb->next;
 	}
+	iter_index(args);
 }
 void do_ra_and_rra(t_args *args, t_stk *cheapest)
 {
