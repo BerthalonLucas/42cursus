@@ -1,39 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   positions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:15:08 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 08:42:37 by lberthal         ###   ########.fr       */
+/*   Created: 2024/04/07 08:31:23 by lberthal          #+#    #+#             */
+/*   Updated: 2024/04/07 08:32:47 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	init_args(t_args *args)
+void	pos(t_args *args)
 {
-	args->pila = NULL;
-	args->pilb = NULL;
-	args->lst_size_a = 0;
-	args->lst_size_b = 0;
+	t_stk	*tmp;
+	int		i;
+
+	i = 0;
+	if (args->pila)
+	{
+		tmp = args->pila;
+		while (tmp)
+		{
+			tmp->pos = i;
+			i++;
+			tmp = tmp->next;
+		}
+	}
+	pos_b(args);
+	ft_lst_size(args);
+	above_mediane(args);
 }
 
-void	init_chain(t_stk *pile, int nbr)
+void	pos_b(t_args *args)
 {
-	pile->target = NULL;
-	pile->next = NULL;
-	pile->prev = NULL;
-	pile->above_mediane = false;
-	pile->nbr = nbr;
-	pile->ra = 0;
-	pile->rb = 0;
-	pile->rr = 0;
-	pile->rra = 0;
-	pile->rrb = 0;
-	pile->rrr = 0;
-	pile->push_cost = 0;
-	pile->index = 0;
-	pile->pos = 0;
+	t_stk	*tmp;
+	int		i;
+
+	i = 0;
+	if (args->pilb)
+	{
+		tmp = args->pilb;
+		while (tmp)
+		{
+			tmp->pos = i;
+			i++;
+			tmp = tmp->next;
+		}
+	}
 }

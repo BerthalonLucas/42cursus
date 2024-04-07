@@ -1,56 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils1.c                                      :+:      :+:    :+:   */
+/*   target.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 22:55:26 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 09:02:25 by lberthal         ###   ########.fr       */
+/*   Created: 2024/04/07 08:33:03 by lberthal          #+#    #+#             */
+/*   Updated: 2024/04/07 08:33:15 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lst_size(t_args *args)
+t_stk	*find_neerest_bigger(t_args *args, int number)
 {
 	t_stk	*tmpa;
-	int		i;
+	t_stk	*neerest_bigger;
 
-	i = 0;
 	tmpa = args->pila;
-	if (tmpa)
+	neerest_bigger = NULL;
+	while (tmpa)
 	{
-		tmpa = args->pila;
-		while (tmpa)
+		if (tmpa->nbr > number)
 		{
-			i++;
-			tmpa = tmpa->next;
+			if (neerest_bigger && (tmpa->nbr < neerest_bigger->nbr))
+			{
+				neerest_bigger = tmpa;
+			}
+			else if (!neerest_bigger)
+				neerest_bigger = tmpa;
 		}
-		args->lst_size_a = i;
+		tmpa = tmpa->next;
 	}
-	else
-		args->lst_size_a = 0;
-	ft_lst_size_b(args);
+	return (neerest_bigger);
 }
 
-void	ft_lst_size_b(t_args *args)
+void	find_target(t_args *args)
 {
 	t_stk	*tmpb;
-	int		i;
 
-	i = 0;
-	tmpb = args->pilb;
-	if (tmpb)
+	if (args->pilb)
 	{
 		tmpb = args->pilb;
 		while (tmpb)
 		{
-			i++;
+			tmpb->target = find_neerest_bigger(args, tmpb->nbr);
+			if (!tmpb->target)
+				tmpb->target = find_smallest(args);
 			tmpb = tmpb->next;
 		}
-		args->lst_size_b = i;
 	}
-	else
-		args->lst_size_b = 0;
 }

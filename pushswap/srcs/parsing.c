@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:11:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/03 22:28:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 09:01:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	set_index(t_args *args)
 {
-	int size;
-	t_stk *lst;
-	t_stk *pmax;
-	int max;
-	
+	int		size;
+	t_stk	*lst;
+	t_stk	*pmax;
+	int		max;
+
 	size = args->lst_size_a;
 	while (size--, size > 0)
 	{
@@ -27,7 +27,7 @@ void	set_index(t_args *args)
 		pmax = NULL;
 		while (lst != NULL)
 		{
-			if (lst->index == 0 && lst->nbr > max) 
+			if (lst->index == 0 && lst->nbr > max)
 			{
 				max = lst->nbr;
 				pmax = lst;
@@ -39,31 +39,31 @@ void	set_index(t_args *args)
 	}
 }
 
-bool ft_check_double(t_stk *pila)
+bool	ft_check_double(t_stk *pila)
 {
-	t_stk *actuel;
-	t_stk *comp;
-	
+	t_stk	*actuel;
+	t_stk	*comp;
+
 	actuel = pila;
 	while (actuel != NULL)
 	{
 		comp = actuel->next;
 		while (comp != NULL)
 		{
-			if (actuel->nbr == comp->nbr) 
-				return true;
+			if (actuel->nbr == comp->nbr)
+				return (true);
 			comp = comp->next;
 		}
 		actuel = actuel->next;
 	}
-	return false;
+	return (false);
 }
 
 void	ft_insert(t_args *args, char **av, int ac)
 {
-	int i;
-	long value;
-	
+	int		i;
+	long	value;
+
 	i = 1;
 	while (i < ac)
 	{
@@ -72,38 +72,40 @@ void	ft_insert(t_args *args, char **av, int ac)
 		i++;
 	}
 	if (ft_check_double(args->pila))
-		ft_error(args, "invalid input (insert)");
+		ft_error(args, "invalid input");
 	pos(args);
 	set_index(args);
 }
+
 bool	ft_is_digit(const char *s)
 {
 	int	i;
 
 	i = -1;
 	if (!s)
-		return false;
+		return (false);
 	if (*s == '-')
 		i++;
-	while (i++, s[i] >= '0' && s[i] <= '9');
+	while (i++, s[i] >= '0' && s[i] <= '9')
+		;
 	if ((int)ft_strlen(s) != i)
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
+
 void	ft_parsing(int ac, char **av)
 {
-
-	int i;
-	long y;
+	int		i;
+	long	y;
 
 	i = 1;
 	while (i < ac)
 	{
 		y = ft_atol(av[i]);
 		if (!ft_is_digit(av[i]))
-			ft_error(NULL, "invalid input (parsing)");
+			ft_error(NULL, "invalid input");
 		if (y > INT_MAX || y < INT_MIN)
-			ft_error(NULL, "invalid input (parsing)");
+			ft_error(NULL, "invalid input");
 		i++;
 	}
 }

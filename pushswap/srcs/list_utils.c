@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:12:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 00:14:04 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 09:22:29 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stk	*ft_lst_new(t_args *args, int nbr)
 	return (new);
 }
 
-t_stk *find_last(t_stk *lst)
+t_stk	*find_last(t_stk *lst)
 {
 	t_stk	*temp;
 
@@ -33,32 +33,32 @@ t_stk *find_last(t_stk *lst)
 	return (temp);
 }
 
-void ft_list_add_back(t_args *args, t_stk *new, char pile)
+void	ft_list_add_back(t_args *args, t_stk *new_lst, char pile)
 {
-	t_stk *last;
+	t_stk	*last;
 
 	if (pile == 'a')
 	{
-		if(!args->pila)
-			args->pila = new;
+		if (!args->pila)
+			args->pila = new_lst;
 		else
 		{
 			last = find_last(args->pila);
-			last->next = new;
-			new->prev = last;
+			last->next = new_lst;
+			new_lst->prev = last;
 		}
 	}
 	else
 	{
-		if(!args->pilb)
-			args->pilb = new;
+		if (!args->pilb)
+			args->pilb = new_lst;
 		else
 		{
 			last = find_last(args->pilb);
-			last->next = new;
-			new->prev = last;
+			last->next = new_lst;
+			new_lst->prev = last;
 		}
-	}	
+	}
 }
 
 void	ft_lstclear_pil(t_stk **lst)
@@ -72,50 +72,8 @@ void	ft_lstclear_pil(t_stk **lst)
 	while (temp)
 	{
 		next = temp->next;
-		// ft_printf("%p %p\n", temp, next);
 		free(temp);
 		temp = next;
 	}
 	*lst = NULL;
-}
-void	ft_lst_size(t_args *args)
-{
-	t_stk	*tmpa;
-	int	i;
-
-	i = 0;
-	tmpa = args->pila;
-	if(tmpa)
-	{
-		tmpa = args->pila;
-		while (tmpa)
-		{
-			i++;
-			tmpa = tmpa->next;
-		}
-		args->lst_size_a = i;
-	}
-	else
-		args->lst_size_a = 0;
-	ft_lst_size_b(args);
-}
-void	ft_lst_size_b(t_args *args)
-{
-	t_stk	*tmpb;
-	int	i;
-
-	i = 0;
-	tmpb = args->pilb;
-	if(tmpb)
-	{
-		tmpb = args->pilb;
-		while (tmpb)
-		{
-			i++;
-			tmpb = tmpb->next;
-		}
-		args->lst_size_b = i;
-	}
-	else
-		args->lst_size_b = 0;
 }

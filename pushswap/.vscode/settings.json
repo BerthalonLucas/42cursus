@@ -4,13 +4,31 @@
             "cwd": "/home/lberthal/Desktop/copycursus42/pushswap",
             "binaryPath": "/home/lberthal/Desktop/copycursus42/pushswap/push_swap",
             "binaryArgs": [
-                "4125",
-                "425",
-                "4523",
-                "457",
-                "4"
+                "14",
+                "10",
+                "15",
+                "20",
+                "8",
+                "1",
+                "9",
+                "12",
+                "3",
+                "17",
+                "5",
+                "4",
+                "6",
+                "11",
+                "18",
+                "7",
+                "16",
+                "19",
+                "2",
+                "13"
             ]
         }
     ],
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    // "[c]": {
+    //     "editor.defaultFormatter": "keyhr.42-c-format"
+    // }
 }

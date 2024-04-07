@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/05 20:23:03 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 09:25:05 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_args
 
 t_stk	*ft_lst_new(t_args *args, int nbr);
 t_stk 	*find_last(t_stk *lst);
-void 	ft_list_add_back(t_args *args, t_stk *new, char pile);
+void 	ft_list_add_back(t_args *args, t_stk *new_lst, char pile);
 void	ft_lstclear_pil(t_stk **lst);
 void	ft_lst_size(t_args *args);
 void	ft_lst_size_b(t_args *args);
@@ -103,8 +103,6 @@ void	do_rr_and_rrr(t_args *args, t_stk *cheapest);
 void 	do_ra_and_rra(t_args *args, t_stk *cheapest);
 void	do_rb_and_rrb(t_args *args, t_stk *cheapest);
 
-
-
 //=============================AGLO_UTILS============================//
 
 void 	push_cost(t_args *args);
@@ -120,13 +118,9 @@ void	find_target(t_args *args);
 t_stk	*find_smallest(t_args *args);
 t_stk	*find_biggest(t_args *args);
 t_stk	*find_cheapest(t_stk *tmpb);
+t_stk	*find_neerest_bigger(t_args *args, int number);
 void	iter_index(t_args *args);
 void	final_sort(t_args *args, int pos, bool mediane);
-t_stk	*find_neerest_bigger(t_args *args, int number);
 bool 	sorted(t_args *args);
-
-// void print_list(t_stk *list);
-
-
 
 #endif

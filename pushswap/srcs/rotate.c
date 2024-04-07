@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:20:42 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/01 21:04:52 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 09:01:24 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,25 @@ void	rotate(t_stk **stack)
 	tmp->prev = last;
 	last->next = tmp;
 }
-void rotate_a(t_args *args)
+
+void	rotate_a(t_args *args)
 {
-    ft_printf("ra\n");
-    rotate(&args->pila);
+	ft_printf("ra\n");
+	rotate(&args->pila);
 	pos(args);
 }
 
-void rotate_b(t_args *args)
+void	rotate_b(t_args *args)
 {
-    ft_printf("rb\n");
-    rotate(&args->pilb);
+	ft_printf("rb\n");
+	rotate(&args->pilb);
 	pos(args);
 }
-void rr(t_args *args)
+
+void	rr(t_args *args)
 {
-    ft_printf("rr\n");
-    rotate(&args->pila);
-    rotate(&args->pilb);
+	ft_printf("rr\n");
+	rotate(&args->pila);
+	rotate(&args->pilb);
 	pos(args);
 }
