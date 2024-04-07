@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:30:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 08:41:09 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 09:31:23 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ int	main(int ac, char **av)
 	ft_insert(&args, av, ac);
 	if (!sorted(&args))
 		sort(&args);
-	else
-		return (free_struct(&args), 0);
+	return (free_struct(&args), 0);
 }
