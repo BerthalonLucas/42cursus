@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 08:26:21 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:28:56 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,26 @@ void	sort_five(t_args *args)
 
 void	sort_big(t_args *args)
 {
-	int	i;
-
-	i = args->lst_size_a;
-	while (i > 3)
+	if (args->lst_size_a >= 150 && args->lst_size_a < 300)
 	{
-		first_push_b(args);
-		i--;
+		separate(args);
+		args->tri = 2;
+	}
+	else if (args->lst_size_a > 300 && args->lst_size_a < 500)
+	{
+		separate_three(args);
+		args->tri = 3;
+	}
+	else if (args->lst_size_a >= 500)
+	{
+		sep_test(args);
+		args->tri = 5;
+	}
+	else
+	{
+		while (args->lst_size_a > 3)
+			first_push_b(args);
+		args->tri = 0;
 	}
 	sort_three(args);
 	find_target(args);

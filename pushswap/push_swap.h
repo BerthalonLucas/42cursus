@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 09:25:05 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:48:12 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_args
 	t_stk		*pilb;
 	int			lst_size_a;
 	int			lst_size_b;
+	int 		tri;
 }	t_args;
 
 //================================LIST================================//
@@ -94,6 +95,10 @@ void	reverse_rotate(t_stk **stack);
 //================================ALGO================================//
 
 void	sort(t_args *args);
+void	separate(t_args *args);
+void	separate_three(t_args *args);
+// void	separate_seven(t_args *args);
+void	sep_test(t_args *args);
 void 	sort_three(t_args *args);
 void	sort_four(t_args *args);
 void	sort_five(t_args *args);
@@ -122,5 +127,9 @@ t_stk	*find_neerest_bigger(t_args *args, int number);
 void	iter_index(t_args *args);
 void	final_sort(t_args *args, int pos, bool mediane);
 bool 	sorted(t_args *args);
+bool	find_next_in_scoop(t_stk *pila, int scoop);
+
+void	ft_print_list(t_stk *list);
+
 
 #endif
