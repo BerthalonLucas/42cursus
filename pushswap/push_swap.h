@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/08 23:35:11 by root             ###   ########.fr       */
+/*   Updated: 2024/04/08 23:54:29 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <limits.h>
 # include <stdbool.h>
 # include "./libft/libft.h"
-
 
 typedef struct s_stack
 {
