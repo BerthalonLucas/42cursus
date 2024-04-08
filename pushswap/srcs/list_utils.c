@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:12:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 09:22:29 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:37:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stk	*ft_lst_new(t_args *args, int nbr)
 
 	new = malloc(sizeof(t_stk));
 	if (!new)
-		ft_error(args, "Malloc failed");
+		ft_error(args);
 	init_chain(new, nbr);
 	return (new);
 }

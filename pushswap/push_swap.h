@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 23:48:12 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:35:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ long	ft_atol(char *str);
 
 //================================UTILS================================//
 
-void 	ft_error(t_args *args, char *error);
+void 	ft_error(t_args *args);
 void	free_struct(t_args *args);
 void	init_args(t_args *args);
 void	init_chain(t_stk *pile, int nbr);
@@ -95,10 +95,7 @@ void	reverse_rotate(t_stk **stack);
 //================================ALGO================================//
 
 void	sort(t_args *args);
-void	separate(t_args *args);
-void	separate_three(t_args *args);
-// void	separate_seven(t_args *args);
-void	sep_test(t_args *args);
+void	separate(t_args *args, int y, int div);
 void 	sort_three(t_args *args);
 void	sort_four(t_args *args);
 void	sort_five(t_args *args);

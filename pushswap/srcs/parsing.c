@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:11:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 09:01:51 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:24:30 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_insert(t_args *args, char **av, int ac)
 		i++;
 	}
 	if (ft_check_double(args->pila))
-		ft_error(args, "invalid input");
+		ft_error(args);
 	pos(args);
 	set_index(args);
 }
@@ -103,9 +103,9 @@ void	ft_parsing(int ac, char **av)
 	{
 		y = ft_atol(av[i]);
 		if (!ft_is_digit(av[i]))
-			ft_error(NULL, "invalid input");
+			ft_error(NULL);
 		if (y > INT_MAX || y < INT_MIN)
-			ft_error(NULL, "invalid input");
+			ft_error(NULL);
 		i++;
 	}
 }

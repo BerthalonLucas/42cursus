@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:03:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 22:28:56 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:36:16 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,15 @@ void	sort_five(t_args *args)
 void	sort_big(t_args *args)
 {
 	if (args->lst_size_a >= 150 && args->lst_size_a < 300)
-	{
-		separate(args);
-		args->tri = 2;
-	}
+		separate(args, 2, 1);
 	else if (args->lst_size_a > 300 && args->lst_size_a < 500)
-	{
-		separate_three(args);
-		args->tri = 3;
-	}
+		separate(args, 3, 2);
 	else if (args->lst_size_a >= 500)
-	{
-		sep_test(args);
-		args->tri = 5;
-	}
+		separate(args, 5, 4);
 	else
 	{
 		while (args->lst_size_a > 3)
 			first_push_b(args);
-		args->tri = 0;
 	}
 	sort_three(args);
 	find_target(args);

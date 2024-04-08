@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:13:04 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/07 09:04:48 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:37:07 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	free_struct(t_args *args)
 	}
 }
 
-void	ft_error(t_args *args, char *error)
+void	ft_error(t_args *args)
 {
-	ft_printf("Error : %s\n", error);
+	ft_putendl_fd("Error\n", 2);
 	free_struct(args);
 	exit(1);
 }
