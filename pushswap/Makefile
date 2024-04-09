@@ -6,23 +6,31 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 02:59:42 by lberthal          #+#    #+#              #
-#    Updated: 2024/04/07 19:00:50 by lberthal         ###   ########.fr        #
+#    Updated: 2024/04/09 19:15:04 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	push_swap
 
+NAME_BONUS	=	checker
+
+SRC_BONUS_DIR 	=	./bonus_checker/src_bonus
+SRC_BONUS 		=	$(wildcard $(SRC_BONUS_DIR)/*.c)
+
+OBJS_BONUS		= $(addprefix $(OBJS_DIR)/, $(SRC_BONUS:.c=.o))
+
 SRC_DIR 	=	./srcs
 SRC 		=	$(wildcard $(SRC_DIR)/*.c)
 				
+OBJS_DIR 	= .objs
+OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
+
 CC 		= gcc
 
 LIBFT	= ./libft/libft.a
 
 CFLAGS 	= -Wall -Wextra -Werror -g3
 
-OBJS_DIR 	= .objs
-OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 
 RED			=\033[0;31m
 GREEN		=\033[0;32m
@@ -41,10 +49,17 @@ $(NAME)	:	$(LIBFT) $(OBJS)
 $(LIBFT) : 
 			@make re -s -C ./libft
 
+bonus	:	$(NAME_BONUS)
+
+$(NAME_BONUS)	:	$(LIBFT) $(OBJS_BONUS)
+			@$(CC) $(CFLAGS) $(SRC_BONUS) $(LIBFT) -o $(NAME_BONUS)
+			@echo "$(BLUE)Compilation$(END) $(VC)CHECKER$(END) $(GREEN)OK$(END)"
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) -o $@ -c $^ 
+
+
 
 clean 	:
 			@rm -rf .objs
