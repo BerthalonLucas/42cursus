@@ -6,11 +6,20 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:14:35 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/09 20:09:13 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/11 02:55:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker_bonus.h"
+
+void	check_maxmin(long nb)
+{
+	if (nb > 2147483647 || nb < -2147483648)
+	{
+		ft_putendl_fd("Error", 2);
+		exit(1);
+	}
+}
 
 long	ft_atol(char *str)
 {
@@ -23,8 +32,8 @@ long	ft_atol(char *str)
 	i = 0;
 	sign = 1;
 	res = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\r'
-		|| str[i] == '\f' || str[i] == ' ')
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\r' || str[i] == '\f' || str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -35,6 +44,7 @@ long	ft_atol(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + str[i] - 48;
+		check_maxmin(res * sign);
 		i++;
 	}
 	return (res * sign);

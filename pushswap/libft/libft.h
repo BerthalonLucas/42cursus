@@ -120,6 +120,8 @@ size_t	ft_strlcat_gnl(char *dest, char *src, size_t size, t_gnl *g);
 int		ft_find_slash(t_gnl *g, char *buffer);
 int		ft_strjoin_gnl(t_gnl *g, char *buffer);
 int		reader(t_gnl *g, char *buffer);
+int	slash_not_found(t_gnl *g, char *buffer);
+
 
 
 //---------------------------------------------------------------------------//

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 02:56:21 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/09 18:29:48 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/11 01:25:31 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,8 @@ void	reverse_rotate(t_stk **stack);
 
 void	sort(t_args *args);
 void	separate(t_args *args, int y, int div);
-void sep_pack(t_args *args, int div, int i, int ind);
+void	sep_pack(t_args *args, int div, int i, int ind);
 void 	sort_three(t_args *args);
-void	sort_four(t_args *args);
-void	sort_five(t_args *args);
 void	sort_big(t_args *args);
 void	do_ops(t_args *args);
 void	do_rr_and_rrr(t_args *args, t_stk *cheapest);

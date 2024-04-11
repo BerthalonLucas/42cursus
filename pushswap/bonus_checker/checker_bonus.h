@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:53:32 by root              #+#    #+#             */
-/*   Updated: 2024/04/09 19:25:29 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/04/11 02:55:47 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	set_index(t_args *args);
 bool 	ft_check_double(t_stk *pila);
 void	ft_insert(t_args *args, char **av, int ac);
 long	ft_atol(char *str);
+void	check_maxmin(long nb);
 
 //================================UTILS================================//
 
