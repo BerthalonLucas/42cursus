@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/01 23:21:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:57:53 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define SO_LONG_H
 
 # include "../MLX/include/MLX42/MLX42.h"
-
+// # include <stdlib.h>
 
 #endif

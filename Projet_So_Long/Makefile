@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/05/01 23:26:12 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/02 00:09:15 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all		:	$(NAME)
 
 $(NAME)	:	$(LIBFT) $(OBJS)
 			cd $(MLX42) && cmake -B build && cmake --build build -j4
-			$(CC) -o $(NAME) $(CFLAGS) -Iinclude -I ./MLX/include/MLX42/MLX42.h -ldl -lglfw -pthread -lm $(SRC) $(LIBFT) $(MLX42)/build/libmlx42.a 
+			$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42)/build/libmlx42.a -Iinclude -I ./MLX/include/MLX42 -lglfw -lm
 			@echo "$(BLUE)Compilation$(END) $(VC)SO_LONG$(END) $(GREEN)OK$(END)"
 
 
