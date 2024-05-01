@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucas <lucas@student.42.fr>                +#+  +:+       +#+         #
+#    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/04/18 21:32:19 by lucas            ###   ########.fr        #
+#    Updated: 2024/05/01 23:26:12 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	so_long
 
-MLX42		=	.MLX/MLX42
+MLX42		=	./MLX
 
 SRC_DIR 	=	./srcs
 SRC 		=	$(wildcard $(SRC_DIR)/*.c)
@@ -38,9 +38,10 @@ END			=\033[0m
 
 all		:	$(NAME)
 
+
 $(NAME)	:	$(LIBFT) $(OBJS)
-			@cmake $(MLX42) -B $(MLX42)/build && make -C $(MLX42)/build -j4
-			$(CC) $(CFLAGS) -Iinclude -ldl -lglfw -pthread -lm $(SRC) $(LIBFT) $(MLX42)/build/libmlx42.a -o $(NAME)
+			cd $(MLX42) && cmake -B build && cmake --build build -j4
+			$(CC) -o $(NAME) $(CFLAGS) -Iinclude -I ./MLX/include/MLX42/MLX42.h -ldl -lglfw -pthread -lm $(SRC) $(LIBFT) $(MLX42)/build/libmlx42.a 
 			@echo "$(BLUE)Compilation$(END) $(VC)SO_LONG$(END) $(GREEN)OK$(END)"
 
 

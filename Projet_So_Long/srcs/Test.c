@@ -1,10 +1,11 @@
+#include "../includes/so_long.h"
 #include <stdio.h>
 #include <mlx.h>
 
 int main(void)
 {
 	void *mlx;
-	void *win;
+	// void *win;
 
 	mlx = mlx_init();
 	if (!mlx)
@@ -12,7 +13,7 @@ int main(void)
 		printf("Error\n");
 		return (0);
 	}
-	win = mlx_new_window(mlx, 500, 500, "Hello World!");
-	mlx_loop(mlx);
+	// win = mlx_new_window(mlx, 500, 500, "Hello World!");
+	// mlx_loop(mlx);
 	return (0);
 }

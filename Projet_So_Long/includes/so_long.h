@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/04/18 21:43:06 by lucas            ###   ########.fr       */
+/*   Updated: 2024/05/01 23:21:15 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../MLX/MLX42/include/MLX42.h"
+# include "../MLX/include/MLX42/MLX42.h"
 
 
 #endif
