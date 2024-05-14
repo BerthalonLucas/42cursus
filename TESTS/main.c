@@ -1,51 +1,86 @@
-#include <stdio.h>
+#include "include/test.h"
 
-// long	ft_atol(char *str)
-// {
-// 	int		i;
-// 	long	sign;
-// 	long	res;
+void free_list(t_list *list)
+{
+	t_list *tmp;
 
-// 	if (!str)
-// 		return (0);
-// 	i = 0;
-// 	sign = 1;
-// 	res = 0;
-// 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\r'
-// 		|| str[i] == '\f' || str[i] == ' ')
-// 		i++;
-// 	if (str[i] == '-' || str[i] == '+')
-// 	{
-// 		if (str[i] == '-')
-// 			sign *= -1;
-// 		i++;
-// 	}
-// 	while (str[i] >= '0' && str[i] <= '9')
-// 	{
-// 		res = res * 10 + str[i] - 48;
-// 		i++;
-// 	}
-// 	return (res * sign);
-// }
+	if (!list)
+		return ;
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+}
 
+t_list *lst_new(t_list *list, int value)
+{
+	t_list *new;
 
-// int parsing(int ac, char **av)
-// {
-// 	if (ac == 1)
-// 		return (0);
-	
-	
-// }
+	new = malloc(sizeof(t_list));
+	if (!new)
+	{
+		free_list(list);
+		exit(1);
+	}
+	new->value = value;
+	new->next = NULL;
+	return (new);
+}
+
+void add_av(t_list *list, char **av, int ac)
+{
+	int value;
+	int i;
+
+	i = 1;
+	while (i < ac)
+	{
+		value = atoi(av[i]);
+		ft_lstadd_back(&list, lst_new(list, value));
+		i++;
+	}
+}
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*temp;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	temp = *lst;
+	while (temp->next)
+	{
+		temp = temp->next;
+	}
+	temp->next = new;
+}
 
 int main(int ac, char **av)
 {
-	int i = 0;
+	t_list list;
+	t_list *tmp;
 
-	while (av[i])
+	list.value = 0;
+	list.next = NULL;
+	if (ac < 2)
 	{
-		printf("%s\n", av[i]);
-		i++;
+		printf("Error\n");
+		return (0);
 	}
-	printf("%d\n", ac);
+	add_av(&list, av, ac);
+	tmp = &list;
+	while (tmp)
+	{
+		printf("%d\n", tmp->value);
+		tmp = tmp->next;
+	}
+	free_list(&list);
 	return (0);
+
 }

@@ -17,10 +17,10 @@ créé: <% tp.file.creation_date() %>
   - [x] Cloner le dépôt sur l'environnement de développement local.
 
 - [x] **Créer l'Arborescence de Dossiers** :
-  - [ ] `src/` pour les fichiers sources du jeu.
-  - [ ] `include/` pour les fichiers d'en-têtes.
-  - [ ] `assets/` pour les sprites et textures.
-  - [ ] `maps/` pour les cartes de jeu (.ber).
+  - [x] `src/` pour les fichiers sources du jeu.
+  - [x] `include/` pour les fichiers d'en-têtes.
+  - [x] `assets/` pour les sprites et textures.
+  - [x] `maps/` pour les cartes de jeu (.ber).
 
 ## Rédaction des Documents
 
