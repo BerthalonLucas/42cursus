@@ -6,37 +6,58 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 01:34:02 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/14 02:09:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:34:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft.h"
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	char			*new;
-	char			*temp;
-	unsigned int	i;
+	void *new_ptr;
 
-	if (ptr == NULL)
+	if (new_size == 0)
 	{
-		ptr = malloc(new_size);
-		if (ptr == NULL)
-			return (NULL);
-		return (ptr);
+		free(ptr);
+		return ;
 	}
-	if (new_size == old_size)
-		return (ptr);
-	if (new_size == 0 && ptr != NULL)
-		return (free(ptr), NULL);
-	new = malloc(new_size);
-	if (new == NULL)
-		return (NULL);
-	if (new_size < old_size)
-		old_size = new_size;
-	temp = ptr;
-	i = 0;
-	while (i++ < old_size)
-		*(new + i) = *(temp + i);
-	return (free(ptr), new);
+	new_ptr = malloc(new_size);
+	if (new_ptr == NULL)
+	{
+		free(ptr);
+		ft_putstr_fd("Error", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (ptr != NULL)
+	{
+		ft_memcpy(new_ptr, ptr, old_size);
+		free(ptr);
+	}
+
 }
+
+void ft_realloc_tab(void **ptr, size_t old_size, size_t new_size)
+{
+	void *new_ptr;
+
+	if (new_size == 0)
+	{
+		free(*ptr);
+		*ptr = NULL;
+		return ;
+	}
+	new_ptr = malloc(new_size);
+	if (new_ptr == NULL)
+	{
+		free(*ptr);
+		ft_putstr_fd("Error", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (*ptr != NULL)
+	{
+		ft_memcpy(new_ptr, *ptr, old_size);
+		free(*ptr);
+	}
+	*ptr = new_ptr;
+}
+

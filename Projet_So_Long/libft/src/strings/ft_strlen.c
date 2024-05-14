@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 22:03:10 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/14 00:54:51 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:49:11 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	int	i;
 
 	if (!str)
 		return (0);
