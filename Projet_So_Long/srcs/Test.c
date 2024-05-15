@@ -1,5 +1,4 @@
 #include "../includes/so_long.h"
-#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -8,20 +7,20 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("Usage: %s <file.ber>\n", argv[0]);
+		ft_printf("Usage: %s <%s>\n", argv[0], argv[1]);
 		return (1);
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error: Failed to open file\n");
+		perror("Error: Failed to open file ");
 		return (1);
 	}
 	get_map(&map, fd);
+	close(fd);
 	print_map(&map);
 	check_map(&map);
 	free_map(map.map, map.height);
-	close(fd);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:27:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/14 20:21:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/15 04:20:54 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char **ft_map_copy(char **map, int height)
 	return (copy);
 }
 
-int	is_path_valid(t_map *map)
+int	is_path_valid_P_C(t_map *map)
 {
 	int		i;
 	int		j;
@@ -130,6 +130,18 @@ int	is_path_valid(t_map *map)
 			break ;
 		i++;
 	}
+	free_map(copy, map->height);
+	if (!is_path_valid_C(map))
+		return (0);
+	return (1);
+}
+int is_path_valid_C(t_map *map)
+{
+	int		i;
+	int		j;
+	char	**copy;
+
+	copy = ft_map_copy(map->map, map->height);
 	i = 0;
 	while (i < map->height)
 	{
@@ -138,39 +150,42 @@ int	is_path_valid(t_map *map)
 		{
 			if (copy[i][j] == 'C')
 			{
-				free_map(copy, map->height);
-				return (0);
+				mark_accessible(copy, j, i);
+				break ;
 			}
 			j++;
 		}
+		if (j < map->width)
+			break ;
 		i++;
 	}
 	free_map(copy, map->height);
 	return (1);
 }
+
 void	check_map(t_map *map)
 {
 	if (!is_rectangular(map))
 	{
-		ft_printf("Error: Map is not rectangular\n");
+		perror("Error: Map is not rectangular ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_borders(map))
 	{
-		ft_printf("Error: Map borders are invalid\n");
+		perror("Error: Map borders are invalid ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_content(map))
 	{
-		ft_printf("Error: Map content is invalid\n");
+		perror("Error: Map content is invalid ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
-	if (!is_path_valid(map))
+	if (!is_path_valid_P_C(map))
 	{
-		ft_printf("Error: No valid path in the map\n");
+		perror("Error: No valid path in the map ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
@@ -178,14 +193,17 @@ void	check_map(t_map *map)
 
 void	add_line_to_map(t_map *map, char *line)
 {
-	map->map = safe_realloc(map->map,
-		map->height * sizeof(char *),
-		(map->height + 1) * sizeof(char *));
+	int old_height;
+	int new_height;
+
+	old_height = map->height * sizeof(char *);
+	new_height = (map->height + 1) * sizeof(char *);
+	map->map = ft_realloc(map->map, old_height, new_height);
 	map->map[map->height] = ft_strdup(line);
 	if (map->map[map->height] == NULL)
 	{
 		free_map(map->map, map->height);
-		ft_printf("Error");
+		perror("Error");
 		exit(EXIT_FAILURE);
 	}
 	map->height++;
@@ -213,7 +231,7 @@ void	get_map(t_map *map, int fd)
 			map->width = ft_strlen(line);
 		else if ((int)ft_strlen(line) != map->width)
 		{
-			ft_printf("Error: Map is not rectangular\n");
+			perror("Error: Map is not rectangular ");
 			free(line);
 			free_map(map->map, map->height);
 			exit(EXIT_FAILURE);
@@ -224,7 +242,7 @@ void	get_map(t_map *map, int fd)
 	}
 	if (map->map == NULL)
 	{
-		ft_printf("Error: Invalid map\n");
+		perror("Error: Invalid map ");
 		exit(EXIT_FAILURE);
 	}
 }
