@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/15 03:18:24 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/21 22:15:39 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,26 @@ void	free_map(char **map, int height);
 void	print_map(t_map *map);
 void	clean_newline(char *line);
 int is_path_valid_C(t_map *map);
+void	move_player(t_game *game, int dx, int dy);
+void	free_textures(t_textures *textures);
+void	free_images(t_img *img, t_game *game);
+void	mlx_start(t_game *game);
+void	init_game(t_game *game);
+void	load_wall_texture(t_game *game);
+void	place_wall(t_game *game);
+void	place_floor(t_game *game);
+void	load_floor_texture(t_game *game);
+void	cleanup_game(t_game *game);
+void display_map(t_game *game);
+void	place_exit(t_game *game);
+void	load_exit_texture(t_game *game);
+void	place_player(t_game *game);
+void load_player_texture(t_game *game);
+void	place_collectibles(t_game *game);
+void load_collectible_texture(t_game *game);
+void handle_keypress(void *param);
+
+
+
 
 #endif

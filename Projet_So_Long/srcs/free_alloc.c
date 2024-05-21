@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/15 03:18:18 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:43:49 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,49 @@ void	*safe_malloc(size_t size)
 		exit(EXIT_FAILURE);
 	}
 	return (ptr);
+}
+
+void	free_textures(t_textures *textures)
+{
+	if (textures->wall)
+		mlx_delete_texture(textures->wall);
+	if (textures->floor)
+		mlx_delete_texture(textures->floor);
+	if (textures->exit)
+		mlx_delete_texture(textures->exit);
+	if (textures->player)
+		mlx_delete_texture(textures->player);
+	if (textures->collectible)
+		mlx_delete_texture(textures->collectible);
+}
+
+void	free_images(t_img *img, t_game *game)
+{
+	if (img->wall)
+		mlx_delete_image(game->mlx, img->wall);
+	if (img->exit)
+		mlx_delete_image(game->mlx, img->exit);
+	if (img->player)
+		mlx_delete_image(game->mlx, img->player);
+	if (img->floor)
+		mlx_delete_image(game->mlx, img->floor);
+	if (img->collectible)
+		mlx_delete_image(game->mlx, img->collectible);
+}
+void	free_game(t_game *game)
+{
+	if (game->map)
+		free(game->map);
+	if (game->player)
+		free(game->player);
+	if (game->mlx)
+		free(game->mlx);
+}
+
+void	cleanup_game(t_game *game)
+{
+	free_images(game->img, game);
+	free_textures(game->textures);
+	free_game(game);
+	free_map(game->map->map, game->map->height);
 }

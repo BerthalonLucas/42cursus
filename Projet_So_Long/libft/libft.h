@@ -99,6 +99,33 @@ int	count_hex(unsigned long long int i);
 
 //---------------------------------------------------------------------------//
 
+//--------------------------------FPRINTF---------------------------------//
+
+typedef struct s_fpf
+{
+	int cp;
+	int neg;
+	char *s;
+	int fd;
+	
+}	t_fpf;
+
+int	ft_fprintf(int fd, const char *s, ...);
+int	fselection(char c, va_list args, t_fpf *fpf);
+int	fstring(va_list args, t_fpf *fpf);
+int	fdecimale(va_list args, t_fpf *fpf);
+int	finteger(va_list args, t_fpf *fpf);
+int	funsinged_decimale(va_list args, t_fpf *fpf);
+int	fputnbr(long int i, t_fpf *fpf);
+int	fcharacter(va_list args, t_fpf *fpf);
+int	fhexa_lower(unsigned long long i, char *base, t_fpf *fpf);
+int	fhexa_upper(unsigned long long i, char *base, t_fpf *fpf);
+int	fpointer(unsigned long long i, char *base, t_fpf *fpf);
+int	fhexa_bases(va_list args, char c, t_fpf *fpf);
+int	fwrite_char_tab(va_list args, t_fpf *fpf);
+int	fcount(long int i);
+int	fcount_hex(unsigned long long int i);
+
 //---------------------------------GET_NEXT_LINE---------------------------------//
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -132,4 +159,4 @@ int	slash_not_found(t_gnl *g, char *buffer);
 void	*ox_m(size_t xxx);
 size_t	ox_r(int fdp, void *b, int len);
 
-#endif // LIBFT_H
+#endif
