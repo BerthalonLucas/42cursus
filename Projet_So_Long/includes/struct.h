@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:03 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/21 20:42:26 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:03:39 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_img
 	mlx_image_t     *exit;
 	mlx_image_t     *player;
 	mlx_image_t     *floor;
-	mlx_image_t     *collectible;
+	mlx_image_t     **collectible;
 }   t_img;
 
 typedef struct s_game
@@ -53,6 +53,7 @@ typedef struct s_game
 	t_textures 	*textures;
 	mlx_t		*mlx;
 	t_img		*img;
+	int			frame;
 }	t_game;
 
 

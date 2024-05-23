@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/21 22:15:39 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:52:45 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "struct.h"
 # include <fcntl.h>
 # include <stdio.h>
+#include <unistd.h>
+
+# define SIZE 64
 
 int	is_rectangular(t_map *map);
 int	check_borders(t_map *map);
@@ -50,7 +53,10 @@ void load_player_texture(t_game *game);
 void	place_collectibles(t_game *game);
 void load_collectible_texture(t_game *game);
 void handle_keypress(void *param);
-
+void my_usleep(double seconds);
+void collectibles_count(t_game *game);
+void tab_collect(t_game *game);
+mlx_image_t *find_collect_instance(t_game *game, int x, int y);
 
 
 

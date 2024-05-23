@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/21 20:43:49 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:12:44 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	free_textures(t_textures *textures)
 
 void	free_images(t_img *img, t_game *game)
 {
+	int i;
+
+	i = 0;
 	if (img->wall)
 		mlx_delete_image(game->mlx, img->wall);
 	if (img->exit)
@@ -63,7 +66,14 @@ void	free_images(t_img *img, t_game *game)
 	if (img->floor)
 		mlx_delete_image(game->mlx, img->floor);
 	if (img->collectible)
-		mlx_delete_image(game->mlx, img->collectible);
+	{
+		while (i < game->player->collect)
+		{
+			mlx_delete_image(game->mlx, img->collectible[i]);
+			i++;
+		}
+		free(img->collectible);
+	}
 }
 void	free_game(t_game *game)
 {

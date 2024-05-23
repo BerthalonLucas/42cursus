@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:01:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/21 21:07:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/23 02:14:34 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ void	place_player(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == 'P')
-				mlx_image_to_window(game->mlx, game->img->player, x * 64, y * 64);
+			{
+				mlx_image_to_window(game->mlx, game->img->player, x * SIZE, y * SIZE);
+				game->player->x = x * SIZE;
+				game->player->y = y * SIZE;
+			}
+				
 			x++;
 		}
 		y++;

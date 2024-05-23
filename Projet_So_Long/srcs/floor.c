@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:02:03 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/21 21:07:40 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:04:16 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	place_floor(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			mlx_image_to_window(game->mlx, game->img->floor, x * 64, y * 64);
+			mlx_image_to_window(game->mlx, game->img->floor, x * SIZE, y * SIZE);
 			x++;
 		}
 		y++;
