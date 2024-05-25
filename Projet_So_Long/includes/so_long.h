@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/23 03:52:45 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:00:14 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void my_usleep(double seconds);
 void collectibles_count(t_game *game);
 void tab_collect(t_game *game);
 mlx_image_t *find_collect_instance(t_game *game, int x, int y);
+void init_each(t_game *game);
+int check_fd(char *path);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/23 03:12:44 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:19:25 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_images(t_img *img, t_game *game)
 	int i;
 
 	i = 0;
+	free_textures(game->textures);
 	if (img->wall)
 		mlx_delete_image(game->mlx, img->wall);
 	if (img->exit)

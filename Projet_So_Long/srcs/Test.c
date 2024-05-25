@@ -10,12 +10,8 @@ int	main(int argc, char *argv[])
 		ft_printf("Usage: %s <%s>\n", argv[0], argv[1]);
 		return (1);
 	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		ft_fprintf(2, "Error: Failed to open file\n");
-		return (1);
-	}
+	if (!(fd = check_fd(argv[1])))
+		return (0);
 	init_game(&game);
 	get_map(game.map, fd);
 	close(fd);
@@ -39,3 +35,23 @@ void	print_map(t_map *map)
 	}
 }
 
+int check_fd(char *path)
+{
+	int fd;
+	char *res;
+
+	res = ft_strnstr(path, ".ber", 4);
+	ft_printf("%s", path);
+	if (ft_strncmp(".ber", res, 4) == 0)
+	{
+		ft_fprintf(2, "Error: Failed find .ber file\n");
+		return (0);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_fprintf(2, "Error: Failed to open file\n");
+		return (0);
+	}
+	return (fd);
+}

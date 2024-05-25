@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:27:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/15 04:20:54 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:34:03 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,25 +167,25 @@ void	check_map(t_map *map)
 {
 	if (!is_rectangular(map))
 	{
-		perror("Error: Map is not rectangular ");
+		ft_fprintf(2, "Error: Map is not rectangular ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_borders(map))
 	{
-		perror("Error: Map borders are invalid ");
+		ft_fprintf(2, "Error: Map borders are invalid ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_content(map))
 	{
-		perror("Error: Map content is invalid ");
+		ft_fprintf(2, "Error: Map content is invalid ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!is_path_valid_P_C(map))
 	{
-		perror("Error: No valid path in the map ");
+		ft_fprintf(2, "Error: No valid path in the map ");
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
@@ -203,7 +203,7 @@ void	add_line_to_map(t_map *map, char *line)
 	if (map->map[map->height] == NULL)
 	{
 		free_map(map->map, map->height);
-		perror("Error");
+		ft_fprintf(2, "Error");
 		exit(EXIT_FAILURE);
 	}
 	map->height++;
@@ -231,7 +231,7 @@ void	get_map(t_map *map, int fd)
 			map->width = ft_strlen(line);
 		else if ((int)ft_strlen(line) != map->width)
 		{
-			perror("Error: Map is not rectangular ");
+			ft_fprintf(2, "Error: Map is not rectangular ");
 			free(line);
 			free_map(map->map, map->height);
 			exit(EXIT_FAILURE);
@@ -242,7 +242,7 @@ void	get_map(t_map *map, int fd)
 	}
 	if (map->map == NULL)
 	{
-		perror("Error: Invalid map ");
+		ft_fprintf(2, "Error: Invalid map ");
 		exit(EXIT_FAILURE);
 	}
 }
