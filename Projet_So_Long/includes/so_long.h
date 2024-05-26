@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/25 21:00:14 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/26 04:56:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ int	is_rectangular(t_map *map);
 int	check_borders(t_map *map);
 int	check_content(t_map *map);
 void	mark_accessible(char **map, int x, int y);
-int	is_path_valid_P_C(t_map *map);
+int	is_path_valid_P(t_map *map);
 void	check_map(t_map *map);
 void	get_map(t_map *map, int fd);
-
 void	*safe_malloc(size_t size);
 void	free_map(char **map, int height);
-void	print_map(t_map *map);
+void	print_map(char **map);
 void	clean_newline(char *line);
 int is_path_valid_C(t_map *map);
 void	move_player(t_game *game, int dx, int dy);
@@ -59,7 +58,12 @@ void tab_collect(t_game *game);
 mlx_image_t *find_collect_instance(t_game *game, int x, int y);
 void init_each(t_game *game);
 int check_fd(char *path);
-
-
+int check_fd(char *filename);
+int check_filename(char *filename);
+void handle_movement(t_game *game, double *last_move_time, double current_time);
+void handle_escape(t_game *game);
+void verif_content(t_map *map, int j, int i);
+int find_X(t_map *map, char **mapi);
+int is_path_valid(t_map *map);
 
 #endif

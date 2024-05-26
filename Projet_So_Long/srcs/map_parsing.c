@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:27:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/25 20:34:03 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/26 04:55:37 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,36 @@ int	check_content(t_map *map)
 {
 	int i;
 	int j;
-	int player_count;
-	int exit_count;
-	int collectible_count;
 
-	player_count = 0;
-	exit_count = 0;
-	collectible_count = 0;
 	j = 0;
 	while (j < map->height)
 	{
 		i = 0;
 		while (i < map->width)
 		{
-			if (map->map[j][i] == 'P')
-				player_count++;
-			else if (map->map[j][i] == 'E')
-				exit_count++;
-			else if (map->map[j][i] == 'C')
-				collectible_count++;
+			verif_content(map, j, i);
 			i++;
 		}
 		j++;
 	}
-	return (player_count == 1 && exit_count == 1 && collectible_count >= 1);
+	if (map->player_count == 1 && map->exit_count == 1 && map->collectible_count >= 1 && map->verif == 1)
+		map->verif = 1;
+	else
+		map->verif = 0;
+	return (map->verif);
 }
+void verif_content(t_map *map, int j, int i)
+{
+	if (map->map[j][i] == 'P')
+		map->player_count++;
+	else if (map->map[j][i] == 'E')
+		map->exit_count++;
+	else if (map->map[j][i] == 'C')
+		map->collectible_count++;
+	if (map->map[j][i] != 'P' && map->map[j][i] != 'E' && map->map[j][i] != 'C' && map->map[j][i] != '1' && map->map[j][i] != '0')
+		map->verif = 0;
+}
+
 void	mark_accessible(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'X')
@@ -106,7 +111,7 @@ char **ft_map_copy(char **map, int height)
 	return (copy);
 }
 
-int	is_path_valid_P_C(t_map *map)
+int	is_path_valid_P(t_map *map)
 {
 	int		i;
 	int		j;
@@ -130,10 +135,9 @@ int	is_path_valid_P_C(t_map *map)
 			break ;
 		i++;
 	}
+	i = find_X(map, copy);
 	free_map(copy, map->height);
-	if (!is_path_valid_C(map))
-		return (0);
-	return (1);
+	return (i);
 }
 int is_path_valid_C(t_map *map)
 {
@@ -159,7 +163,36 @@ int is_path_valid_C(t_map *map)
 			break ;
 		i++;
 	}
+	i = find_X(map, copy);
 	free_map(copy, map->height);
+	return (i);
+}
+
+int find_X(t_map *map, char **mapi)
+{
+	int i;
+	int j;
+
+	j = 0;
+	while (j < map->height)
+	{
+		i = 0;
+		while (i < map->width)
+		{
+			if (mapi[j][i] == 'E' || mapi[j][i] == 'C' || mapi[j][i] == 'P')
+				return (0);
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+int is_path_valid(t_map *map)
+{
+	if (!is_path_valid_P(map))
+		return (0);
+	if (!is_path_valid_C(map))
+		return (0);
 	return (1);
 }
 
@@ -183,7 +216,7 @@ void	check_map(t_map *map)
 		free_map(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
-	if (!is_path_valid_P_C(map))
+	if (!is_path_valid(map))
 	{
 		ft_fprintf(2, "Error: No valid path in the map ");
 		free_map(map->map, map->height);

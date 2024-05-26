@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:03:46 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/25 20:06:13 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:36:54 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_game(t_game *game)
 void init_each(t_game *game)
 {
 	ft_bzero(game->map, sizeof(t_map));
+	game->map->verif = 1;
 	ft_bzero(game->player, sizeof(t_player));
 	ft_bzero(game->textures, sizeof(t_textures));
 	ft_bzero(game->img, sizeof(t_img));

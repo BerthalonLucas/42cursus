@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:03 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/23 03:03:39 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:32:26 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ typedef struct s_map
 	char	**map;
 	int		width;
 	int		height;
+	int player_count;
+	int exit_count;
+	int collectible_count;
+	int verif;
 }	t_map;
 
 typedef struct s_player
@@ -54,6 +58,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_img		*img;
 	int			frame;
+	int			fd;
 }	t_game;
 
 
