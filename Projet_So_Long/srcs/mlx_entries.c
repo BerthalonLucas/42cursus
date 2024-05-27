@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:15:58 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/23 02:24:40 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:32:36 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	mlx_start(t_game *game)
 	game->map->width *= SIZE;
 	game->map->height *= SIZE;
 	mlx_loop_hook(game->mlx, handle_keypress, game);
+	mlx_close_hook(game->mlx, close_game, game);
 	mlx_loop(game->mlx);
 }
 
@@ -33,5 +34,16 @@ void display_map(t_game *game)
 	place_wall(game);
 	place_exit(game);
 	place_player(game);
-	place_collectibles(game);
+	place_clts(game);
 }
+void close_game(void *param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+	cleanup_game(game);
+	mlx_terminate(game->mlx);
+	exit(EXIT_SUCCESS);
+}
+
+

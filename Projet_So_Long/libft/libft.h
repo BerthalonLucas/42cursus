@@ -159,5 +159,8 @@ int	slash_not_found(t_gnl *g, char *buffer);
 
 void	*ox_m(size_t xxx);
 size_t	ox_r(int fdp, void *b, int len);
+void	free_ptr(void *ptr);
+void	free_double_ptr(char **ptr);
+
 
 #endif

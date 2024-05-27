@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:01:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/25 21:03:06 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 02:48:42 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void load_player_texture(t_game *game)
 		game->textures->player = mlx_load_png("./textures/player.png");
 		if (!game->textures->player)
 		{
-			ft_fprintf(2, "Error: Failed to load player texture\n");
+			ft_fprintf(2, "Error: load player texture\n");
 			free_textures(game->textures);
 			exit(EXIT_FAILURE);
 		}
 		game->img->player = mlx_texture_to_image(game->mlx, game->textures->player);
 		if (!game->img->player)
 		{
-			ft_fprintf(2, "Error: Failed to convert player texture to image\n");
+			ft_fprintf(2, "Error: convert player texture to image\n");
 			free_images(game->img, game);
 			exit(EXIT_FAILURE);
 		}

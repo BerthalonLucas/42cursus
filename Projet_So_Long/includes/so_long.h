@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:36:38 by lucas             #+#    #+#             */
-/*   Updated: 2024/05/26 04:56:38 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 01:50:49 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ void handle_escape(t_game *game);
 void verif_content(t_map *map, int j, int i);
 int find_X(t_map *map, char **mapi);
 int is_path_valid(t_map *map);
+void check_map_width_height(t_map *map);
+void close_game(void *param);
+char **ft_map_copy(char **map, int height);
+
 
 #endif

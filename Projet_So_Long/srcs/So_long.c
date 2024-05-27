@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 00:12:53 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/26 03:35:27 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:14:41 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char *argv[])
 	init_game(&game);
 	get_map(game.map, fd);
 	close(fd);
-	// print_map(game.map);
 	check_map(game.map);
 	mlx_start(&game);
 	mlx_terminate(game.mlx);
@@ -40,7 +39,7 @@ int	main(int argc, char *argv[])
 
 void	print_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -50,9 +49,9 @@ void	print_map(char **map)
 	}
 }
 
-int check_fd(char *filename)
+int	check_fd(char *filename)
 {
-	int fd;
+	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -63,15 +62,15 @@ int check_fd(char *filename)
 	return (fd);
 }
 
-int check_filename(char *filename)
+int	check_filename(char *filename)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (filename[i])
 		i++;
-	if (filename[i - 4] != '.' || filename[i - 3] != 'b' || filename[i - 2] != 'e'
-	|| filename[i - 1] != 'r')
+	if (filename[i - 4] != '.' || filename[i - 3] != 'b'
+		|| filename[i - 2] != 'e' || filename[i - 1] != 'r')
 	{
 		ft_fprintf(2, "Error: Invalid file extension\n");
 		return (0);

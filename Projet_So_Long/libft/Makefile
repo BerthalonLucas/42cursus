@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2024/05/21 18:02:51 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/27 02:13:45 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC 		=	src/verif/ft_isalpha.c			\
 				src/memory/ft_memcmp.c			\
 				src/mallocs/ft_calloc.c			\
 				src/mallocs/ft_realloc.c		\
+				src/mallocs/ft_free_ptr.c		\
 				src/numbers/ft_itoa.c			\
 				src/numbers/ft_putnbr_fd.c		\
 				src/chain_list/ft_lstnew.c		\
