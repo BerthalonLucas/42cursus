@@ -6,39 +6,23 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 02:49:00 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/23 03:57:54 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 01:02:53 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 
 void	move_player(t_game *game, int dx, int dy)
 {
-	int	new_x;
-	int	new_y;
-	mlx_image_t *instance;
+	int			new_x;
+	int			new_y;
 
 	new_x = game->player->x + dx;
 	new_y = game->player->y + dy;
 	if (game->map->map[new_y / SIZE][new_x / SIZE] == '1')
 		return ;
-	if (game->map->map[new_y / SIZE][new_x / SIZE] == 'E')
-	{
-		if (game->player->collect == 0)
-		{
-			mlx_terminate(game->mlx);
-			printf("You won\n");
-			exit(EXIT_SUCCESS);
-		}
-	}
-	if (game->map->map[new_y / SIZE][new_x / SIZE] == 'C')
-	{
-		game->map->map[new_y / SIZE][new_x / SIZE] = '0';
-		instance = find_collect_instance(game, new_x, new_y);
-		instance->enabled = false;
-		game->player->collect--;
-	}
+	check_exit(game, new_x, new_y);
+	if_collectible(game, new_x, new_y);
 	if (dx)
 	{
 		game->img->player->instances->x = new_x;
@@ -48,5 +32,31 @@ void	move_player(t_game *game, int dx, int dy)
 	{
 		game->img->player->instances->y = new_y;
 		game->player->y = new_y;
+	}
+}
+
+void	check_exit(t_game *game, int new_x, int new_y)
+{
+	if (game->map->map[new_y / SIZE][new_x / SIZE] == 'E')
+	{
+		if (game->player->collect == 0)
+		{
+			mlx_terminate(game->mlx);
+			ft_printf("You won\n");
+			exit(EXIT_SUCCESS);
+		}
+	}
+}
+
+void	if_collectible(t_game *game, int new_x, int new_y)
+{
+	mlx_image_t	*instance;
+
+	if (game->map->map[new_y / SIZE][new_x / SIZE] == 'C')
+	{
+		game->map->map[new_y / SIZE][new_x / SIZE] = '0';
+		instance = find_collect_instance(game, new_x, new_y);
+		instance->enabled = false;
+		game->player->collect--;
 	}
 }

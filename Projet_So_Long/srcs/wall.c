@@ -57,11 +57,10 @@ void	place_wall(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == '1')
-				mlx_image_to_window(game->mlx, game->img->wall, x * SIZE, y * SIZE);
+				mlx_image_to_window(game->mlx, game->img->wall, x * SIZE, y
+					* SIZE);
 			x++;
 		}
 		y++;
 	}
 }
-
-

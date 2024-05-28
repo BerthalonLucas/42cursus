@@ -21,7 +21,7 @@ void	init_game(t_game *game)
 	init_each(game);
 }
 
-void init_each(t_game *game)
+void	init_each(t_game *game)
 {
 	ft_bzero(game->map, sizeof(t_map));
 	game->map->verif = 1;

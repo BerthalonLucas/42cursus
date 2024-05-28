@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 20:11:28 by lucas             #+#    #+#             */
-/*   Updated: 2024/03/13 21:33:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 01:01:14 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static	void	*free_tab(char **tab, size_t index)
 	i = 0;
 	while (i < index)
 	{
-		free(tab[i]);
+		free_ptr(tab[i]);
 		i++;
 	}
-	free(tab);
+	free_ptr(tab);
 	return (NULL);
 }
 

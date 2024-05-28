@@ -6,13 +6,11 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 21:32:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 02:54:12 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-
 
 void	*safe_malloc(size_t size)
 {
@@ -43,7 +41,7 @@ void	free_textures(t_textures *textures)
 
 void	free_images(t_img *img, t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (img->wall)
@@ -64,6 +62,7 @@ void	free_images(t_img *img, t_game *game)
 		free_ptr(img->clt);
 	}
 }
+
 void	free_game(t_game *game)
 {
 	if (game->map)
@@ -78,6 +77,6 @@ void	cleanup_game(t_game *game)
 {
 	free_images(game->img, game);
 	free_textures(game->textures);
-	free_double_ptr(game->map->map);
+	free_double_ptr(game->map->map, game->map->height);
 	free_game(game);
 }

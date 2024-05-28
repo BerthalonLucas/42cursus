@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:15:58 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 21:32:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 01:02:18 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	mlx_start(t_game *game)
 {
-	game->mlx = mlx_init(game->map->width * SIZE, game->map->height * SIZE, "So Long", true);
+	game->mlx = mlx_init(game->map->width * SIZE, game->map->height * SIZE,
+			"So Long", true);
 	if (!game->mlx)
 	{
 		ft_fprintf(2, "Error: init MiniLibX\n");
@@ -28,22 +29,21 @@ void	mlx_start(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-void display_map(t_game *game)
+void	display_map(t_game *game)
 {
 	place_floor(game);
 	place_wall(game);
 	place_exit(game);
 	place_player(game);
-	place_clts(game);
+	place_collectibles(game);
 }
-void close_game(void *param)
+
+void	close_game(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	cleanup_game(game);
 	mlx_terminate(game->mlx);
 	exit(EXIT_SUCCESS);
 }
-
-

@@ -6,10 +6,9 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:18:41 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:11:43 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:44:19 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 
@@ -26,7 +25,8 @@ void	place_exit(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == 'E')
-				mlx_image_to_window(game->mlx, game->img->exit, x * SIZE, y * SIZE);
+				mlx_image_to_window(game->mlx, game->img->exit, x * SIZE, y
+					* SIZE);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:01:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:48:42 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:01:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ void	place_player(t_game *game)
 		{
 			if (game->map->map[y][x] == 'P')
 			{
-				mlx_image_to_window(game->mlx, game->img->player, x * SIZE, y * SIZE);
+				mlx_image_to_window(game->mlx, game->img->player, x * SIZE, y
+					* SIZE);
 				game->player->x = x * SIZE;
 				game->player->y = y * SIZE;
 			}
-				
 			x++;
 		}
 		y++;
 	}
 }
-void load_player_texture(t_game *game)
+
+void	load_player_texture(t_game *game)
 {
 	if (!game->textures->player)
 	{
@@ -47,7 +48,8 @@ void load_player_texture(t_game *game)
 			free_textures(game->textures);
 			exit(EXIT_FAILURE);
 		}
-		game->img->player = mlx_texture_to_image(game->mlx, game->textures->player);
+		game->img->player = mlx_texture_to_image(game->mlx,
+				game->textures->player);
 		if (!game->img->player)
 		{
 			ft_fprintf(2, "Error: convert player texture to image\n");

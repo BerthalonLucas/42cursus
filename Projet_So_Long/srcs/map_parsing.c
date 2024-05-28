@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:27:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:30:10 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 02:55:30 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,33 @@ void	check_map(t_map *map)
 	if (!is_rectangular(map))
 	{
 		ft_fprintf(2, "Error: Map is not rectangular ");
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_borders(map))
 	{
 		ft_fprintf(2, "Error: Map borders are invalid ");
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_content(map))
 	{
 		ft_fprintf(2, "Error: Map content is invalid ");
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 	if (!is_path_valid(map))
 	{
 		ft_fprintf(2, "Error: No valid path in the map ");
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 }
 
 void	add_line_to_map(t_map *map, char *line)
 {
-	int old_height;
-	int new_height;
+	int	old_height;
+	int	new_height;
 
 	check_map_width_height(map);
 	old_height = map->height * sizeof(char *);
@@ -52,7 +52,7 @@ void	add_line_to_map(t_map *map, char *line)
 	map->map[map->height] = ft_strdup(line);
 	if (map->map[map->height] == NULL)
 	{
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		ft_fprintf(2, "Error");
 		exit(EXIT_FAILURE);
 	}
@@ -73,7 +73,7 @@ void	get_map(t_map *map, int fd)
 		{
 			ft_fprintf(2, "Error: Map is not rectangular ");
 			free_ptr(line);
-			free_double_ptr(map->map);
+			free_double_ptr(map->map, map->height);
 			exit(EXIT_FAILURE);
 		}
 		if (*line != '\0')
@@ -87,9 +87,10 @@ void	get_map(t_map *map, int fd)
 		exit(EXIT_FAILURE);
 	}
 }
+
 int	is_rectangular(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)
@@ -103,7 +104,7 @@ int	is_rectangular(t_map *map)
 
 int	check_borders(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->width)

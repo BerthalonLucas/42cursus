@@ -6,36 +6,35 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:40:00 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:31:03 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 02:54:55 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/so_long.h"
 
-void check_map_width_height(t_map *map)
+void	check_map_width_height(t_map *map)
 {
 	if (map->width > 48 || map->height > 48)
 	{
 		ft_fprintf(2, "Error: Map is too big ");
-		free_double_ptr(map->map);
+		free_double_ptr(map->map, map->height);
 		exit(EXIT_FAILURE);
 	}
 }
 
 void	clean_newline(char *line)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 }
 
-int find_X(t_map *map, char **mapi)
+int	find_x(t_map *map, char **map_copy)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (j < map->height)
@@ -43,7 +42,8 @@ int find_X(t_map *map, char **mapi)
 		i = 0;
 		while (i < map->width)
 		{
-			if (mapi[j][i] == 'E' || mapi[j][i] == 'C' || mapi[j][i] == 'P')
+			if (map_copy[j][i] == 'E' || map_copy[j][i] == 'C'
+				|| map_copy[j][i] == 'P')
 				return (0);
 			i++;
 		}
@@ -51,16 +51,17 @@ int find_X(t_map *map, char **mapi)
 	}
 	return (1);
 }
-int is_path_valid(t_map *map)
+
+int	is_path_valid(t_map *map)
 {
-	if (!is_path_valid_P(map))
+	if (!is_path_valid_p(map))
 		return (0);
-	if (!is_path_valid_C(map))
+	if (!is_path_valid_c(map))
 		return (0);
 	return (1);
 }
 
-char **ft_map_copy(char **map, int height)
+char	**ft_map_copy(char **map, int height)
 {
 	char	**copy;
 	int		i;
@@ -72,7 +73,7 @@ char **ft_map_copy(char **map, int height)
 		copy[i] = ft_strdup(map[i]);
 		if (copy[i] == NULL)
 		{
-			free_double_ptr(copy);
+			free_double_ptr(copy, i);
 			return (NULL);
 		}
 		i++;

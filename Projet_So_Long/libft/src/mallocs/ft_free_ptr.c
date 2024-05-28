@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:59:55 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:29:07 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 02:52:37 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ void	free_ptr(void *ptr)
 	}
 }
 
-void	free_double_ptr(char **ptr)
+void	free_double_ptr(char **ptr, int size)
 {
 	int	i;
 
 	i = 0;
 	if (ptr)
 	{
-		while (ptr[i])
+		while (i < size)
 		{
 			free(ptr[i]);
 			ptr[i] = NULL;
+			i++;
 		}
 		free(ptr);
 		ptr = NULL;

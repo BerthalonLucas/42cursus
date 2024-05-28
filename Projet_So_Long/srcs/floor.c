@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:02:03 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 02:11:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:45:19 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	place_floor(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			mlx_image_to_window(game->mlx, game->img->floor, x * SIZE, y * SIZE);
+			mlx_image_to_window(game->mlx, game->img->floor, x * SIZE, y
+				* SIZE);
 			x++;
 		}
 		y++;
@@ -42,7 +43,8 @@ void	load_floor_texture(t_game *game)
 			free_textures(game->textures);
 			exit(EXIT_FAILURE);
 		}
-		game->img->floor = mlx_texture_to_image(game->mlx, game->textures->floor);
+		game->img->floor = mlx_texture_to_image(game->mlx,
+				game->textures->floor);
 		if (!game->img->floor)
 		{
 			ft_fprintf(2, "Error: Failed to convert floor texture to image\n");

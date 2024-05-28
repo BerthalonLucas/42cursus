@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/05/02 00:09:15 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/28 03:01:24 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ CC 		= gcc
 LIBFT	= ./libft/libft.a
 
 CFLAGS 	= -Wall -Wextra -Werror -g3
+CFLAGSD = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 
 RED			=\033[0;31m
@@ -62,5 +63,10 @@ fclean 	: clean
 			@$(RM) $(NAME)
 			@echo "$(YELLOW)fclean$(END) $(VC)SO_LONG$(END) $(GREEN)OK$(END)"
 			@make -s -C ./libft fclean
+
+debug 	: $(LIBFT) $(OBJS)
+			cd $(MLX42) && cmake -B build && cmake --build build -j4
+			$(CC) $(CFLAGSD) $(SRC) -o $(NAME) $(LIBFT) $(MLX42)/build/libmlx42.a -Iinclude -I ./MLX/include/MLX42 -lglfw -lm
+			@echo "$(BLUE)Compilation$(END) $(VC)SO_LONG$(END) $(GREEN)OK$(END) $(YELLOW)DEBUG$(END)"
 
 re 		: fclean all

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:02:01 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 22:07:44 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 01:47:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	place_collectibles(t_game *game)
 		{
 			if (game->map->map[y][x] == 'C')
 			{
-				mlx_image_to_window(game->mlx, game->img->clt[i], x * SIZE, y
-					* SIZE);
+				mlx_image_to_window(game->mlx, game->img->clt[i],
+					x * SIZE, y * SIZE);
 				game->img->clt[i]->instances->x = x * SIZE;
 				game->img->clt[i]->instances->y = y * SIZE;
 				i--;
@@ -88,14 +88,14 @@ void	tab_collect(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	game->img->clt[count] = NULL;
-	while (--count)
+	while (count)
 	{
+		count--;
 		game->img->clt[count] = mlx_texture_to_image(game->mlx,
 				game->textures->clt);
 		if (!game->img->clt[count])
 		{
-			ft_fprintf(2,
-				"Error: Failed to convert collectible texture to image\n");
+			ft_fprintf(2, "Error: Failed convert collect texture to image\n");
 			free_images(game->img, game);
 			exit(EXIT_FAILURE);
 		}

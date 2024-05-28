@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:47:06 by lberthal          #+#    #+#             */
-/*   Updated: 2024/03/22 08:59:50 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:59:35 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	write_char_tab(va_list args, t_pf *pf)
 		pf->neg = write(1, "] : ", 4);
 		if (pf->neg == -1)
 			return (-1);
-		free(index);
+		free_ptr(index);
 		pf->neg = write(1, tab[i], ft_strlen(tab[i]));
 		if (pf->neg == -1)
 			return (-1);

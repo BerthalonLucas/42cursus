@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:41:36 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/27 21:32:36 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 02:55:05 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_content(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (j < map->height)
@@ -28,21 +28,24 @@ int	check_content(t_map *map)
 		}
 		j++;
 	}
-	if (map->player_count == 1 && map->exit_count == 1 && map->clt_count >= 1 && map->verif == 1)
+	if (map->player_count == 1 && map->exit_count == 1
+		&& map->collectible_count >= 1 && map->verif == 1)
 		map->verif = 1;
 	else
 		map->verif = 0;
 	return (map->verif);
 }
-void verif_content(t_map *map, int j, int i)
+
+void	verif_content(t_map *map, int j, int i)
 {
 	if (map->map[j][i] == 'P')
 		map->player_count++;
 	else if (map->map[j][i] == 'E')
 		map->exit_count++;
 	else if (map->map[j][i] == 'C')
-		map->clt_count++;
-	if (map->map[j][i] != 'P' && map->map[j][i] != 'E' && map->map[j][i] != 'C' && map->map[j][i] != '1' && map->map[j][i] != '0')
+		map->collectible_count++;
+	if (map->map[j][i] != 'P' && map->map[j][i] != 'E' && map->map[j][i] != 'C'
+		&& map->map[j][i] != '1' && map->map[j][i] != '0')
 		map->verif = 0;
 }
 
@@ -57,7 +60,7 @@ void	mark_accessible(char **map, int x, int y)
 	mark_accessible(map, x, y - 1);
 }
 
-int	is_path_valid_P(t_map *map)
+int	is_path_valid_p(t_map *map)
 {
 	int		i;
 	int		j;
@@ -81,11 +84,12 @@ int	is_path_valid_P(t_map *map)
 			break ;
 		i++;
 	}
-	i = find_X(map, copy);
-	free_double_ptr(copy);
+	i = find_x(map, copy);
+	free_double_ptr(copy, map->height);
 	return (i);
 }
-int is_path_valid_C(t_map *map)
+
+int	is_path_valid_c(t_map *map)
 {
 	int		i;
 	int		j;
@@ -109,7 +113,7 @@ int is_path_valid_C(t_map *map)
 			break ;
 		i++;
 	}
-	i = find_X(map, copy);
-	free_double_ptr(copy);
+	i = find_x(map, copy);
+	free_double_ptr(copy, map->height);
 	return (i);
 }

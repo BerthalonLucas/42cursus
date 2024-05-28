@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 00:39:31 by lberthal          #+#    #+#             */
-/*   Updated: 2024/04/11 02:11:01 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:59:35 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	ft_strjoin_gnl(t_gnl *g, char *buffer)
 	str = malloc(sizeof(char) * lens);
 	if (!str)
 	{
-		free(str);
+		free_ptr(str);
 		return (-1);
 	}
 	ft_strlcpy_gnl(str, g->str_stock, lens);
 	if (g->str_stock)
-		free(g->str_stock);
+		free_ptr(g->str_stock);
 	ft_find_slash(g, buffer);
 	ft_strlcat_gnl(str, buffer, lens, g);
 	g->str_stock = str;
@@ -119,9 +119,9 @@ char	*get_next_line(int fd)
 	if (buffer[0] == '\0')
 	{
 		if (reader(&g, buffer) < 0)
-			return (free(g.str_stock), NULL);
+			return (free_ptr(g.str_stock), NULL);
 	}
 	else if (reader(&g, buffer) < 0)
-		return (free(g.str_stock), NULL);
+		return (free_ptr(g.str_stock), NULL);
 	return (g.str_stock);
 }
