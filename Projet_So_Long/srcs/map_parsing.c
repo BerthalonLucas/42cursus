@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:27:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 02:55:30 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:37:52 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,25 @@ void	check_map(t_map *map)
 	}
 }
 
-void	add_line_to_map(t_map *map, char *line)
+void add_line_to_map(t_map *map, char *line)
 {
-	int	old_height;
-	int	new_height;
+	int old_height;
+	int new_height;
 
+	old_height = map->height;
+	new_height = map->height + 1;
 	check_map_width_height(map);
-	old_height = map->height * sizeof(char *);
-	new_height = (map->height + 1) * sizeof(char *);
-	map->map = ft_realloc(map->map, old_height, new_height);
+	map->map = ft_realloc(map->map, old_height * sizeof(char *), new_height * sizeof(char *));
+	if (map->map == NULL)
+	{
+		ft_fprintf(2, "Error: Memory allocation failed ");
+		exit(EXIT_FAILURE);
+	}
 	map->map[map->height] = ft_strdup(line);
 	if (map->map[map->height] == NULL)
 	{
 		free_double_ptr(map->map, map->height);
-		ft_fprintf(2, "Error");
+		ft_fprintf(2, "Error: Memory allocation failed ");
 		exit(EXIT_FAILURE);
 	}
 	map->height++;

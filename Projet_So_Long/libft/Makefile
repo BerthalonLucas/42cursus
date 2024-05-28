@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2024/05/27 02:13:45 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/28 23:09:36 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC 		=	src/verif/ft_isalpha.c			\
 				src/printf/ft_printf_utils1.c	\
 				src/printf/ft_printf_utils2.c	\
 				src/printf/ft_printf_utils3.c	\
+				src/printf/ft_printf_utils4.c	\
 				src/printf/ft_printf.c			\
 				src/fprintf/ft_fprintf_utils1.c	\
 				src/fprintf/ft_fprintf_utils2.c	\

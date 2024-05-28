@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 00:12:53 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 01:37:37 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:43:01 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	main(int argc, char *argv[])
 	if (!check_filename(argv[1]))
 		return (1);
 	fd = check_fd(argv[1]);
-	printf("fd = %d\n", fd);
 	if (fd == 0)
 		return (1);
 	init_game(&game);
 	get_map(game.map, fd);
 	close(fd);
+	// ft_printf("%t", game.map->map);
 	check_map(game.map);
 	mlx_start(&game);
 	mlx_terminate(game.mlx);

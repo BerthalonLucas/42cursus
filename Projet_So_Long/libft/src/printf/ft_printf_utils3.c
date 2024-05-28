@@ -6,11 +6,12 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:47:06 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 00:59:35 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:42:33 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft.h"
+#include <stdio.h>
 
 int	count(long int i)
 {
@@ -47,14 +48,42 @@ int	count_hex(unsigned long long int i)
 	return (y);
 }
 
+int	count_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (0);
+	while (tab[i])
+		i++;
+	return (i);
+}
+
 int	write_char_tab(va_list args, t_pf *pf)
 {
 	int		i;
-	char	*index;
+	int		count;
 	char	**tab;
 
 	i = 0;
 	tab = va_arg(args, char **);
+	if (!tab)
+		return (-1);
+	count = count_tab(tab);
+	if (count >= 10)
+		i = char_tab_big(tab, pf, count);
+	else
+		i = char_tab(tab, pf);
+	return (i);
+}
+
+int	char_tab(char **tab, t_pf *pf)
+{
+	int		i;
+	char	*index;
+
+	i = 0;
 	while (tab[i])
 	{
 		index = ft_itoa(i);

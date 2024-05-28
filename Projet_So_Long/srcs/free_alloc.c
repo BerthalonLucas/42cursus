@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:50 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 02:54:12 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:21:52 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	cleanup_game(t_game *game)
 {
 	free_images(game->img, game);
 	free_textures(game->textures);
-	free_double_ptr(game->map->map, game->map->height);
+	free_double_ptr(game->map->map, game->map->height / SIZE);
 	free_game(game);
 }
