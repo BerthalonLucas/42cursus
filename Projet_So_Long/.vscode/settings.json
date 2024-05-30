@@ -4,8 +4,11 @@
 			"cwd": "/home/lberthal/Desktop/repogit/Projet_So_Long",
 			"binaryPath": "/home/lberthal/Desktop/repogit/Projet_So_Long/so_long",
 			"binaryArgs": [
-				"maps/invalid_map_10.ber"
+				"maps/valid_map_2.ber"
 			]
 		}
-	]
+	],
+	"files.associations": {
+		"stdio.h": "c"
+	}
 }

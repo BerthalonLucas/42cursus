@@ -6,12 +6,11 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:15:58 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/30 04:57:02 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 05:07:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdio.h>
 
 void	mlx_start(t_game *game)
 {
