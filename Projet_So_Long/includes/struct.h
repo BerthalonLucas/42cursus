@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 00:09:10 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 00:10:07 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:53:42 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_game
 	t_img			*img;
 	int				frame;
 	int				fd;
+	int				mouv_count;
 }					t_game;
 
 #endif

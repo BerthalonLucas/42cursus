@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 02:49:00 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 01:02:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:57:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	move_player(t_game *game, int dx, int dy)
 		game->img->player->instances->y = new_y;
 		game->player->y = new_y;
 	}
+	game->player->move_count++;
+	ft_printf("Moves: %d\n", game->player->move_count);
 }
 
 void	check_exit(t_game *game, int new_x, int new_y)

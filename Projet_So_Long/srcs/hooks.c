@@ -6,70 +6,63 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 04:58:24 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 00:00:32 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:30:09 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	handle_keypress(void *param)
+void	handle_keypress(mlx_key_data_t key, void *param)
 {
-	t_game			*game;
-	static double	last_move_time;
-	double			current_time;
+	t_game	*game;
 
-	last_move_time = 0;
 	game = (t_game *)param;
-	current_time = mlx_get_time();
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
 		handle_escape(game);
-	if (current_time - last_move_time >= 0.3)
-	{
-		handle_movement(game, &last_move_time, current_time);
-	}
+	if (key.key == MLX_KEY_W && key.action == MLX_PRESS)
+		move_player(game, 0, -SIZE);
+	if (key.key == MLX_KEY_W && key.action == MLX_REPEAT)
+		move_player(game, 0, -SIZE);
+	if (key.key == MLX_KEY_A && key.action == MLX_PRESS)
+		move_player(game, -SIZE, 0);
+	if (key.key == MLX_KEY_A && key.action == MLX_REPEAT)
+		move_player(game, -SIZE, 0);
+	if (key.key == MLX_KEY_S && key.action == MLX_PRESS)
+		move_player(game, 0, SIZE);
+	if (key.key == MLX_KEY_S && key.action == MLX_REPEAT)
+		move_player(game, 0, SIZE);
+	if (key.key == MLX_KEY_D && key.action == MLX_PRESS)
+		move_player(game, SIZE, 0);
+	if (key.key == MLX_KEY_D && key.action == MLX_REPEAT)
+		move_player(game, SIZE, 0);
+	handle_arrow(key, game);
 }
 
-void	handle_movement(t_game *game, double *last_move_time,
-		double current_time)
+void	handle_arrow(mlx_key_data_t key, void *param)
 {
-	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
-	{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
 		move_player(game, 0, -SIZE);
-		*last_move_time = current_time;
-		my_usleep(0.3);
-	}
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
-	{
-		move_player(game, 0, SIZE);
-		*last_move_time = current_time;
-		my_usleep(0.3);
-	}
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	{
+	if (key.key == MLX_KEY_UP && key.action == MLX_REPEAT)
+		move_player(game, 0, -SIZE);
+	if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
 		move_player(game, -SIZE, 0);
-		*last_move_time = current_time;
-		my_usleep(0.3);
-	}
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	{
+	if (key.key == MLX_KEY_LEFT && key.action == MLX_REPEAT)
+		move_player(game, -SIZE, 0);
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
+		move_player(game, 0, SIZE);
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_REPEAT)
+		move_player(game, 0, SIZE);
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
 		move_player(game, SIZE, 0);
-		*last_move_time = current_time;
-		my_usleep(0.3);
-	}
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_REPEAT)
+		move_player(game, SIZE, 0);
 }
 
 void	handle_escape(t_game *game)
 {
 	mlx_close_window(game->mlx);
 	exit(EXIT_SUCCESS);
-}
-
-void	my_usleep(double seconds)
-{
-	double	start_time;
-
-	start_time = mlx_get_time();
-	while ((mlx_get_time() - start_time) < seconds)
-	{
-	}
 }

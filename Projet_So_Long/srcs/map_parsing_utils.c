@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:40:00 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 02:54:55 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:29:51 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,6 @@ int	find_x(t_map *map, char **map_copy)
 		}
 		j++;
 	}
-	return (1);
-}
-
-int	is_path_valid(t_map *map)
-{
-	if (!is_path_valid_p(map))
-		return (0);
-	if (!is_path_valid_c(map))
-		return (0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:41:36 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 02:55:05 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:56:42 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	mark_accessible(char **map, int x, int y)
 	mark_accessible(map, x, y - 1);
 }
 
-int	is_path_valid_p(t_map *map)
+int	is_path_valid(t_map *map)
 {
 	int		i;
 	int		j;
@@ -74,35 +74,6 @@ int	is_path_valid_p(t_map *map)
 		while (j < map->width)
 		{
 			if (copy[i][j] == 'P')
-			{
-				mark_accessible(copy, j, i);
-				break ;
-			}
-			j++;
-		}
-		if (j < map->width)
-			break ;
-		i++;
-	}
-	i = find_x(map, copy);
-	free_double_ptr(copy, map->height);
-	return (i);
-}
-
-int	is_path_valid_c(t_map *map)
-{
-	int		i;
-	int		j;
-	char	**copy;
-
-	copy = ft_map_copy(map->map, map->height);
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			if (copy[i][j] == 'C')
 			{
 				mark_accessible(copy, j, i);
 				break ;

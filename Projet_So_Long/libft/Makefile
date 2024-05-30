@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 19:53:46 by lberthal          #+#    #+#              #
-#    Updated: 2024/05/28 23:09:36 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/30 00:49:36 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC 		=	src/verif/ft_isalpha.c			\
 				src/strings/ft_strchr.c			\
 				src/strings/ft_strrchr.c		\
 				src/strings/ft_strncmp.c		\
+				src/strings/ft_strcmp.c			\
 				src/strings/ft_toupper.c		\
 				src/strings/ft_tolower.c		\
 				src/strings/ft_strlen.c			\
@@ -66,11 +67,11 @@ SRC 		=	src/verif/ft_isalpha.c			\
 				src/fprintf/ft_fprintf_utils1.c	\
 				src/fprintf/ft_fprintf_utils2.c	\
 				src/fprintf/ft_fprintf_utils3.c	\
-				src/fprintf/ft_fprintf.c			\
+				src/fprintf/ft_fprintf.c		\
 				src/gnl/get_next_line.c			\
 				src/gnl/get_next_line_utils.c	\
 				
-
+INCLUDES 	= libft.h
 SHELL = /bin/bash
 
 
@@ -88,7 +89,7 @@ OBJS_DIR 	= .objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 CFLAGS 	= -Wall -Wextra -Werror -g3
 
-NORMINETTE = 	$(shell norminette $(SRC) | grep -c "Error")
+NORMINETTE = 	$(shell norminette | grep -c "Error")
 
 RED			=\033[0;31m
 GREEN		=\033[0;32m
@@ -154,14 +155,15 @@ $(ARC)	: $(OBJS)
 
 norm	: 
 			@if [ $(NORMINETTE) -eq 0 ]; then \
-				echo -e "\n\n$(BLUE)=========================================="; \
-				echo -e "[          $(GREEN)   NORMINETTES OK$(BLUE)             ]"; \
-				echo -e "$(BLUE)==========================================$(END)\n\n"; \
+				echo -e "\n\n$(BLUE)================================================"; \
+				echo -e "[          $(GREEN)   NORMINETTES LIBFT OK$(BLUE)             ]"; \
+				echo -e "$(BLUE)================================================$(END)\n\n"; \
 			else \
-				echo -e "\n$(BLUE)=========================================="; \
-				echo -e "[          $(RED)NORMINETTES ERRORS$(BLUE)          ]"; \
-				echo -e "$(BLUE)==========================================$(END)\n"; \
+				echo -e "\n$(BLUE)================================================"; \
+				echo -e "[          $(RED)NORMINETTES LIBFT ERRORS$(BLUE)          ]"; \
+				echo -e "$(BLUE)================================================$(END)\n"; \
 				norminette $(SRC) | grep "Error"; \
+				norminette $(INCLUDES) | grep "Error"; \
 				printf "\n"; \
 			fi
 

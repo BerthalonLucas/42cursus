@@ -6,11 +6,12 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:15:58 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 01:02:18 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:57:02 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include <stdio.h>
 
 void	mlx_start(t_game *game)
 {
@@ -24,7 +25,7 @@ void	mlx_start(t_game *game)
 	display_map(game);
 	game->map->width *= SIZE;
 	game->map->height *= SIZE;
-	mlx_loop_hook(game->mlx, handle_keypress, game);
+	mlx_key_hook(game->mlx, handle_keypress, game);
 	mlx_close_hook(game->mlx, close_game, game);
 	mlx_loop(game->mlx);
 }
