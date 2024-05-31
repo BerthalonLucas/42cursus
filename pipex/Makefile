@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/05/30 05:09:15 by lberthal         ###   ########.fr        #
+#    Updated: 2024/05/30 21:11:27 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME 		=	pipex
 MLX42		=	./MLX
 
 SRC_DIR 	=	./srcs
-SRC 		=	$(SRC_DIR)/pipex.c		\
+SRC 		=	$(wildcard $(SRC_DIR)/*.c)
 
 INCLUDES	=	./includes
 
@@ -45,7 +45,7 @@ all		:	$(NAME)
 
 
 $(NAME)	:	$(LIBFT) norm $(OBJS)
-			@$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42)/build/libmlx42.a -Iinclude -I ./MLX/include/MLX42 -lglfw -lm
+			@$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT)
 			@echo "$(BLUE)Compilation$(END) $(VC)PIPEX$(END) $(GREEN)OK$(END)"
 
 
@@ -82,7 +82,7 @@ fclean 	: clean
 			@make -s -C ./libft fclean
 
 debug 	: $(LIBFT) $(OBJS)
-			$(CC) $(CFLAGSD) $(SRC) -o $(NAME) $(LIBFT) $(MLX42)/build/libmlx42.a -Iinclude -I ./MLX/include/MLX42 -lglfw -lm
+			$(CC) $(CFLAGSD) $(SRC) -o $(NAME) $(LIBFT)
 			@echo "$(BLUE)Compilation$(END) $(VC)PIPEX$(END) $(GREEN)OK$(END) $(YELLOW)DEBUG$(END)"
 
 re 		: fclean all

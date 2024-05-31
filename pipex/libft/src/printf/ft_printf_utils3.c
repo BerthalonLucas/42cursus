@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:47:06 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/28 23:42:33 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/05/31 05:09:33 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	count_tab(char **tab)
 
 	i = 0;
 	if (!tab)
+		return (0);
+	if(!tab[i])
 		return (0);
 	while (tab[i])
 		i++;
