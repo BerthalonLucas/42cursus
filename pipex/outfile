@@ -1,0 +1,16 @@
+total 384
+drwxr-xr-x  9 lberthal 2023_mulhouse    230 juin   1 07:15 .
+drwxr-xr-x 22 lberthal 2023_mulhouse   4096 juin   1 03:29 ..
+drwxr-xr-x  2 lberthal 2023_mulhouse     21 mai   30 05:10 includes
+-rwxrwxrwx  1 lberthal 2023_mulhouse      0 juin   1 04:59 infile
+drwxr-xr-x  4 lberthal 2023_mulhouse     76 juin   1 07:15 libft
+-rw-r--r--  1 lberthal 2023_mulhouse   2758 mai   30 21:11 Makefile
+drwxr-xr-x  3 lberthal 2023_mulhouse     18 juin   1 07:15 .objs
+-rwxrwxrwx  1 lberthal 2023_mulhouse      0 juin   1 07:15 outfile
+-rw-r--r--  1 lberthal 2023_mulhouse 185687 mai   31 23:05 Parent and Child Processes Flowchart.png
+-rwxr-xr-x  1 lberthal 2023_mulhouse 174872 juin   1 07:15 pipex
+drwxr-xr-x  2 lberthal 2023_mulhouse    143 juin   1 04:14 srcs
+drwxr-xr-x  2 lberthal 2023_mulhouse     33 mai   31 02:42 testes
+-rw-r--r--  1 lberthal 2023_mulhouse  17797 juin   1 06:47 text_project.txt
+drwxr-xr-x  2 lberthal 2023_mulhouse     27 mai   30 21:17 .vscode
+drwxr-xr-x  2 lberthal 2023_mulhouse      6 mai   30 20:58 zzz

@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 05:24:49 by lberthal          #+#    #+#             */
-/*   Updated: 2024/05/31 05:10:40 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/01 04:43:38 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,3 @@ void	init_pipex(t_pipex *pipex, char **av, char **envp)
 	pipex->cmd_path2 = NULL;
 	pipex->path = NULL;
 }
-
-
