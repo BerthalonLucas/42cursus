@@ -6,15 +6,15 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 03:03:56 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/01 07:15:14 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/02 05:42:09 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int find_dot_slash(char *str)
+int	find_dot_slash(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

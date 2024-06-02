@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_uitls.c                                       :+:      :+:    :+:   */
+/*   path_utIls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 03:03:56 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/01 05:10:27 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/02 05:45:53 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void path_verif(t_pipex* pipex)
+void	path_verif(t_pipex *pipex)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (find_dot_slash(pipex->cmd1[0]) == 1)
 		pipex->cmd_path1 = strdup(pipex->cmd1[0]);
@@ -28,6 +28,13 @@ void path_verif(t_pipex* pipex)
 		else
 			pipex->cmd_path1 = NULL;
 	}
+	path_verif_2(pipex);
+}
+
+void	path_verif_2(t_pipex *pipex)
+{
+	char	*tmp;
+
 	if (find_dot_slash(pipex->cmd2[0]) == 1)
 		pipex->cmd_path2 = strdup(pipex->cmd2[0]);
 	else

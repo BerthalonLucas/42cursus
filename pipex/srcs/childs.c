@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 03:15:12 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/01 08:25:15 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/02 05:40:12 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	child_process_fd(t_pipex *pipex, int *fd)
 	close(fd[0]);
 	infile_fd = open(pipex->file1, O_RDONLY);
 	if (infile_fd == -1 || pipex->cmd_path1 == NULL)
-		return(1);
+		return (1);
 	dup2(infile_fd, STDIN_FILENO);
 	close(infile_fd);
 	dup2(fd[1], STDOUT_FILENO);
@@ -29,15 +29,20 @@ int	child_process_fd(t_pipex *pipex, int *fd)
 
 void	child_process(t_pipex *pipex, int *fd)
 {
-	int error;
-	
+	int	error;
+
 	error = child_process_fd(pipex, fd);
 	if (!error)
 		execve(pipex->cmd_path1, pipex->cmd1, pipex->env);
 	if (access(pipex->file1, R_OK) == -1 || access(pipex->file1, F_OK) == -1)
 		ft_fprintf(2, "Pipex: %s: %s\n", pipex->file1, strerror(errno));
 	else
-		ft_fprintf(2, "Pipex: [%s] command not found\n", pipex->cmd1[0]);
+	{
+		if (pipex->cmd_path1 && access(pipex->cmd1[0], X_OK) == -1)
+			ft_fprintf(2, "Pipex: [%s] Permission denied\n", pipex->cmd1[0]);
+		else
+			ft_fprintf(2, "Pipex: [%s] command not found\n", pipex->cmd1[0]);
+	}
 	free_all(pipex);
 	exit(EXIT_FAILURE);
 }
@@ -59,8 +64,8 @@ int	child2_process_fd(t_pipex *pipex, int *fd)
 
 void	child2_process(t_pipex *pipex, int *fd)
 {
-	int error;
-	
+	int	error;
+
 	error = child2_process_fd(pipex, fd);
 	if (!error)
 		execve(pipex->cmd_path2, pipex->cmd2, pipex->env);
@@ -72,10 +77,11 @@ void	child2_process(t_pipex *pipex, int *fd)
 		{
 			ft_fprintf(2, "Pipex: %s: %s\n", pipex->file2, strerror(errno));
 			free_all(pipex);
-	`		exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
-		if (pipex->cmd_path2 == NULL && access(pipex->cmd2[0], X_OK) == -1)
-			ft_printf("Pipex: %s: %s\n", pipex->cmd2[0], strerror(errno));
+		if (pipex->cmd_path2 && access(pipex->cmd2[0], X_OK) == -1
+			&& access(pipex->cmd2[0], F_OK) == 0)
+			ft_fprintf(2, "Pipex: [%s] Permission denied\n", pipex->cmd2[0]);
 		else
 			ft_fprintf(2, "Pipex: [%s] command not found\n", pipex->cmd2[0]);
 	}
@@ -83,9 +89,9 @@ void	child2_process(t_pipex *pipex, int *fd)
 	exit(EXIT_FAILURE);
 }
 
-void ft_usleep(int time)
+void	ft_usleep(int time)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < time)

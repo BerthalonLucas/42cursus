@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 05:28:23 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/01 07:08:31 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/02 05:41:58 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_fork(t_pipex *pipex)
 void	ft_childs(t_pipex *pipex, pid_t pid_main, int *fd)
 {
 	pid_t	child2;
+	int		status;
 
 	if (pid_main != 0)
 	{
@@ -43,22 +44,8 @@ void	ft_childs(t_pipex *pipex, pid_t pid_main, int *fd)
 		if (child2 == 0)
 			child2_process(pipex, fd);
 		else
-			wait_for_childs();
+			wait(&status);
 	}
 	else
 		child_process(pipex, fd);
-}
-
-void	wait_for_childs(void)
-{
-	int	status;
-
-	wait(&status);
-	// ft_printf("status: %d\n", status);
-	// if (WIFEXITED(status))
-	// {
-	// 	ft_printf("child process exited with status %d\n", WEXITSTATUS(status));
-	// }
-	// else
-	// 	ft_printf("child process exited abnormally\n");
 }
