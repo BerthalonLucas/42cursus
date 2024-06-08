@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 07:00:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/08 07:04:33 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/08 08:27:47 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void *routine(void *arg)
-{
+// void *routine(void *arg)
+// {
 
-}
+// }

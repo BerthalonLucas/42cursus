@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 03:57:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/08 07:02:40 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/08 08:27:04 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_gb
 {
 	void	*ptr;
 	struct s_gb	*next;
-}		gb_t;
+}		t_gb;
 
 typedef struct s_philo
 {
@@ -33,7 +33,7 @@ typedef struct s_philo
 	int stop;
 	pthread_mutex_t *left;
 	pthread_mutex_t *right;
-}		philo_t;
+}		t_philo;
 
 typedef struct s_a
 {
@@ -43,9 +43,11 @@ typedef struct s_a
 	int		time_to_sleep;
 	int		nb_eat;
 	int time_start;
-	philo_t	**philo;
-	gb_t	*gb;
-}				a_t;
+	t_philo	**philo;
+	t_gb	*gb;
+	pthread_mutex_t *forks;
+	
+}				t_a;
 
 void	ft_putstr_fd(char *s, int fd);
 int		ft_isdigit(int c);
@@ -53,6 +55,14 @@ int valid_args(int ac, char **av);
 int valid_start(int ac, char **av);
 long atol(const char *str);
 void *routine(void *arg);
+void *add_to_gb(t_gb *gb, void *ptr);
+void free_gb(t_gb *gb);
+void *new_malloc(t_a *a, size_t size);
+void free_all(t_a *a);
+void init_mutex(t_a *a);
+void	init_philosophers(t_a *a);
+long ft_atol(const char *str);
+void	init_struct(t_a *a, int ac, char **av);
 
 
 #endif // PHILO_H

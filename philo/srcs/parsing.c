@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:00:02 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/08 06:25:59 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/08 08:23:19 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int valid_args(int ac, char **av)
 	return (1);
 }
 
-long atol(const char *str)
+long ft_atol(const char *str)
 {
 	int i;
 	int res;

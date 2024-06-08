@@ -1,0 +1,504 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
+#    Updated: 2024/06/08 06:13:57 by lberthal         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME 		=	philo
+
+SRC_DIR 	=	./srcs
+SRC 		=	$(wildcard $(SRC_DIR)/*.c)
+
+INCLUDES	=	./includes
+
+NORMINETTE = 	$(shell norminette $(SRC) $(INCLUDES) | grep -c "Error")
+
+OBJS_DIR 	= .objs
+OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
+
+CC 		= gcc
+
+CFLAGS 	= -Wall -Wextra -Werror -g3 -pthread
+CFLAGSD = -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
+
+
+RED			=\033[0;31m
+GREEN		=\033[0;32m
+YELLOW		=\033[0;33m
+BLUE		=\033[0;34m
+VC			=\033[0;35m
+CYAN		=\033[0;96m
+DARK_GRAY	=\033[0;90m
+END			=\033[0m
+
+all		:	$(NAME)
+
+
+$(NAME)	:	$(OBJS)
+			@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+			@echo "$(BLUE)Compilation$(END) $(VC)PHILO$(END) $(GREEN)OK$(END)"
+
+
+bonus	:	$(NAME_BONUS)
+
+$(OBJS_DIR)/%.o 	: %.c
+			@mkdir -p $(dir $@)
+			@$(CC) $(CFLAGS) -o $@ -c $^ 
+
+norm	: 
+			@if [ $(NORMINETTE) -eq 0 ]; then \
+				echo "\n\n$(BLUE)================================================"; \
+				echo "[          $(GREEN)   NORMINETTES PHILO OK$(BLUE)             ]"; \
+				echo "$(BLUE)================================================$(END)\n\n"; \
+			else \
+				echo "\n$(BLUE)=============================================="; \
+				echo "[          $(RED)NORMINETTES PHILO ERRORS$(BLUE)          ]"; \
+				echo "$(BLUE)==============================================$(END)\n"; \
+				norminette $(SRC) | grep "Error"; \
+				norminette $(INCLUDES) | grep "Error"; \
+				echo "\n"; \
+			fi
+
+clean 	:
+			@rm -rf .objs
+			@echo "$(YELLOW)clean$(END) $(VC)PHILO$(END) $(GREEN)OK$(END)"
+
+fclean 	: clean
+			@$(RM) $(NAME)
+			@echo "$(YELLOW)fclean$(END) $(VC)PHILO$(END) $(GREEN)OK$(END)"
+
+debug 	: $(OBJS)
+			$(CC) $(CFLAGSD) $(SRC) -o $(NAME)
+			@echo "$(BLUE)Compilation$(END) $(VC)PHILO$(END) $(GREEN)OK$(END) $(YELLOW)DEBUG$(END)"
+
+re 		: fclean all
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/01 15:10:47 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 05:57:24 by lberthal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_philo.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 07:03:21 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 07:03:27 by lberthal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 06:28:15 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:34:30 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+void	init_struct(t_a *a, int ac, char **av)
+{
+	memset(a, 0, sizeof(t_a));
+	a->gb = (t_gb *)malloc(sizeof(t_gb));
+	if (!a->gb)
+	{
+		ft_putstr_fd("Error: Memory allocation failed\n", 2);
+		return ;
+	}
+	a->gb->next = NULL;
+	a->nb_philo = ft_atol(av[1]);
+	a->time_to_die = ft_atol(av[2]);
+	a->time_to_eat = ft_atol(av[3]);
+	a->time_to_sleep = ft_atol(av[4]);
+	if (ac == 6)
+		a->nb_eat = ft_atol(av[5]);
+	else
+		a->nb_eat = -1;
+	a->philo = NULL;
+	a->forks = NULL;
+}
+
+void	init_mutex(t_a *a)
+{
+	int	i;
+
+	i = 0;
+	a->forks = new_malloc(a, sizeof(pthread_mutex_t) * a->nb_philo);
+	if (!a->forks)
+	{
+		free_all(a);
+		return ;
+	}
+	while (i < a->nb_philo)
+	{
+		if (pthread_mutex_init(&a->forks[i], NULL) != 0)
+		{
+			ft_putstr_fd("Error initializing mutex\n", 2);
+			free_all(a);
+			return ;
+		}
+		i++;
+	}
+}
+
+void	init_philosophers(t_a *a)
+{
+	int	i;
+
+	a->philo = new_malloc(a, sizeof(t_philo *) * a->nb_philo);
+	if (!a->philo)
+		return ;
+	i = 0;
+	while (i < a->nb_philo)
+	{
+		a->philo[i] = new_malloc(a, sizeof(t_philo));
+		if (!a->philo[i])
+			return ;
+		a->philo[i]->id = i;
+		a->philo[i]->left = &a->forks[i];
+		a->philo[i]->right = &a->forks[(i + 1) % a->nb_philo];
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routines.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 06:41:34 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:27:34 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 06:00:02 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:23:19 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+int valid_args(int ac, char **av)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (!isdigit(av[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+long ft_atol(const char *str)
+{
+	int i;
+	int res;
+
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	return (res);
+}
+
+int valid_start(int ac, char **av)
+{
+	if (ac != 5 && ac != 6)
+	{
+    	ft_putstr_fd("only 5 args needed\n", 2);
+		return (1);
+	}
+	if (!valid_args(ac, av))
+	{
+		ft_putstr_fd("only numbers are allowed\n", 2);
+		return (1);
+	}
+	if (atol(av[1]) < 2 || atol(av[1]) > 200)
+	{
+		ft_putstr_fd("number of philosophers must be between 2 and 200\n", 2);
+		return (1);
+	}
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/20 02:21:57 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 06:01:59 by lberthal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (2048);
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   garbage_collector.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 06:31:08 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:26:07 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+void *add_to_gb(t_gb *gb, void *ptr)
+{
+	t_gb *new;
+
+	new = malloc(sizeof(t_gb));
+	if (!new)
+		return (NULL);
+	new->ptr = ptr;
+	new->next = gb->next;
+	gb->next = new;
+	return (ptr);
+}
+
+void free_gb(t_gb *gb)
+{
+	t_gb *tmp;
+
+	if (!gb)
+		return ;
+	while (gb->next)
+	{
+		tmp = gb->next;
+		free(gb->next->ptr);
+		gb->next = gb->next->next;
+		free(tmp);
+	}
+}
+
+void *new_malloc(t_a *a, size_t size)
+{
+	void *ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+	{
+		free_gb(a->gb);
+		return (NULL);
+	}
+	add_to_gb(a->gb, ptr);
+	return (ptr);
+}
+
+void free_all(t_a *a)
+{
+	free_gb(a->gb);
+	if (a->gb)
+		free(a->gb);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 07:00:38 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:27:47 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+// void *routine(void *arg)
+// {
+
+// }
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 06:08:52 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:34:14 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+// int main(int ac, char **av)
+// {
+// 	t_a    a;
+
+// 	(void)a;
+// 	if (valid_start(ac, av))
+// 		return (1);
+// 	init_struct(&a, ac, av);
+// 		return (0);
+// }
+
+void	print_philosophers(t_a *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->nb_philo)
+	{
+		printf("Philosopher %d: left fork = %p, right fork = %p\n",
+			a->philo[i]->id, (void *)a->philo[i]->left, (void *)a->philo[i]->right);
+		i++;
+	}
+}
+
+int	main(int ac, char **av)
+{
+	t_a	a;
+
+	if (valid_start(ac, av))
+		return (1);
+	init_struct(&a, ac, av);
+	init_mutex(&a);
+	init_philosophers(&a);
+	print_philosophers(&a);
+
+	// Nettoyage
+	for (int i = 0; i < a.nb_philo; i++)
+		pthread_mutex_destroy(&a.forks[i]);
+	free_all(&a);
+	return (0);
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 03:57:54 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/08 08:27:04 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+#define PHILO_H
+
+#include <stdio.h> 
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <sys/time.h> 
+#include <string.h>
+#include <ctype.h>
+
+typedef struct s_gb
+{
+	void	*ptr;
+	struct s_gb	*next;
+}		t_gb;
+
+typedef struct s_philo
+{
+	int id;
+	int stop;
+	pthread_mutex_t *left;
+	pthread_mutex_t *right;
+}		t_philo;
+
+typedef struct s_a
+{
+	int		nb_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		nb_eat;
+	int time_start;
+	t_philo	**philo;
+	t_gb	*gb;
+	pthread_mutex_t *forks;
+	
+}				t_a;
+
+void	ft_putstr_fd(char *s, int fd);
+int		ft_isdigit(int c);
+int valid_args(int ac, char **av);
+int valid_start(int ac, char **av);
+long atol(const char *str);
+void *routine(void *arg);
+void *add_to_gb(t_gb *gb, void *ptr);
+void free_gb(t_gb *gb);
+void *new_malloc(t_a *a, size_t size);
+void free_all(t_a *a);
+void init_mutex(t_a *a);
+void	init_philosophers(t_a *a);
+long ft_atol(const char *str);
+void	init_struct(t_a *a, int ac, char **av);
+
+
+#endif // PHILO_H

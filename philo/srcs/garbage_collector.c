@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:31:08 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/08 06:50:45 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/08 08:26:07 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void *add_to_gb(gb_t *gb, void *ptr)
+void *add_to_gb(t_gb *gb, void *ptr)
 {
-	gb_t *new;
+	t_gb *new;
 
-	new = malloc(sizeof(gb_t));
+	new = malloc(sizeof(t_gb));
 	if (!new)
 		return (NULL);
 	new->ptr = ptr;
@@ -25,10 +25,12 @@ void *add_to_gb(gb_t *gb, void *ptr)
 	return (ptr);
 }
 
-void free_gb(gb_t *gb)
+void free_gb(t_gb *gb)
 {
-	gb_t *tmp;
+	t_gb *tmp;
 
+	if (!gb)
+		return ;
 	while (gb->next)
 	{
 		tmp = gb->next;
@@ -38,7 +40,7 @@ void free_gb(gb_t *gb)
 	}
 }
 
-void *new_malloc(a_t *a, size_t size)
+void *new_malloc(t_a *a, size_t size)
 {
 	void *ptr;
 
@@ -52,8 +54,9 @@ void *new_malloc(a_t *a, size_t size)
 	return (ptr);
 }
 
-void free_all(a_t *a)
+void free_all(t_a *a)
 {
 	free_gb(a->gb);
-	free(a->gb);
+	if (a->gb)
+		free(a->gb);
 }
