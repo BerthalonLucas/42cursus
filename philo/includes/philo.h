@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 03:57:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/08 08:27:04 by root             ###   ########.fr       */
+/*   Updated: 2024/06/09 03:44:13 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,16 @@ typedef struct s_philo
 {
 	int id;
 	int stop;
+	int time_to_die;
+	int time_to_sleep;
+	int time_to_eat;
+	int last_time_eat;
+	long long time_start;
+	int has_eat;
+	int nb_eat;
 	pthread_mutex_t *left;
 	pthread_mutex_t *right;
+	pthread_mutex_t *print;
 }		t_philo;
 
 typedef struct s_a
@@ -42,10 +50,11 @@ typedef struct s_a
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		nb_eat;
-	int time_start;
+	long long time_start;
 	t_philo	**philo;
 	t_gb	*gb;
 	pthread_mutex_t *forks;
+	pthread_mutex_t *print;
 	
 }				t_a;
 
@@ -63,6 +72,18 @@ void init_mutex(t_a *a);
 void	init_philosophers(t_a *a);
 long ft_atol(const char *str);
 void	init_struct(t_a *a, int ac, char **av);
+void *routine(void *arg);
+void phtread_create_phi(t_a *a);
+long long gt(void);
+long long ct(long long time);
+void put_time(t_a *a);
+int current_time(t_philo *philo);
+
+void print_struct_a(t_a *a);
+void print_struct_philo(t_a *a);
+void print_struct_philo_alone(t_philo *philo);
+void ft_usleep(long long time_in_ms);
 
 
-#endif // PHILO_H
+#endif
+
