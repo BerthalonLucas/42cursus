@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:28:15 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 02:49:00 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/17 22:12:24 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void init_struct(t_a *a, int ac, char **av)
     a->gb = (t_gb *)malloc(sizeof(t_gb));
     if (!a->gb)
     {
-        ft_putstr_fd("Error: Memory allocation failed\n", 2);
+        ft_putstr_fd("Error: Memory garbage allocation failed\n", 2);
         return;
     }
     a->gb->next = NULL;
@@ -30,8 +30,12 @@ void init_struct(t_a *a, int ac, char **av)
         a->nb_eat = ft_atol(av[5]);
     else
         a->nb_eat = -1;
+    a->stop = 0;
     a->philo = NULL;
     a->forks = NULL;
+    a->print = NULL;
+    a->monitor = NULL;
+    a->stop_m = NULL;
 }
 
 void init_philosophers(t_a *a)
@@ -58,37 +62,7 @@ void init_philosophers(t_a *a)
         a->philo[i]->nb_eat = a->nb_eat;
         a->philo[i]->time_start = a->time_start;
 		a->philo[i]->stop = 0;
-		a->philo[i]->print = &a->print[0];
+        a->philo[i]->a = a;
         i++;
     }
-}
-
-void	init_mutex(t_a *a)
-{
-	int	i;
-
-	i = 0;
-	a->forks = new_malloc(a, sizeof(pthread_mutex_t) * a->nb_philo);
-	a->print = new_malloc(a, sizeof(pthread_mutex_t));
-	if (!a->forks || !a->print)
-	{
-		free_all(a);
-		return ;
-	}
-	while (i < a->nb_philo)
-	{
-		if (pthread_mutex_init(&a->forks[i], NULL) != 0)
-		{
-			ft_putstr_fd("Error initializing mutex\n", 2);
-			free_all(a);
-			return ;
-		}
-		i++;
-	}
-	if (pthread_mutex_init(&a->print[0], NULL) != 0)
-	{
-		ft_putstr_fd("Error initializing mutex\n", 2);
-		free_all(a);
-		return ;
-	}
 }

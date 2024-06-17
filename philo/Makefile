@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/06/08 06:13:57 by lberthal         ###   ########.fr        #
+#    Updated: 2024/06/10 19:49:32 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 CC 		= gcc
 
 CFLAGS 	= -Wall -Wextra -Werror -g3 -pthread
-CFLAGSD = -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
+CFLAGSD = -Wall -Wextra -Werror -g3 -pthread -fsanitize=thread
 
 
 RED			=\033[0;31m

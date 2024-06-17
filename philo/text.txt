@@ -115,7 +115,7 @@ void free_all(t_a *a)
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:28:15 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 02:49:00 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:38:28 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void init_struct(t_a *a, int ac, char **av)
         a->nb_eat = ft_atol(av[5]);
     else
         a->nb_eat = -1;
+    a->stop = 0;
     a->philo = NULL;
     a->forks = NULL;
 }
@@ -171,36 +172,6 @@ void init_philosophers(t_a *a)
         i++;
     }
 }
-
-void	init_mutex(t_a *a)
-{
-	int	i;
-
-	i = 0;
-	a->forks = new_malloc(a, sizeof(pthread_mutex_t) * a->nb_philo);
-	a->print = new_malloc(a, sizeof(pthread_mutex_t));
-	if (!a->forks || !a->print)
-	{
-		free_all(a);
-		return ;
-	}
-	while (i < a->nb_philo)
-	{
-		if (pthread_mutex_init(&a->forks[i], NULL) != 0)
-		{
-			ft_putstr_fd("Error initializing mutex\n", 2);
-			free_all(a);
-			return ;
-		}
-		i++;
-	}
-	if (pthread_mutex_init(&a->print[0], NULL) != 0)
-	{
-		ft_putstr_fd("Error initializing mutex\n", 2);
-		free_all(a);
-		return ;
-	}
-}
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -209,7 +180,7 @@ void	init_mutex(t_a *a)
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:08:52 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 02:57:26 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:41:05 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,11 +210,11 @@ void print_struct_philo(t_a *a)
 		printf("time_to_sleep = %d\n", a->philo[i]->time_to_sleep);
 		printf("time_to_eat = %d\n", a->philo[i]->time_to_eat);
 		printf("last_time_eat = %d\n", a->philo[i]->last_time_eat);
-		printf("time_start = %lld\n", a->philo[i]->time_start);
+		printf("time_start = %lu\n", a->philo[i]->time_start);
 		printf("has_eat = %d\n", a->philo[i]->has_eat);
 		printf("nb_eat = %d\n", a->philo[i]->nb_eat);
 		printf("left = %p\n", (void *)a->philo[i]->left);
-		printf("right = %p\n", (void *)a->philo[i]->right);
+		printf("right = %p\n\n\n", (void *)a->philo[i]->right);
 		i++;
 	}
 }
@@ -255,10 +226,10 @@ void print_struct_a(t_a *a)
 	printf("time_to_eat = %d\n", a->time_to_eat);
 	printf("time_to_sleep = %d\n", a->time_to_sleep);
 	printf("nb_eat = %d\n", a->nb_eat);
-	printf("time_start = %lld\n", a->time_start);
+	printf("time_start = %lu\n", a->time_start);
 	printf("philo = %p\n", (void *)a->philo);
 	printf("gb = %p\n", (void *)a->gb);
-	printf("forks = %p\n", (void *)a->forks);
+	printf("forks = %p\n\n\n", (void *)a->forks);
 }
 void print_struct_philo_alone(t_philo *philo)
 {
@@ -268,11 +239,12 @@ void print_struct_philo_alone(t_philo *philo)
 	printf("time_to_sleep = %d\n", philo->time_to_sleep);
 	printf("time_to_eat = %d\n", philo->time_to_eat);
 	printf("last_time_eat = %d\n", philo->last_time_eat);
-	printf("time_start = %lld\n", philo->time_start);
+	printf("time_start = %lu\n", philo->time_start);
 	printf("has_eat = %d\n", philo->has_eat);
 	printf("nb_eat = %d\n", philo->nb_eat);
 	printf("left = %p\n", (void *)philo->left);
 	printf("right = %p\n", (void *)philo->right);
+	printf("print = %p\n\n\n", (void *)philo->print);
 }
 
 int	main(int ac, char **av)
@@ -286,9 +258,8 @@ int	main(int ac, char **av)
 	init_philosophers(&a);
 	a.time_start = gt();
 	put_time(&a);
-	// print_struct_philo(&a);
-	// print_struct_a(&a);
-	printf("time start = %lld\n", a.time_start);
+	print_struct_philo(&a);
+	print_struct_a(&a);
 	phtread_create_phi(&a);
 	int i = 0;
 	while (i < a.nb_philo)
@@ -299,6 +270,50 @@ int	main(int ac, char **av)
 	pthread_mutex_destroy(a.print);
 	free_all(&a);
 	return (0);
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mutex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/10 18:02:51 by lberthal          #+#    #+#             */
+/*   Updated: 2024/06/10 18:03:08 by lberthal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/philo.h"
+
+void	init_mutex(t_a *a)
+{
+	int	i;
+
+	i = 0;
+	a->forks = new_malloc(a, sizeof(pthread_mutex_t) * a->nb_philo);
+	a->print = new_malloc(a, sizeof(pthread_mutex_t));
+	if (!a->forks || !a->print)
+	{
+		free_all(a);
+		return ;
+	}
+	while (i < a->nb_philo)
+	{
+		if (pthread_mutex_init(&a->forks[i], NULL) != 0)
+		{
+			ft_putstr_fd("Error initializing mutex\n", 2);
+			free_all(a);
+			return ;
+		}
+		i++;
+	}
+	if (pthread_mutex_init(&a->print[0], NULL) != 0)
+	{
+		ft_putstr_fd("Error initializing mutex\n", 2);
+		free_all(a);
+		return ;
+	}
 }
 
 /* ************************************************************************** */
@@ -372,101 +387,12 @@ int valid_start(int ac, char **av)
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 03:57:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 03:44:13 by lberthal         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef PHILO_H
-#define PHILO_H
-
-#include <stdio.h> 
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sys/time.h> 
-#include <string.h>
-#include <ctype.h>
-
-typedef struct s_gb
-{
-	void	*ptr;
-	struct s_gb	*next;
-}		t_gb;
-
-typedef struct s_philo
-{
-	int id;
-	int stop;
-	int time_to_die;
-	int time_to_sleep;
-	int time_to_eat;
-	int last_time_eat;
-	long long time_start;
-	int has_eat;
-	int nb_eat;
-	pthread_mutex_t *left;
-	pthread_mutex_t *right;
-	pthread_mutex_t *print;
-}		t_philo;
-
-typedef struct s_a
-{
-	int		nb_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		nb_eat;
-	long long time_start;
-	t_philo	**philo;
-	t_gb	*gb;
-	pthread_mutex_t *forks;
-	pthread_mutex_t *print;
-	
-}				t_a;
-
-void	ft_putstr_fd(char *s, int fd);
-int		ft_isdigit(int c);
-int valid_args(int ac, char **av);
-int valid_start(int ac, char **av);
-long atol(const char *str);
-void *routine(void *arg);
-void *add_to_gb(t_gb *gb, void *ptr);
-void free_gb(t_gb *gb);
-void *new_malloc(t_a *a, size_t size);
-void free_all(t_a *a);
-void init_mutex(t_a *a);
-void	init_philosophers(t_a *a);
-long ft_atol(const char *str);
-void	init_struct(t_a *a, int ac, char **av);
-void *routine(void *arg);
-void phtread_create_phi(t_a *a);
-long long gt(void);
-long long ct(long long time);
-void put_time(t_a *a);
-int current_time(t_philo *philo);
-
-void print_struct_a(t_a *a);
-void print_struct_philo(t_a *a);
-void print_struct_philo_alone(t_philo *philo);
-void ft_usleep(long long time_in_ms);
-
-
-#endif
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   routines.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:41:34 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 03:44:48 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:25:17 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -475,47 +401,44 @@ void ft_usleep(long long time_in_ms);
 void *routine(void *arg)
 {
 	t_philo *philo;
-	long long time_since_last_meal;
+	size_t time_since_last_meal;
 
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		print_struct_philo_alone(philo);
-		printf("[%d] Philosopher [%d] is thinking\n", current_time(philo), philo->id);
 		pthread_mutex_lock(philo->left);
-		printf("[%d] Philosopher [%d] has taken a fork\n", current_time(philo), philo->id);
+		print_action_and_time(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right);
-		printf("[%d] Philosopher [%d] has taken a fork\n", current_time(philo), philo->id);
-		philo->last_time_eat = gt();
-		philo->has_eat++;
-		printf("[%d] Philosopher [%d] is eating\n", current_time(philo), philo->id);
+		print_action_and_time(philo, "has taken a fork");
+		print_action_and_time(philo, "is eating");
+		philo->last_time_eat = ct(philo->time_start);
+		fprintf(stderr, "test pour voir \n\n");
 		ft_usleep(philo->time_to_eat);
 		pthread_mutex_unlock(philo->left);
 		pthread_mutex_unlock(philo->right);
-		printf("[%d] Philosopher [%d] is sleeping\n", current_time(philo), philo->id);
+		print_action_and_time(philo, "is sleeping");
 		ft_usleep(philo->time_to_sleep);
-		if (philo->has_eat == philo->nb_eat)
-			break;
-		time_since_last_meal = gt() - philo->last_time_eat;
-		if (time_since_last_meal > philo->time_to_die)
-		{
-			printf("[%d] Philosopher [%d] died\n", current_time(philo), philo->id);
-			philo->stop = 1;
-			break;
-		}
+		print_action_and_time(philo, "is thinking");
+		time_since_last_meal = ct(philo->time_start) - philo->last_time_eat;
+		(void)time_since_last_meal;
+		// if (time_since_last_meal >= philo->time_to_die)
+		// {
+		// 	print_action_and_time(philo, "died");
+		// 	philo->stop = 1;
+		// 	return (NULL);
+		// }
+		// if (philo->stop == 1)
+		// 	return (NULL);
 	}
 	return (NULL);
 }
 
-int current_time(t_philo *philo)
+void print_action_and_time(t_philo *philo, char *action)
 {
-	int time;
-
-	time = ct(philo->time_start);
-	return (time);
+	pthread_mutex_lock(&philo->print[0]);
+	printf("[%lu] [%d] %s\n", ct(philo->time_start), philo->id, action);
+	pthread_mutex_unlock(&philo->print[0]);
 }
-
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -524,7 +447,7 @@ int current_time(t_philo *philo)
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 07:00:38 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 01:04:53 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:45:49 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -540,13 +463,7 @@ void phtread_create_phi(t_a *a)
 	while (i < a->nb_philo)
 	{
 		pthread_create(&threads[i], NULL, routine, (void *)a->philo[i]);
-		usleep(100);
-		i++;
-	}
-	i = 0;
-	while (i < a->nb_philo)
-	{
-		pthread_join(threads[i], NULL);
+		pthread_detach(threads[i]);
 		i++;
 	}
 }
@@ -558,22 +475,26 @@ void phtread_create_phi(t_a *a)
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 21:36:44 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/09 03:44:06 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:45:23 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/philo.h"
 
-long long gt(void)
+size_t gt(void)
 {
 	struct timeval tv;
 
-	gettimeofday(&tv, NULL);
-	return ((long long)tv.tv_sec * 1000 + (long long)tv.tv_usec / 1000);
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		perror("gettimeofday");
+		exit(EXIT_FAILURE);
+	}
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-long long ct(long long time)
+size_t ct(size_t time)
 {
 	return (gt() - time);
 }
@@ -590,21 +511,17 @@ void put_time(t_a *a)
 	}
 }
 
-void ft_usleep(long long time_in_ms)
+void ft_usleep(size_t time_in_ms)
 {
-	struct timeval start;
-	struct timeval current;
-	long long start_time;
-	long long current_time;
+	size_t start;
 
-	gettimeofday(&start, NULL);
-	start_time = start.tv_sec * 1000LL + start.tv_usec / 1000LL;
-
-	while (1)
+	start = gt();
+	// printf("start = %lu\n", start);
+	while ((gt() - start) < time_in_ms)
 	{
-		gettimeofday(&current, NULL);
-		current_time = current.tv_sec * 1000LL + current.tv_usec / 1000LL;
-		if (current_time - start_time >= time_in_ms)
-			break;
+		printf("current time = %lu\n",(gt() - start));
+		printf("start_time = %lu\n", start);
+		printf("time_in_ms = %lu\n", time_in_ms);
+		usleep(100);
 	}
 }
