@@ -6,14 +6,25 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/06/10 19:49:32 by lberthal         ###   ########.fr        #
+#    Updated: 2024/07/05 02:31:36 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	philo
 
 SRC_DIR 	=	./srcs
-SRC 		=	$(wildcard $(SRC_DIR)/*.c)
+SRC 		=		srcs/checks.c				\
+					srcs/forks.c				\
+					srcs/ft_isdigit.c		\
+					srcs/ft_putstr_fd.c		\
+					srcs/garbage_collector.c		\
+					srcs/init.c		\
+					srcs/main.c		\
+					srcs/mutex.c		\
+					srcs/parsing.c		\
+					srcs/routines.c		\
+					srcs/threads.c		\
+					srcs/time_related_fonctions.c		\
 
 INCLUDES	=	./includes
 

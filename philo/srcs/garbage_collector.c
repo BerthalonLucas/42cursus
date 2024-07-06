@@ -12,9 +12,9 @@
 
 #include "../includes/philo.h"
 
-void *add_to_gb(t_gb *gb, void *ptr)
+void	*add_to_gb(t_gb *gb, void *ptr)
 {
-	t_gb *new;
+	t_gb	*new;
 
 	new = malloc(sizeof(t_gb));
 	if (!new)
@@ -25,9 +25,9 @@ void *add_to_gb(t_gb *gb, void *ptr)
 	return (ptr);
 }
 
-void free_gb(t_gb *gb)
+void	free_gb(t_gb *gb)
 {
-	t_gb *tmp;
+	t_gb	*tmp;
 
 	if (!gb)
 		return ;
@@ -40,9 +40,9 @@ void free_gb(t_gb *gb)
 	}
 }
 
-void *new_malloc(t_a *a, size_t size)
+void	*new_malloc(t_a *a, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = malloc(size);
 	if (!ptr)
@@ -54,7 +54,7 @@ void *new_malloc(t_a *a, size_t size)
 	return (ptr);
 }
 
-void free_all(t_a *a)
+void	free_all(t_a *a)
 {
 	free_gb(a->gb);
 	if (a->gb)

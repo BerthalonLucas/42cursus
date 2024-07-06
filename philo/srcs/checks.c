@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_related_fonctions.c                           :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 21:36:44 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/05 02:31:50 by lberthal         ###   ########.fr       */
+/*   Created: 2024/07/04 00:32:28 by lberthal          #+#    #+#             */
+/*   Updated: 2024/07/04 00:32:45 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-size_t	gt(void)
+int	check_death(t_a *a)
 {
-	struct timeval	tv;
+	int	stop;
 
-	if (gettimeofday(&tv, NULL) == -1)
+	pthread_mutex_lock(a->stop_m);
+	stop = a->stop;
+	pthread_mutex_unlock(a->stop_m);
+	if (stop == 1)
+		return (1);
+	else
+		return (0);
+	return (0);
+}
+
+int	check_eat(t_a *a)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < a->nb_philo && a->nb_eat != -1)
 	{
-		perror("gettimeofday");
-		exit(EXIT_FAILURE);
+		if (a->philo[i]->has_eat >= a->nb_eat)
+			count++;
+		i++;
 	}
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-size_t	cutime(t_a *a)
-{
-	size_t	current_time;
-
-	current_time = gt() - a->time_start;
-	return (current_time);
-}
-
-void	ft_usleep(size_t time_in_ms)
-{
-	size_t	start;
-
-	start = gt();
-	while ((gt() - start) < time_in_ms)
-		usleep(100);
+	if (count == a->nb_philo && a->nb_eat != -1)
+	{
+		a->stop = 1;
+		return (1);
+	}
+	return (0);
 }
