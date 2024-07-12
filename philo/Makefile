@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/07/05 02:31:36 by lberthal         ###   ########.fr        #
+#    Updated: 2024/07/12 03:26:28 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR 	=	./srcs
 SRC 		=		srcs/checks.c				\
 					srcs/forks.c				\
 					srcs/ft_isdigit.c		\
-					srcs/ft_putstr_fd.c		\
+					srcs/print.c		\
 					srcs/garbage_collector.c		\
 					srcs/init.c		\
 					srcs/main.c		\
@@ -36,7 +36,7 @@ OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC:.c=.o))
 CC 		= gcc
 
 CFLAGS 	= -Wall -Wextra -Werror -g3 -pthread
-CFLAGSD = -Wall -Wextra -Werror -g3 -pthread -fsanitize=thread
+CFLAGSD = -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
 
 
 RED			=\033[0;31m

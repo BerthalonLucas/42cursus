@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:52:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/01 05:10:44 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:35:14 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	free_all(t_pipex *pipex)
 		free_double_ptr(pipex->path, count_tab(pipex->path));
 		pipex->path = NULL;
 	}
+	free_all2(pipex);
+}
+
+void	free_all2(t_pipex *pipex)
+{
 	if (pipex->cmd_path1)
 	{
 		free_ptr(pipex->cmd_path1);
@@ -43,7 +48,7 @@ void	free_all(t_pipex *pipex)
 
 void	error_exit(const char *message, t_pipex *pipex)
 {
-	perror(message);
+	ft_printf("Pipex: %s\n", message);
 	free_all(pipex);
 	exit(EXIT_FAILURE);
 }

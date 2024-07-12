@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/05/30 04:57:49 by lberthal         ###   ########.fr        #
+#    Updated: 2024/06/02 01:25:40 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,20 @@ NAME 		=	so_long
 
 MLX42		=	./MLX
 
-SRC_DIR 	=	./srcs
-SRC 		=	$(SRC_DIR)/So_long.c				\
-				$(SRC_DIR)/collect.c				\
-				$(SRC_DIR)/exit.c					\
-				$(SRC_DIR)/init.c					\
-				$(SRC_DIR)/floor.c					\
-				$(SRC_DIR)/free_alloc.c				\
-				$(SRC_DIR)/hooks.c					\
-				$(SRC_DIR)/map_parsing.c			\
-				$(SRC_DIR)/map_parsing_utils.c		\
-				$(SRC_DIR)/map_parsing_utils1.c		\
-				$(SRC_DIR)/mlx_entries.c			\
-				$(SRC_DIR)/player.c					\
-				$(SRC_DIR)/playerimg.c				\
-				$(SRC_DIR)/wall.c					\
+SRC 		=	srcs/collect.c				\
+				srcs/exit.c					\
+				srcs/floor.c				\
+				srcs/free_alloc.c			\
+				srcs/hooks.c				\
+				srcs/init.c					\
+				srcs/map_parsing.c			\
+				srcs/map_parsing_utils.c	\
+				srcs/map_parsing_utils1.c	\
+				srcs/mlx_entries.c			\
+				srcs/So_long.c				\
+				srcs/player.c				\
+				srcs/playerimg.c			\
+				srcs/wall.c					\
 
 INCLUDES	=	./includes
 
@@ -57,8 +56,7 @@ END			=\033[0m
 all		:	$(NAME)
 
 
-$(NAME)	:	$(LIBFT) norm $(OBJS)
-			@cd $(MLX42) && cmake  -B build --log-level=ERROR && cmake --build build -j4 -- -s
+$(NAME)	:	$(LIBFT) $(OBJS) $(MLX42_LIB)
 			@$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42)/build/libmlx42.a -Iinclude -I ./MLX/include/MLX42 -lglfw -lm
 			@echo "$(BLUE)Compilation$(END) $(VC)SO_LONG$(END) $(GREEN)OK$(END)"
 
@@ -66,7 +64,8 @@ $(NAME)	:	$(LIBFT) norm $(OBJS)
 $(LIBFT) : 
 			@make re -s -C ./libft
 
-bonus	:	$(NAME_BONUS)
+$(MLX42_LIB) :
+			@cd $(MLX42) && cmake -B build && cmake --build build -j4
 
 $(OBJS_DIR)/%.o 	: %.c
 			@mkdir -p $(dir $@)

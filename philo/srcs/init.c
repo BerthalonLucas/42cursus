@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:28:15 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/04 22:34:18 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/07/12 02:35:08 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_struct(t_a *a, int ac, char **av)
 	a->print = NULL;
 	a->monitor = NULL;
 	a->stop_m = NULL;
+	a->eat = NULL;
+	a->lte = NULL;
 }
 
 void	init_philosophers(t_a *a)
@@ -56,7 +58,7 @@ void	init_phi_2(t_a *a, int i)
 		a->philo[i] = new_malloc(a, sizeof(t_philo));
 		if (!a->philo[i])
 			return ;
-		a->philo[i]->id = i;
+		a->philo[i]->id = i + 1;
 		a->philo[i]->left = &a->forks[i];
 		if (a->nb_philo == 1)
 			a->philo[i]->right = &a->forks[i];

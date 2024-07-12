@@ -1,4 +1,6 @@
 #! /bin/zsh
 
-python3 -m c_formatter_42 "$1"
-norminette "$1"
+for i in {1..100}
+do
+	./philo 3 610 200 200
+done

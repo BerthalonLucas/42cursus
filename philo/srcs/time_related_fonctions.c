@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 21:36:44 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/05 02:31:50 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/07/12 03:27:34 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ size_t	gt(void)
 
 	if (gettimeofday(&tv, NULL) == -1)
 	{
-		perror("gettimeofday");
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Error: gettimeofday failed\n", 2);
+		return (0);
 	}
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

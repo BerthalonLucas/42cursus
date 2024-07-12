@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 03:57:54 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/05 02:35:26 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/07/12 03:24:59 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ typedef struct s_a
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*stop_m;
 	pthread_mutex_t	*eat;
+	pthread_mutex_t	*lte;
 }					t_a;
 
 //====================MANIP_CHAR_CHAINE============//
 void				ft_putstr_fd(char *s, int fd);
 int					ft_isdigit(int c);
 long				ft_atol(const char *str);
+int					check_value(char **av, int ac);
 //==================================================//
 
 //====================VALIDATION===================//
@@ -95,6 +97,7 @@ void				pthread_create_phi(t_a *a);
 void				ft_usleep(size_t time_in_ms);
 void				*monitoring(void *arg);
 void				*monitoring_2(t_a *a, int i);
+int					monitoring_3(t_a *a, int i);
 //==================================================//
 
 //====================PRINT_AND_CHECKS=============//
@@ -106,7 +109,7 @@ int					check_eat(t_a *a);
 //==================================================//
 
 //====================FORK_MANAGEMENT==============//
-void				take_forks(t_philo *philo);
+int					take_forks(t_philo *philo);
 void				release_forks(t_philo *philo);
 void				one_philo_one_fork(t_philo *philo);
 //==================================================//

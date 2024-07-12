@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:02:51 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/04 00:31:54 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/07/12 01:26:35 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_mutex(t_a *a)
 	a->print = new_malloc(a, sizeof(pthread_mutex_t));
 	a->stop_m = new_malloc(a, sizeof(pthread_mutex_t));
 	a->eat = new_malloc(a, sizeof(pthread_mutex_t));
+	a->lte = new_malloc(a, sizeof(pthread_mutex_t));
 	if (!a->forks || !a->print)
 	{
 		free_all(a);
@@ -56,6 +57,12 @@ void	init_mutex_2(t_a *a)
 	if (pthread_mutex_init(a->eat, NULL) != 0)
 	{
 		ft_putstr_fd("Error initialize mutex eat\n", 2);
+		free_all(a);
+		return ;
+	}
+	if (pthread_mutex_init(a->lte, NULL) != 0)
+	{
+		ft_putstr_fd("Error initialize mutex lte\n", 2);
 		free_all(a);
 		return ;
 	}

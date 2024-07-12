@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 03:15:12 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/02 05:40:12 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:24:32 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ void	child_process(t_pipex *pipex, int *fd)
 		ft_fprintf(2, "Pipex: %s: %s\n", pipex->file1, strerror(errno));
 	else
 	{
-		if (pipex->cmd_path1 && access(pipex->cmd1[0], X_OK) == -1)
+		if (pipex->cmd_path1 && access(pipex->cmd1[0], X_OK) == -1
+			&& access(pipex->cmd1[0], F_OK) == 0)
 			ft_fprintf(2, "Pipex: [%s] Permission denied\n", pipex->cmd1[0]);
-		else
+		else if (!pipex->cmd_path1 && access(pipex->cmd1[0], F_OK) == -1)
 			ft_fprintf(2, "Pipex: [%s] command not found\n", pipex->cmd1[0]);
+		else
+			ft_fprintf(2, "Pipex: [%s]: %s\n", pipex->cmd1[0], strerror(errno));
 	}
 	free_all(pipex);
 	exit(EXIT_FAILURE);
@@ -82,8 +85,10 @@ void	child2_process(t_pipex *pipex, int *fd)
 		if (pipex->cmd_path2 && access(pipex->cmd2[0], X_OK) == -1
 			&& access(pipex->cmd2[0], F_OK) == 0)
 			ft_fprintf(2, "Pipex: [%s] Permission denied\n", pipex->cmd2[0]);
-		else
+		else if (!pipex->cmd_path2 && access(pipex->cmd2[0], F_OK) == -1)
 			ft_fprintf(2, "Pipex: [%s] command not found\n", pipex->cmd2[0]);
+		else
+			ft_fprintf(2, "Pipex: [%s]: %s\n", pipex->cmd2[0], strerror(errno));
 	}
 	free_all(pipex);
 	exit(EXIT_FAILURE);

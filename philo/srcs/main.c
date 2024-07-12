@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:08:52 by lberthal          #+#    #+#             */
-/*   Updated: 2024/07/07 00:59:54 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:42:36 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int ac, char **av)
 	init_philosophers(&a);
 	pthread_create_phi(&a);
 	destroy_mutex(&a);
-	all_philo_eat(&a);
 	free_all(&a);
 	return (0);
 }

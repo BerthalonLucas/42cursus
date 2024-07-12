@@ -6,7 +6,7 @@
 #    By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 21:22:42 by lucas             #+#    #+#              #
-#    Updated: 2024/05/30 21:11:27 by lberthal         ###   ########.fr        #
+#    Updated: 2024/06/02 23:14:31 by lberthal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ END			=\033[0m
 all		:	$(NAME)
 
 
-$(NAME)	:	$(LIBFT) norm $(OBJS)
+$(NAME)	:	$(LIBFT) $(OBJS)
 			@$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT)
 			@echo "$(BLUE)Compilation$(END) $(VC)PIPEX$(END) $(GREEN)OK$(END)"
 

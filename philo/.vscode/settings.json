@@ -1,0 +1,11 @@
+{
+	"makefile.makefilePath": "/home/lberthal/Desktop/repogit/philo",
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/lberthal/Desktop/repogit/philo",
+			"binaryPath": "/home/lberthal/Desktop/repogit/philo/philo",
+			"binaryArgs": [3, 300, 200, 200],
+		}
+	]
+	
+}

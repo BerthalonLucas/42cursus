@@ -6,7 +6,7 @@
 /*   By: lberthal <lberthal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 05:10:28 by lberthal          #+#    #+#             */
-/*   Updated: 2024/06/02 05:46:50 by lberthal         ###   ########.fr       */
+/*   Updated: 2024/06/03 05:07:17 by lberthal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ typedef struct s_pipex
 void	ft_fork(t_pipex *pipex);
 void	init_pipex(t_pipex *pipex, char **av, char **envp);
 void	free_all(t_pipex *pipex);
+void	free_all2(t_pipex *pipex);
 void	join_command_to_path(t_pipex *pipex, char *cmd);
 void	path_maker(char **env, t_pipex *pipex);
+void	path_create(t_pipex *pipex);
 void	program_path(t_pipex *pipex);
 int		child_process_fd(t_pipex *pipex, int *fd);
 void	child_process(t_pipex *pipex, int *fd);
@@ -51,7 +53,7 @@ void	child2_process(t_pipex *pipex, int *fd);
 void	ft_childs(t_pipex *pipex, pid_t pid_main, int fd[2]);
 void	error_exit(const char *message, t_pipex *pipex);
 char	*search_executable(t_pipex *pipex);
-int		find_dot_slash(char *str);
+int		find_slash_access(char *str);
 void	path_verif(t_pipex *pipex);
 void	ft_usleep(int time);
 void	path_verif_2(t_pipex *pipex);
