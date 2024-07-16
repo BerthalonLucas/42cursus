@@ -1,0 +1,7 @@
+X.org (serveur X, affichage)
+Rocky = Red Hat Enterprise Linux (RHEL)
+KDump = save crash
+usermod -a -G GROUP USER
+sudo vi /etc/pam.d/common-password
+list users etc/passwd
+lsblk commade check partitions
