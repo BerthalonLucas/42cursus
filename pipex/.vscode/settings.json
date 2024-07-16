@@ -1,9 +1,0 @@
-{
-	"makefile.launchConfigurations": [
-		{
-			"cwd": "/home/lberthal/Desktop/repogit/pipex",
-			"binaryPath": "/home/lberthal/Desktop/repogit/pipex/pipex",
-			"binaryArgs": ["infile", "ls -la", "cat", "outfile"]
-		}
-	]
-}
